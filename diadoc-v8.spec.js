@@ -180,6 +180,51 @@ test('V8 — №5 правильный ответ получает зелёну�
 
   // Нажимаем правильный ответ
   await target.click();
+  //
+// ТЕСТ №6 — ЦЕЛОСТНОСТЬ РАБОЧИХ КНОПОК
+//
+test('V8 — №6 кнопки зарегистрированы во всех разделах', async ({ page }) => {
+  await page.goto(trainerUrl);
+
+  const result = await page.evaluate(() => {
+    const targets = [...document.querySelectorAll('.target[data-n]')];
+    const numbers = [...new Set(targets.map(el => el.dataset.n))];
+    const collection = [...document.querySelectorAll('#items .item')]
+      .map(el => el.querySelector('.itemNo')?.textContent?.trim());
+
+    return {
+      missingNames: targets.filter(el => !el.dataset.name).map(el => el.dataset.n),
+      missingCollection: numbers.filter(n => !collection.includes(n)),
+      invalidPaths: targets.filter(el => {
+        if (!el.dataset.path) return false;
+        const steps = el.dataset.path.split(',');
+        return steps.at(-1) !== el.dataset.n ||
+          steps.some(n => !numbers.includes(n));
+      }).map(el => el.dataset.n)
+    };
+  });
+
+  expect(result.missingNames, 'Кнопки без названия').toEqual([]);
+  expect(result.missingCollection, 'Кнопки отсутствуют в сборнике').toEqual([]);
+  expect(result.invalidPaths, 'Ошибочные маршруты').toEqual([]);
+});
+
+//
+// ТЕСТ №7 — ВЛОЖЕННЫЙ МАРШРУТ №105
+//
+test('V8 — №7 поиск ведёт от №94 к №105', async ({ page }) => {
+  await page.goto(trainerUrl);
+
+  await page.locator('#quickSearch').fill('Функции для технического специалиста');
+  await page.locator('#quickResults .searchResult')
+    .filter({ hasText: '№105' }).click();
+
+  await expect(page.locator('.target[data-n="94"]')).toHaveClass(/route/);
+
+  await page.locator('.target[data-n="94"]').click();
+
+  await expect(page.locator('.target[data-n="105"]')).toHaveClass(/route|found/);
+});
 
   // Правильная кнопка должна получить зелёную реакцию
   await expect(target).toHaveClass(/m8target-ok/);
