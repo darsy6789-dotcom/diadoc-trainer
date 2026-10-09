@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const { pathToFileURL } = require('url');
 const path = require('path');
 
-const TRAINER_PATH = path.resolve(__dirname, '..', 'index.html');
+const TRAINER_PATH = path.resolve(__dirname, 'index.html');
 const trainerUrl = pathToFileURL(TRAINER_PATH).href;
 
 
