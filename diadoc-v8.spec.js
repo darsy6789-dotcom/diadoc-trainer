@@ -225,7 +225,3 @@ test('V8 — №7 поиск ведёт от №94 к №105', async ({ page }) 
 
   await expect(page.locator('.target[data-n="105"]')).toHaveClass(/route|found/);
 });
-
-  // Правильная кнопка должна получить зелёную реакцию
-  await expect(target).toHaveClass(/m8target-ok/);
-});
