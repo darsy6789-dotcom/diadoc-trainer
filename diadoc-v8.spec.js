@@ -180,6 +180,8 @@ test('V8 — №5 правильный ответ получает зелёну�
 
   // Нажимаем правильный ответ
   await target.click();
+  await expect(target).toHaveClass(/m8target-ok/);
+});
   //
 // ТЕСТ №6 — ЦЕЛОСТНОСТЬ РАБОЧИХ КНОПОК
 //
