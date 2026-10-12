@@ -4,7 +4,21 @@ const path = require('path');
 
 const TRAINER_PATH = path.resolve(__dirname, 'index.html');
 const trainerUrl = pathToFileURL(TRAINER_PATH).href;
+async function prepareTrainer(page) {
+  await page.goto(trainerUrl, { waitUntil: 'load' });
 
+  const gate = page.locator('#trainingGate');
+
+  if (await gate.isVisible()) {
+  await page.locator('#trainingPerson').fill('Тестовый Участник');
+  await page.locator('#trainingOrgName').fill('ООО Тест');
+  await page.locator('#trainingAddOrg').click();
+  await page.locator('#trainingContinue').click();
+  await page.locator('#trainingToOrgs').click();
+}
+
+  await expect(gate).toBeHidden();
+}
 
 // ==========================================
 // ТЕСТ №1 — ЗАГРУЗКА БЕЗ JAVASCRIPT-ОШИБОК
@@ -62,10 +76,7 @@ test('V8 — №2 основные кнопки открываются', async (
 
   page.on('pageerror', error => jsErrors.push(error.message));
 
-  await page.goto(trainerUrl, {
-    waitUntil: 'load',
-    timeout: 30000
-  });
+ await prepareTrainer(page);
 
   // Нумерация
   await page.locator('#toggle').click();
@@ -96,10 +107,7 @@ test('V8 — №3 сборник кнопок и поиск работают', a
 
   page.on('pageerror', error => jsErrors.push(error.message));
 
-  await page.goto(trainerUrl, {
-    waitUntil: 'load',
-    timeout: 30000
-  });
+await prepareTrainer(page);
 
   // Открываем сборник кнопок
   await page.locator('#collectionBtn').click();
@@ -127,10 +135,7 @@ test('V8 — №3 сборник кнопок и поиск работают', a
 // ==========================================
 
 test('V8 — №4 при открытии набора стартовое окно не перекрывает его', async ({ page }) => {
-  await page.goto(trainerUrl, {
-    waitUntil: 'load',
-    timeout: 30000
-  });
+  await prepareTrainer(page);
 
   // Открываем Проверку знаний
   await page.locator('#knowledgeBtn').click();
@@ -148,10 +153,7 @@ test('V8 — №4 при открытии набора стартовое окн
 // ==========================================
 
 test('V8 — №5 правильный ответ получает зелёную реакцию', async ({ page }) => {
-  await page.goto(trainerUrl, {
-    waitUntil: 'load',
-    timeout: 30000
-  });
+ await prepareTrainer(page);
 
   // Открываем Проверку знаний
   await page.locator('#knowledgeBtn').click();
@@ -215,7 +217,7 @@ test('V8 — №6 кнопки зарегистрированы во всех р
 // ТЕСТ №7 — ВЛОЖЕННЫЙ МАРШРУТ №105
 //
 test('V8 — №7 поиск ведёт от №94 к №105', async ({ page }) => {
-  await page.goto(trainerUrl);
+  await prepareTrainer(page);
 
   await page.locator('#quickSearch').fill('Функции для технического специалиста');
   await page.locator('#quickResults .searchResult')
