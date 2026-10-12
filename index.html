@@ -1,9 +1,10 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/>
 <title>1сД — тренажёр Диадок</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%23181b21%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%2254%22%20height%3D%2254%22%20rx%3D%2210%22%20fill%3D%22none%22%20stroke%3D%22%23e6b72a%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2239%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22800%22%20fill%3D%22%23ffffff%22%3E1%D1%81%D0%94%3C%2Ftext%3E%3Cpath%20d%3D%22M15%2046H49%22%20stroke%3D%22%2340e08c%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+<link href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2213%22%20fill%3D%22%23181b21%22%2F%3E%3Crect%20x%3D%225%22%20y%3D%225%22%20width%3D%2254%22%20height%3D%2254%22%20rx%3D%2210%22%20fill%3D%22none%22%20stroke%3D%22%23e6b72a%22%20stroke-width%3D%223%22%2F%3E%3Ctext%20x%3D%2232%22%20y%3D%2239%22%20text-anchor%3D%22middle%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22800%22%20fill%3D%22%23ffffff%22%3E1%D1%81%D0%94%3C%2Ftext%3E%3Cpath%20d%3D%22M15%2046H49%22%20stroke%3D%22%2340e08c%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22%2F%3E%3C%2Fsvg%3E" rel="icon" type="image/svg+xml"/>
 <style>
 :root{--side:285px;--y:#fff09b;--active:#e7d36c;--line:#bbb;--gold:#e2b52e;--green:#39ff88}
 *{box-sizing:border-box}html,body{height:100%;margin:0;font:13px 'Arial Narrow','Segoe UI',Arial,sans-serif;color:#333;background:#dfe2e5}
@@ -99,7 +100,6 @@
 @media(max-width:900px){.poolModal{width:calc(100vw - 24px);height:82vh}.poolToolbar{grid-template-columns:1fr}.gameTask{font-size:22px!important}.gameBar{grid-template-columns:1fr}.gameStats{flex-wrap:wrap;white-space:normal}}
 
 </style>
-
 <style id="beta16-patch">
 /* ===== β16: agreed trainer ergonomics; do not alter base 1C geometry ===== */
 :root{--side:280px;--side-mini:60px}
@@ -131,13 +131,10 @@
 .disabledModal{display:none;width:min(720px,82vw);max-height:76vh}.disabledModal.open{display:flex;flex-direction:column}.disabledList{overflow:auto;max-height:55vh;border:1px solid #3c424b;border-radius:6px}.disabledRow{padding:10px 12px;border-bottom:1px solid #343941}.disabledRow b{font-size:14px}.disabledRow small{display:block;color:#a1a8b2;margin-top:3px}
 @media(max-width:900px){:root{--side:250px}.poolCollections{grid-template-columns:repeat(2,minmax(0,1fr))}.gameBaseSummary{grid-template-columns:1fr}}
 </style>
-
 <style id="master21-clean-css">
 #poolOpen{position:relative;z-index:2;pointer-events:auto!important}
 #poolModal{z-index:1200!important}
 </style>
-
-
 <style id="master25-clean-css">
 /* Diadoc tab belongs above Diadoc only; the yellow 1C navigation keeps its own full height. */
 .work{align-items:stretch}
@@ -170,8 +167,6 @@
 .resultHistoryNo{color:#f2bd21;font-weight:700;min-width:38px}
 .resultHistoryText small{display:block;color:#9aa0aa;margin-top:2px}
 </style>
-
-
 <style id="master26-authoritative-layout">
 /* RIGHT DIADOC HEADER: no historical absolute coordinates. */
 .module .title{
@@ -273,8 +268,6 @@
   white-space:nowrap!important;
 }
 </style>
-
-
 <style id="v8-text-requirements-css">
 .docMiniV8{display:flex;gap:4px;padding:3px 8px}.docMiniV8 button{width:26px;height:24px;border:1px solid #aaa;background:#f5f2df;border-radius:2px;cursor:pointer}
 .stage.gameRunning .viewport{scrollbar-width:auto}.stage.gameRunning .viewport::-webkit-scrollbar{height:18px}
@@ -283,8 +276,6 @@
 .gameTask.flipV8{animation:v8flip .34s ease}@keyframes v8flip{0%{transform:rotateX(0)}49%{transform:rotateX(88deg);opacity:.2}50%{transform:rotateX(-88deg);opacity:.2}100%{transform:rotateX(0);opacity:1}}
 .v8ResultSections{display:grid;gap:7px;margin-top:10px}.v8ResultSection{border:1px solid #414750;border-radius:6px;overflow:hidden}.v8ResultHead{width:100%;display:flex;align-items:center;gap:7px;background:#22262c;color:#fff;border:0;padding:10px;text-align:left;cursor:pointer}.v8ResultHead .v8cnt{margin-left:auto}.v8ResultHead .v8chev{margin-left:8px;transition:.15s}.v8ResultSection.open .v8chev{transform:rotate(180deg)}.v8ResultList{display:none;padding:7px 10px;background:#1c2025}.v8ResultSection.open .v8ResultList{display:block}.v8ResultItem{padding:6px 0;border-bottom:1px solid #333;font-size:12px}.v8ResultItem:last-child{border-bottom:0}.v8ResultItem small{display:block;color:#aaa;margin-top:2px}
 </style>
-
-
 <style id="v8-approved-mockup-presentation">
 /* PRESENTATION TRANSFER ONLY from uploaded final mockup.
    No mockup JS/handlers/routes/scoring are imported. */
@@ -447,8 +438,6 @@
 #gameHintV8,#gameBackV8{min-width:34px}
 .v8ResultSections{width:100%}
 </style>
-
-
 <style id="v8-sidebar-extras-fix">
 .trainerExtraV8{margin-top:auto;flex:0 0 auto!important;padding-top:10px;padding-bottom:12px}
 .trainerExtraBtnV8{width:100%;display:flex;align-items:center;gap:10px;margin-top:7px;padding:10px 12px;border:1px solid #41454e;background:#272a31;color:#fff;border-radius:8px;text-align:left;cursor:pointer;font:600 12px Arial,sans-serif}
@@ -457,7 +446,6 @@
 .app.trainerMini .trainerExtraV8{display:none}
 .m8templates small{white-space:normal;line-height:1.35}
 </style>
-
 <style id="diadoc-reference-layout-20261011">
 /* One compact 1C header line, preserving every real control and handler. */
 .module .title{
@@ -503,7 +491,6 @@
  .module .sectionButtons{margin-left:35px!important;gap:4px!important}
 }
 </style>
-
 <style id="v8-reference-tight-layout">
 .module .title{min-height:36px!important;height:36px!important;padding:2px 8px!important;gap:5px!important}
 .module .sectionRow{height:35px!important;min-height:35px!important;margin:0 0 2px!important}
@@ -513,90 +500,144 @@
 .m8levelCount{display:block!important;color:#d0d5dd!important;font-size:12px!important;margin-top:7px!important}
 @media(max-width:1100px){.module .sectionButtons{margin-left:20px!important;gap:4px!important}}
 </style>
+<style id="admin-preview-v1">
+.navItem.adminChosen{background:#fff!important;font-weight:normal!important}.adminView{display:none;flex:1;min-height:0;overflow:auto;background:#fff;font:14px Arial,sans-serif;color:#333}.diadocPane.adminMode>.diadocTabs,.diadocPane.adminMode>.module{display:none!important}.diadocPane.adminMode>.adminView{display:block}.adminPage{padding:20px 27px 45px}.adminCols{display:grid;grid-template-columns:1fr 1fr;gap:60px}.adminGroup{margin:70px 0 20px}.adminGroup h3{font-size:20px;font-weight:400;color:#23a265;margin:0 0 13px}.adminLink{display:block;width:max-content;max-width:100%;padding:6px 2px;color:#333;text-decoration:none;cursor:default}.adminLink.real{cursor:pointer}.adminLink.real:hover{text-decoration:underline}.adminLink .badge{top:3px;left:-23px}.adminTitle{display:flex;gap:12px;align-items:center;padding:10px 13px;background:#f5f5f5;border-bottom:1px solid #c8c8c8;font-size:14px}.adminTab{border-bottom:2px solid #27ad80;padding:7px 10px;background:white}.adminToolbar{display:flex;gap:8px;align-items:center;padding:10px 12px}.adminToolbar button{border:1px solid #bbb;background:#f6f6f6;padding:5px 12px;cursor:pointer}.adminToolbar strong{font-size:19px;font-weight:400;margin-left:30px}.adminIntro{margin:6px 0 22px}.adminDetail{padding:0 12px 40px}.adminDetail .adminCols{gap:45px}.adminEntry{margin:0 0 19px}.adminEntry a{color:#3575b8;text-decoration:underline;cursor:default}.adminEntry a.real{cursor:pointer}.adminEntry p{color:#898878;font-size:13px;margin:5px 0 0;line-height:1.3}.adminCheck{margin:10px 0 6px;color:#555}.adminCheck input{accent-color:#2ea867}.adminView .target{position:relative}.adminView .target .badge{left:-21px;top:0}.adminView .found,.adminView .route{outline-offset:2px}.adminView .arrow{left:-35px}@media(max-width:850px){.adminCols{gap:20px}.adminPage{padding:10px 15px}}
+</style>
+<style id="restored-user-reference-geometry">
+/* Geometry matching the reference 1C compact toolbar. Keep all buttons and columns. */
+.stage .diadocPane .module {padding:0 8px!important; gap:0!important}
+.stage .diadocPane .module>.title {
+  position:relative!important;display:flex!important;align-items:center!important;
+  box-sizing:border-box!important;height:38px!important;min-height:38px!important;
+  padding:2px 5px!important;margin:0!important;gap:5px!important;
+}
+.stage .diadocPane .module>.title>.moduleName {
+  margin:0 0 0 4px!important;align-self:center!important;
+}
+.stage .diadocPane .module>.title>.userArea {
+  position:static!important;inset:auto!important;transform:none!important;
+  margin:0 5px 0 auto!important;height:28px!important;align-self:center!important;
+}
+.stage .diadocPane .module>.title>.tools {
+  position:static!important;inset:auto!important;transform:none!important;
+  margin:0!important;height:28px!important;align-self:center!important;gap:3px!important;
+}
+.stage .diadocPane .module>.title>.serviceMini {
+  position:static!important;inset:auto!important;transform:none!important;
+  margin:0!important;height:26px!important;align-self:center!important;
+}
+.stage .diadocPane .module>.sectionRow {
+  display:flex!important;justify-content:center!important;align-items:center!important;
+  box-sizing:border-box!important;height:32px!important;min-height:32px!important;
+  margin:0!important;padding:0!important;
+}
+.stage .diadocPane .module .sectionButtons {
+  display:flex!important;justify-content:center!important;align-items:center!important;
+  margin:0!important;padding:0!important;gap:4px!important;
+}
+.stage .diadocPane .module .sectionBtn {
+  box-sizing:border-box!important;height:27px!important;min-height:27px!important;
+  padding:2px 10px!important;margin:0!important;line-height:21px!important;
+}
+.stage .diadocPane .module>.filters,
+.stage .diadocPane .module>.actions {
+  box-sizing:border-box!important;height:34px!important;min-height:34px!important;
+  margin:0 0 2px!important;padding:0!important;align-items:center!important;gap:4px!important;
+}
+.stage .diadocPane .module>.filters .control,
+.stage .diadocPane .module>.actions .control {
+  box-sizing:border-box!important;max-height:32px!important;
+}
+.stage .diadocPane .module>.viewport {margin-top:0!important}
+@media(max-width:950px){
+  .stage .diadocPane .module>.title>.userArea{margin-left:auto!important}
+  .stage .diadocPane .module>.title>.tools{gap:1px!important}
+}
+</style>
 </head>
 <body>
 <div class="app">
 <aside class="trainer">
 <h2>Тренажёр</h2>
-<div class="block"><div class="cap">Отображение</div><div class="row"><span>Нумерация кнопок</span><div id="toggle" class="toggle"><i></i></div></div></div>
-<div class="block"><div class="cap">Навигация</div><div class="navSearchWrap"><span class="navSearchIcon">⌕</span><input id="quickSearch" class="navSearch" placeholder="Найти кнопку…" autocomplete="off"><div id="quickResults" class="searchResults"></div></div><button id="collectionBtn" class="collectionBtn"><span>Сборник кнопок</span><b id="chev">⌄</b></button><div id="collection" class="collection"><div id="items" class="items"></div></div></div><div class="block" style="flex:1"><div class="cap">Обучение</div><button id="knowledgeBtn" class="knowledgeBtn"><span class="knowledgeIcon" aria-hidden="true"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m2 9 10-5 10 5-10 5-10-5Z"/><path d="M6 11v6c3.8 3 8.2 3 12 0v-6"/><path d="M22 9v7"/></svg></span><span>Проверка знаний</span></button><button id="devBtn" class="devBtn"><span class="devGear" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19.14 12.94a7.8 7.8 0 0 0 .05-.94 7.8 7.8 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.1 7.1 0 0 0-1.63-.94L14.38 2.8a.5.5 0 0 0-.49-.4h-3.84a.5.5 0 0 0-.49.4L9.2 5.32c-.58.24-1.12.56-1.63.94L5.18 5.3a.5.5 0 0 0-.61.22L2.65 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.8 7.8 0 0 0-.05.94c0 .32.02.63.05.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .61.22l2.39-.96c.5.39 1.05.7 1.63.94l.36 2.52a.5.5 0 0 0 .49.4h3.84a.5.5 0 0 0 .49-.4l.36-2.52c.58-.24 1.12-.55 1.63-.94l2.39.96a.5.5 0 0 0 .61-.22l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4z"/></svg></span><span>Режим разработчика</span></button></div>
+<div class="block"><div class="cap">Отображение</div><div class="row"><span>Нумерация кнопок</span><div class="toggle" id="toggle"><i></i></div></div></div>
+<div class="block"><div class="cap">Навигация</div><div class="navSearchWrap"><span class="navSearchIcon">⌕</span><input autocomplete="off" class="navSearch" id="quickSearch" placeholder="Найти кнопку…"/><div class="searchResults" id="quickResults"></div></div><button class="collectionBtn" id="collectionBtn"><span>Сборник кнопок</span><b id="chev">⌄</b></button><div class="collection" id="collection"><div class="items" id="items"></div></div></div><div class="block" style="flex:1"><div class="cap">Обучение</div><button class="knowledgeBtn" id="knowledgeBtn"><span aria-hidden="true" class="knowledgeIcon"><svg fill="none" height="23" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="23"><path d="m2 9 10-5 10 5-10 5-10-5Z"></path><path d="M6 11v6c3.8 3 8.2 3 12 0v-6"></path><path d="M22 9v7"></path></svg></span><span>Проверка знаний</span></button><button class="devBtn" id="devBtn"><span aria-hidden="true" class="devGear"><svg viewbox="0 0 24 24"><path d="M19.14 12.94a7.8 7.8 0 0 0 .05-.94 7.8 7.8 0 0 0-.05-.94l2.03-1.58a.5.5 0 0 0 .12-.64l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.1 7.1 0 0 0-1.63-.94L14.38 2.8a.5.5 0 0 0-.49-.4h-3.84a.5.5 0 0 0-.49.4L9.2 5.32c-.58.24-1.12.56-1.63.94L5.18 5.3a.5.5 0 0 0-.61.22L2.65 8.84a.5.5 0 0 0 .12.64l2.03 1.58a7.8 7.8 0 0 0-.05.94c0 .32.02.63.05.94l-2.03 1.58a.5.5 0 0 0-.12.64l1.92 3.32a.5.5 0 0 0 .61.22l2.39-.96c.5.39 1.05.7 1.63.94l.36 2.52a.5.5 0 0 0 .49.4h3.84a.5.5 0 0 0 .49-.4l.36-2.52c.58-.24 1.12-.55 1.63-.94l2.39.96a.5.5 0 0 0 .61-.22l1.92-3.32a.5.5 0 0 0-.12-.64zM12 15.2A3.2 3.2 0 1 1 12 8.8a3.2 3.2 0 0 1 0 6.4z"></path></svg></span><span>Режим разработчика</span></button></div>
 </aside>
-<section id="stage" class="stage">
-<div class="top global1cTop"><span class="logo">1C</span><span class="onecEquals">=</span><span class="onecProduct">Бухгалтерия предприятия</span><span class="onecTopSpacer"></span><input class="onecGlobalSearch" placeholder="Поиск Ctrl+Shift+F" aria-label="Глобальный поиск 1С"><button class="onecUnknown" type="button" title="Неопознанная кнопочка">●<sup>2</sup></button><button class="onecUnknown" type="button" title="Неопознанная кнопочка">◷</button><button class="onecUnknown" type="button" title="Неопознанная кнопочка">☆</button><span class="onecGlobalUser">Абрамов Геннадий Сергеевич</span><button id="onecBadButton" class="onecBadButton target" type="button" data-n="94" data-name="Плохая кнопка" data-type="Кнопка" data-zone="Глобальная панель 1С" data-action="onecMainMenu"><i class="badge">94</i><span class="badLines">☰</span></button><button class="onecUnknown onecWindow" type="button" title="Неопознанная кнопочка">—</button><button class="onecUnknown onecWindow" type="button" title="Неопознанная кнопочка">□</button><button class="onecUnknown onecWindow" type="button" title="Неопознанная кнопочка">×</button></div>
-<div id="onecMainMenu" class="onecMainMenu" aria-label="Главное меню 1С">
- <div class="onecMenuItem target disabledNative" data-n="95" data-name="Получить ссылку" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,95"><i class="badge">95</i><span>Получить ссылку...</span><kbd>Ctrl+F11</kbd></div>
- <div class="onecMenuItem target" data-n="96" data-name="Перейти по ссылке" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,96"><i class="badge">96</i><span>Перейти по ссылке...</span><kbd>Shift+F11</kbd></div><div class="onecSep"></div>
- <div class="onecMenuItem target" data-n="97" data-name="Календарь" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,97"><i class="badge">97</i><span>Календарь</span></div>
- <div class="onecMenuItem target" data-n="98" data-name="Калькулятор" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,98"><i class="badge">98</i><span>Калькулятор</span><kbd>Ctrl+F2</kbd></div>
- <div class="onecMenuItem target" data-n="99" data-name="Показать M, M+, M-" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,99"><i class="badge">99</i><span>Показать M, M+, M-</span></div><div class="onecSep"></div>
- <div id="onecFileMenuItem" class="onecMenuItem target" data-n="100" data-name="Файл" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,100"><i class="badge">100</i><span>Файл</span><b>▶</b></div>
- <div class="onecMenuItem target" data-n="101" data-name="Окна" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,101"><i class="badge">101</i><span>Окна</span><b>▶</b></div>
- <div class="onecMenuItem target" data-n="102" data-name="Настройки" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,102"><i class="badge">102</i><span>Настройки</span><b>▶</b></div>
- <div class="onecMenuItem target" data-n="103" data-name="Справка" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,103"><i class="badge">103</i><span>Справка</span><b>▶</b></div><div class="onecSep"></div>
- <div class="onecMenuItem target" data-n="104" data-name="О программе" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,104"><i class="badge">104</i><span>О программе...</span></div><div class="onecSep"></div>
- <div class="onecMenuItem target" data-n="105" data-name="Функции для технического специалиста" data-type="Пункт меню" data-zone="Главное меню 1С" data-path="94,105"><i class="badge">105</i><span>Функции для технического специалиста...</span></div>
+<section class="stage" id="stage">
+<div class="top global1cTop"><span class="logo">1C</span><span class="onecEquals">=</span><span class="onecProduct">Бухгалтерия предприятия</span><span class="onecTopSpacer"></span><input aria-label="Глобальный поиск 1С" class="onecGlobalSearch" placeholder="Поиск Ctrl+Shift+F"/><button class="onecUnknown" title="Неопознанная кнопочка" type="button">●<sup>2</sup></button><button class="onecUnknown" title="Неопознанная кнопочка" type="button">◷</button><button class="onecUnknown" title="Неопознанная кнопочка" type="button">☆</button><span class="onecGlobalUser">Абрамов Геннадий Сергеевич</span><button class="onecBadButton target" data-action="onecMainMenu" data-n="94" data-name="Плохая кнопка" data-type="Кнопка" data-zone="Глобальная панель 1С" id="onecBadButton" type="button"><i class="badge">94</i><span class="badLines">☰</span></button><button class="onecUnknown onecWindow" title="Неопознанная кнопочка" type="button">—</button><button class="onecUnknown onecWindow" title="Неопознанная кнопочка" type="button">□</button><button class="onecUnknown onecWindow" title="Неопознанная кнопочка" type="button">×</button></div>
+<div aria-label="Главное меню 1С" class="onecMainMenu" id="onecMainMenu">
+<div class="onecMenuItem target disabledNative" data-n="95" data-name="Получить ссылку" data-path="94,95" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">95</i><span>Получить ссылку...</span><kbd>Ctrl+F11</kbd></div>
+<div class="onecMenuItem target" data-n="96" data-name="Перейти по ссылке" data-path="94,96" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">96</i><span>Перейти по ссылке...</span><kbd>Shift+F11</kbd></div><div class="onecSep"></div>
+<div class="onecMenuItem target" data-n="97" data-name="Календарь" data-path="94,97" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">97</i><span>Календарь</span></div>
+<div class="onecMenuItem target" data-n="98" data-name="Калькулятор" data-path="94,98" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">98</i><span>Калькулятор</span><kbd>Ctrl+F2</kbd></div>
+<div class="onecMenuItem target" data-n="99" data-name="Показать M, M+, M-" data-path="94,99" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">99</i><span>Показать M, M+, M-</span></div><div class="onecSep"></div>
+<div class="onecMenuItem target" data-n="100" data-name="Файл" data-path="94,100" data-type="Пункт меню" data-zone="Главное меню 1С" id="onecFileMenuItem"><i class="badge">100</i><span>Файл</span><b>▶</b></div>
+<div class="onecMenuItem target" data-n="101" data-name="Окна" data-path="94,101" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">101</i><span>Окна</span><b>▶</b></div>
+<div class="onecMenuItem target" data-n="102" data-name="Настройки" data-path="94,102" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">102</i><span>Настройки</span><b>▶</b></div>
+<div class="onecMenuItem target" data-n="103" data-name="Справка" data-path="94,103" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">103</i><span>Справка</span><b>▶</b></div><div class="onecSep"></div>
+<div class="onecMenuItem target" data-n="104" data-name="О программе" data-path="94,104" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">104</i><span>О программе...</span></div><div class="onecSep"></div>
+<div class="onecMenuItem target" data-n="105" data-name="Функции для технического специалиста" data-path="94,105" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">105</i><span>Функции для технического специалиста...</span></div>
 </div>
-<div id="onecFileMenu" class="onecFileMenu" aria-label="Файл">
- <div class="onecMenuItem target" data-n="106" data-name="Новый" data-type="Пункт меню" data-zone="Файл · 1С" data-path="94,100,106"><i class="badge">106</i><span>Новый...</span><kbd>Ctrl+N</kbd></div>
- <div class="onecMenuItem target" data-n="107" data-name="Открыть" data-type="Пункт меню" data-zone="Файл · 1С" data-path="94,100,107" data-prompt="Открой файл в 1С"><i class="badge">107</i><span>Открыть...</span><kbd>Ctrl+O</kbd></div>
- <div class="onecMenuItem target" data-n="108" data-name="Сравнить файлы" data-type="Пункт меню" data-zone="Файл · 1С" data-path="94,100,108"><i class="badge">108</i><span>Сравнить файлы...</span></div><div class="onecSep"></div>
- <div class="recentFileExample"><span>1</span><span>C:\Users\...\Downloads\diadoc_xx_xx.epf</span></div>
- <div class="recentFileExample"><span>2</span><span>C:\Users\...\Downloads\installer_x_xx_x.epf</span></div><div class="onecSep"></div>
- <div class="onecMenuItem target" data-n="109" data-name="Выход" data-type="Пункт меню" data-zone="Файл · 1С" data-path="94,100,109"><i class="badge">109</i><span>Выход</span><kbd>Alt+F4</kbd></div>
+<div aria-label="Файл" class="onecFileMenu" id="onecFileMenu">
+<div class="onecMenuItem target" data-n="106" data-name="Новый" data-path="94,100,106" data-type="Пункт меню" data-zone="Файл · 1С"><i class="badge">106</i><span>Новый...</span><kbd>Ctrl+N</kbd></div>
+<div class="onecMenuItem target" data-n="107" data-name="Открыть" data-path="94,100,107" data-prompt="Открой файл в 1С" data-type="Пункт меню" data-zone="Файл · 1С"><i class="badge">107</i><span>Открыть...</span><kbd>Ctrl+O</kbd></div>
+<div class="onecMenuItem target" data-n="108" data-name="Сравнить файлы" data-path="94,100,108" data-type="Пункт меню" data-zone="Файл · 1С"><i class="badge">108</i><span>Сравнить файлы...</span></div><div class="onecSep"></div>
+<div class="recentFileExample"><span>1</span><span>C:\Users\...\Downloads\diadoc_xx_xx.epf</span></div>
+<div class="recentFileExample"><span>2</span><span>C:\Users\...\Downloads\installer_x_xx_x.epf</span></div><div class="onecSep"></div>
+<div class="onecMenuItem target" data-n="109" data-name="Выход" data-path="94,100,109" data-type="Пункт меню" data-zone="Файл · 1С"><i class="badge">109</i><span>Выход</span><kbd>Alt+F4</kbd></div>
 </div>
 <div class="work">
-<nav id="nav" class="nav"></nav>
+<nav class="nav" id="nav"></nav>
 <div class="diadocPane">
-<div class="diadocTabs"><div class="diadocTab active">Контур.Диадок / 4.69.1 <span>×</span></div></div>
+<div class="diadocTabs"><div class="diadocTab active">Контур.Диадок / 4.70.4 <span>×</span></div></div>
 <main class="module">
 <div class="title">
-<button class="navBtn target backBtn" data-n="1" data-name="Назад" data-action="historyBack"><i class="badge">1</i><span class="arrowGlyph">←</span></button>
-<button class="navBtn target forwardBtn disabledLook" data-n="2" data-name="Вперёд" data-action="historyForward"><i class="badge">2</i><span class="arrowGlyph">→</span></button>
-<button class="starBtn target" data-n="3" data-name="Избранное" data-action="favorite" aria-label="Избранное"><i class="badge">3</i><svg class="starIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.8l2.72 5.52 6.09.88-4.4 4.29 1.04 6.06L12 16.68l-5.45 2.87 1.04-6.06-4.4-4.29 6.09-.88L12 2.8z"/></svg></button>
-<span class="moduleName">Контур.Диадок <span class="version">/ 4.69.1</span></span>
-<div class="userArea"><span class="userIcon" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="6" r="3"/><path d="M4 17c.4-4 2.4-6 6-6s5.6 2 6 6z"/></svg></span><button class="userName" type="button" data-action="user" style="border:0;background:transparent;padding:0">Огнева Алена</button></div>
-<div class="tools">
-<button class="tool target" data-n="22" data-name="Плагины" data-action="placeholder"><i class="badge">22</i><svg class="toolSvg" viewBox="0 0 18 18" aria-hidden="true"><path d="M7 2v5M11 2v5M5.5 6.5h7v2.2a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 5.5 8.7zM9 12.2V16"/></svg>Плагины</button>
-<button class="tool target noticeTool miniTop" data-n="23" data-name="Уведомления" data-action="placeholder" aria-label="Уведомления"><i class="badge">23</i><svg class="toolSvg" viewBox="0 0 18 18" aria-hidden="true"><path d="M4.5 12.5h9l-1.2-1.8V7.4A3.3 3.3 0 0 0 9 4.1 3.3 3.3 0 0 0 5.7 7.4v3.3zM7.5 14.2c.3 1 2.7 1 3 0"/></svg><span class="toolCaret">▼</span></button>
-<span class="wrap"><button class="tool target miniTop" data-n="24" data-name="Настройки" data-action="settings" aria-label="Настройки"><i class="badge">24</i><svg class="toolSvg settingsGear" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.07-.94l2.03-1.58a.48.48 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.1 7.1 0 0 0-1.62-.94L14.4 2.81a.49.49 0 0 0-.48-.41h-3.84a.49.49 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.56-1.63.94l-2.39-.96a.49.49 0 0 0-.59.22L2.71 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.31-.08.65-.08.94s.03.63.08.94l-2.03 1.58a.48.48 0 0 0-.12.61l1.92 3.32c.12.22.37.31.59.22l2.39-.96c.5.38 1.04.7 1.63.94l.36 2.54c.04.24.24.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.09.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"/></svg><span class="toolCaret">▼</span></button><div id="settingsDrop" class="drop"></div></span>
-<span class="wrap"><button class="tool target miniTop" data-n="25" data-name="Помощь" data-action="help" aria-label="Помощь"><i class="badge">25</i><span class="helpCircle">?</span><span class="toolCaret">▼</span></button><div id="helpDrop" class="drop"></div></span>
+<button class="navBtn target backBtn" data-action="historyBack" data-n="1" data-name="Назад"><i class="badge">1</i><span class="arrowGlyph">←</span></button>
+<button class="navBtn target forwardBtn disabledLook" data-action="historyForward" data-n="2" data-name="Вперёд"><i class="badge">2</i><span class="arrowGlyph">→</span></button>
+<button aria-label="Избранное" class="starBtn target" data-action="favorite" data-n="3" data-name="Избранное"><i class="badge">3</i><svg aria-hidden="true" class="starIcon" viewbox="0 0 24 24"><path d="M12 2.8l2.72 5.52 6.09.88-4.4 4.29 1.04 6.06L12 16.68l-5.45 2.87 1.04-6.06-4.4-4.29 6.09-.88L12 2.8z"></path></svg></button>
+<span class="moduleName">Контур.Диадок <span class="version">/ 4.70.4</span></span>
+
+
 </div>
-</div>
-<div class="sectionRow"><div id="sectionButtons" class="sectionButtons"></div></div>
+<div class="sectionRow"><div class="sectionButtons" id="sectionButtons"></div><div class="userArea"><span aria-hidden="true" class="userIcon"><svg viewbox="0 0 20 20"><circle cx="10" cy="6" r="3"></circle><path d="M4 17c.4-4 2.4-6 6-6s5.6 2 6 6z"></path></svg></span><button class="userName" data-action="user" style="border:0;background:transparent;padding:0" type="button">Огнева Алена</button></div><div class="tools">
+<button class="tool target" data-action="placeholder" data-n="22" data-name="Плагины"><i class="badge">22</i><svg aria-hidden="true" class="toolSvg" viewbox="0 0 18 18"><path d="M7 2v5M11 2v5M5.5 6.5h7v2.2a3.5 3.5 0 0 1-3.5 3.5A3.5 3.5 0 0 1 5.5 8.7zM9 12.2V16"></path></svg>Плагины</button>
+<button aria-label="Уведомления" class="tool target noticeTool miniTop" data-action="placeholder" data-n="23" data-name="Уведомления"><i class="badge">23</i><svg aria-hidden="true" class="toolSvg" viewbox="0 0 18 18"><path d="M4.5 12.5h9l-1.2-1.8V7.4A3.3 3.3 0 0 0 9 4.1 3.3 3.3 0 0 0 5.7 7.4v3.3zM7.5 14.2c.3 1 2.7 1 3 0"></path></svg><span class="toolCaret">▼</span></button>
+<span class="wrap"><button aria-label="Настройки" class="tool target miniTop" data-action="settings" data-n="24" data-name="Настройки"><i class="badge">24</i><svg aria-hidden="true" class="toolSvg settingsGear" viewbox="0 0 24 24"><path d="M19.14 12.94c.04-.31.06-.63.06-.94s-.02-.63-.07-.94l2.03-1.58a.48.48 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96a7.1 7.1 0 0 0-1.62-.94L14.4 2.81a.49.49 0 0 0-.48-.41h-3.84a.49.49 0 0 0-.48.41l-.36 2.54c-.59.24-1.13.56-1.63.94l-2.39-.96a.49.49 0 0 0-.59.22L2.71 8.87a.48.48 0 0 0 .12.61l2.03 1.58c-.05.31-.08.65-.08.94s.03.63.08.94l-2.03 1.58a.48.48 0 0 0-.12.61l1.92 3.32c.12.22.37.31.59.22l2.39-.96c.5.38 1.04.7 1.63.94l.36 2.54c.04.24.24.41.48.41h3.84c.24 0 .44-.17.48-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.09.47 0 .59-.22l1.92-3.32a.48.48 0 0 0-.12-.61zM12 15.5A3.5 3.5 0 1 1 12 8.5a3.5 3.5 0 0 1 0 7z"></path></svg><span class="toolCaret">▼</span></button><div class="drop" id="settingsDrop"></div></span>
+<span class="wrap"><button aria-label="Помощь" class="tool target miniTop" data-action="help" data-n="25" data-name="Помощь"><i class="badge">25</i><span class="helpCircle">?</span><span class="toolCaret">▼</span></button><div class="drop" id="helpDrop"></div></span>
+</div></div>
 <div class="filters">
-<button class="control filterBtn target" data-n="8" data-name="Открыть фильтры" data-action="placeholder" aria-label="Фильтр"><i class="badge">8</i><svg class="filterIcon" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 3h14l-5.3 6v4.5l-3.4 1.6V9z" fill="#60656a"/></svg></button>
-<div class="control period target" data-n="9" data-name="Период" data-action="placeholder"><i class="badge">9</i><span class="fieldIcon">▣</span><span class="fieldMain">Сентябрь 2026 г. (по дате отправки)</span></div>
-<div class="control org target" data-n="10" data-name="Организация" data-action="placeholder"><i class="badge">10</i><span class="fieldMain placeholderText">Организация</span><span class="fieldOps"><button class="fieldMini" type="button" data-subaction="pick">▼</button><button class="fieldMini" type="button" data-subaction="more">…</button><button class="fieldMini" type="button" data-subaction="clear">×</button></span></div>
-<div class="control partner target" data-n="11" data-name="Контрагент" data-action="placeholder"><i class="badge">11</i><span class="fieldMain placeholderText">Контрагент</span><span class="fieldOps"><button class="fieldMini" type="button" data-subaction="pick">▼</button><button class="fieldMini" type="button" data-subaction="clear">×</button></span></div>
-<div class="control statusField target" data-n="12" data-name="Статус" data-action="placeholder"><i class="badge">12</i><span class="fieldMain placeholderText">Статус</span><span class="fieldOps"><button class="fieldMini" type="button" data-subaction="pick">▼</button><button class="fieldMini" type="button" data-subaction="clear">×</button></span></div>
+<button aria-label="Фильтр" class="control filterBtn target" data-action="placeholder" data-n="8" data-name="Открыть фильтры"><i class="badge">8</i><svg aria-hidden="true" class="filterIcon" viewbox="0 0 18 18"><path d="M2 3h14l-5.3 6v4.5l-3.4 1.6V9z" fill="#60656a"></path></svg></button>
+<div class="control period target" data-action="placeholder" data-n="9" data-name="Период"><i class="badge">9</i><span class="fieldIcon">▣</span><span class="fieldMain">Сентябрь 2026 г. (по дате отправки)</span></div>
+<div class="control org target" data-action="placeholder" data-n="10" data-name="Организация"><i class="badge">10</i><span class="fieldMain placeholderText">Организация</span><span class="fieldOps"><button class="fieldMini" data-subaction="pick" type="button">▼</button><button class="fieldMini" data-subaction="more" type="button">…</button><button class="fieldMini" data-subaction="clear" type="button">×</button></span></div>
+<div class="control partner target" data-action="placeholder" data-n="11" data-name="Контрагент"><i class="badge">11</i><span class="fieldMain placeholderText">Контрагент</span><span class="fieldOps"><button class="fieldMini" data-subaction="pick" type="button">▼</button><button class="fieldMini" data-subaction="clear" type="button">×</button></span></div>
+<div class="control statusField target" data-action="placeholder" data-n="12" data-name="Статус"><i class="badge">12</i><span class="fieldMain placeholderText">Статус</span><span class="fieldOps"><button class="fieldMini" data-subaction="pick" type="button">▼</button><button class="fieldMini" data-subaction="clear" type="button">×</button></span></div>
 </div>
 <div class="actions">
-<button class="control action target selectPageBtn" data-n="56" data-name="Выделение документов на странице" data-type="Кнопка" data-zone="Таблица" data-action="placeholder" title="Выделение документов на странице"><i class="badge">56</i><svg class="filterIcon" viewBox="0 0 18 18" aria-hidden="true"><rect x="3" y="3" width="12" height="12" fill="none" stroke="#666"/><path d="M5.5 9l2 2 5-5" fill="none" stroke="#25a46f" stroke-width="1.8"/></svg></button>
-<button class="control action target" data-n="13" data-name="Подписание" data-action="placeholder"><i class="badge">13</i>Подписание ▾</button>
-<button class="control action target" data-n="14" data-name="Согласование" data-action="placeholder"><i class="badge">14</i>Согласование ▾</button>
-<button class="control action target" data-n="15" data-name="Аннулирование" data-action="placeholder"><i class="badge">15</i>Аннулирование ▾</button>
-<button class="control action target" data-n="16" data-name="Действия в 1С" data-action="placeholder"><i class="badge">16</i>Действия в 1С ▾</button>
-<button class="control action target" data-n="17" data-name="Передать в подразделение" data-action="placeholder"><i class="badge">17</i>Передать в подразделение</button>
-<button class="control action target" data-n="18" data-name="Скачать" title="Скачать" aria-label="Скачать" data-action="placeholder"><i class="badge">18</i>⇩</button>
-<button class="control action target" data-n="19" data-name="Печать" title="Печать" aria-label="Печать" data-action="placeholder"><i class="badge">19</i>▣</button>
+<button class="control action target selectPageBtn" data-action="placeholder" data-n="56" data-name="Выделение документов на странице" data-type="Кнопка" data-zone="Таблица" title="Выделение документов на странице"><i class="badge">56</i><svg aria-hidden="true" class="filterIcon" viewbox="0 0 18 18"><rect fill="none" height="12" stroke="#666" width="12" x="3" y="3"></rect><path d="M5.5 9l2 2 5-5" fill="none" stroke="#25a46f" stroke-width="1.8"></path></svg></button>
+<button class="control action target" data-action="placeholder" data-n="13" data-name="Подписание"><i class="badge">13</i>Подписание ▾</button>
+<button class="control action target" data-action="placeholder" data-n="14" data-name="Согласование"><i class="badge">14</i>Согласование ▾</button>
+<button class="control action target" data-action="placeholder" data-n="15" data-name="Аннулирование"><i class="badge">15</i>Аннулирование ▾</button>
+<button class="control action target" data-action="placeholder" data-n="16" data-name="Действия в 1С"><i class="badge">16</i>Действия в 1С ▾</button>
+<button class="control action target" data-action="placeholder" data-n="17" data-name="Передать в подразделение"><i class="badge">17</i>Передать в подразделение</button>
+<button aria-label="Скачать" class="control action target" data-action="placeholder" data-n="18" data-name="Скачать" title="Скачать"><i class="badge">18</i>⇩</button>
+<button aria-label="Печать" class="control action target" data-action="placeholder" data-n="19" data-name="Печать" title="Печать"><i class="badge">19</i>▣</button>
 <span class="push"></span>
-<button class="control action target" data-n="20" data-name="Обновить" data-action="refresh"><i class="badge">20</i>↻</button>
-<button class="control action target" data-n="21" data-name="События" data-action="placeholder"><i class="badge">21</i>События ▶</button>
+<button class="control action target" data-action="refresh" data-n="20" data-name="Обновить"><i class="badge">20</i>↻</button>
+<button class="control action target" data-action="placeholder" data-n="21" data-name="События"><i class="badge">21</i>События ▶</button>
 </div>
-<div id="documentListNoteV7" class="documentListNoteV7"><b>Список документов · <span id="documentListSectionV7">Входящие</span></b><span id="documentListTextV7">Здесь отображается список документов выбранного раздела модуля Диадок.</span></div><div id="viewport" class="viewport"><table class="wide"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
+<div class="documentListNoteV7" id="documentListNoteV7"><b>Список документов · <span id="documentListSectionV7">Входящие</span></b><span id="documentListTextV7">Здесь отображается список документов выбранного раздела модуля Диадок.</span></div><div class="viewport" id="viewport"><table class="wide"><thead id="thead"></thead><tbody id="tbody"></tbody></table></div>
 </main></div>
 </div>
-<div id="gameModal" class="gameModal"><div class="gmHead"><span>Проверка знаний</span><button id="gameClose" class="gmClose" type="button">×</button></div><div class="gmBody">
-<div class="gmGroup"><div class="gmGroupTitle">Количество заданий</div><div id="gameAllMeta" class="gmHint gameAvailable"></div><div class="gmCountLabel">Сколько заданий пройти?</div><div class="gmRow"><input id="gameCount" class="gmNumber" type="number" min="1" value="10"><span id="gameCountMax" class="gmMeta"></span></div><div id="gameQuickCounts" class="gameQuickCounts"></div></div>
-<div class="gmGroup"><div class="gmGroupTitle">Время на задание</div><select id="gameSeconds" class="gmSelect"><option value="10">10 секунд</option><option value="15" selected>15 секунд</option><option value="20">20 секунд</option><option value="30">30 секунд</option><option value="60">60 секунд</option></select></div>
-<div class="poolLauncher"><div class="poolLauncherRow"><div><strong>Набор заданий</strong><small id="poolLauncherMeta">Выбрано: —</small></div><button id="poolOpen" class="poolOpenBtn" type="button">Настроить набор →</button></div></div>
-<button id="gameStart" class="gmStart" type="button" style="margin-top:14px">Начать проверку</button></div></div>
-<div id="poolModal" class="poolModal"><div class="gmHead"><span>Набор заданий</span><button id="poolCloseX" class="gmClose" type="button">×</button></div><div class="gmBody"><div class="poolToolbar"><input id="poolSearch" class="poolSearch" placeholder="Найти элемент…"><select id="poolType" class="poolFilter"><option value="">Все типы</option></select><select id="poolZone" class="poolFilter"><option value="">Все области</option></select></div><div class="poolActions"><button id="poolAll" class="poolSmallBtn" type="button">Выбрать все</button><button id="poolNone" class="poolSmallBtn" type="button">Снять все</button><button id="poolRestore" class="poolSmallBtn restoreBtn" type="button">Вернуть выключенные</button></div><div id="poolList" class="poolList"></div><div class="poolModalFoot"><div id="poolCount" class="poolCount"></div><button id="poolDone" class="poolDone" type="button">Готово</button></div></div></div>
-<div id="gameBar" class="gameBar"><div><div id="gameProgress" class="gameTaskMeta"></div><div class="gameTaskLine"><div id="gameTaskText" class="gameTask"><span id="gameVerb">Найди</span>: «<span id="gameWanted"></span>»</div><span id="devTaskTools" class="devTaskTools"><button id="devEditTask" class="devTaskIcon" type="button" title="Редактировать задание"><svg viewBox="0 0 24 24"><path d="M4 20l4.5-1 10-10-3.5-3.5-10 10zM13.8 6.7l3.5 3.5"/></svg></button><button id="devShowTarget" class="devTaskIcon" type="button" title="Показать цель"><svg viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.7"/></svg></button></span></div><div id="gameContext" class="gameTaskContext"></div><div id="gameFeedback" class="gameFeedback">Нажми на нужный элемент интерфейса</div></div><div class="gameStats"><span class="gameTime">⏱ <span id="gameTime">15</span></span><span class="gameOk">✓ <span id="gameOk">0</span></span><span class="gameBad">✕ <span id="gameBad">0</span></span><span class="gameSkipCount">↷ <span id="gameSkipped">0</span></span><span class="gameTimeoutStat">⌛ <span id="gameTimeouts">0</span></span><button id="gameBack" class="gameSkip" type="button">← Назад</button><button id="gameSkip" class="gameSkip" type="button">Пропустить — не полезно</button><button id="gameBackV8" class="gameSkip" type="button" title="Предыдущее задание">←</button><button id="gameHintV8" class="gameSkip" type="button" title="Показать ответ">?</button><button id="gameEnd" class="gameEnd" type="button">Завершить игру</button></div></div>
-<div id="resultModal" class="resultModal"><div class="gmHead"><span id="resultTitle">Проверка завершена</span><button id="resultCloseX" class="gmClose" type="button">×</button></div><div class="resultBody"><div class="gameTaskMeta">РЕЗУЛЬТАТ</div><div id="resultScore" class="resultScore"></div><div id="resultProgress" class="gmMeta"></div><div class="resultStats"><span class="gameOk">✓ <span id="resultOk"></span> верно</span><span class="gameBad">✕ <span id="resultBad"></span> неверных кликов</span><span class="gameSkipCount">↷ <span id="resultSkipped"></span> не полезно</span><span class="gameTimeoutStat">⌛ <span id="resultTimeouts"></span> не успел</span></div><div id="resultTime" class="gmMeta"></div><div id="resultHistory" class="resultHistory" style="display:none"><b>Какие элементы искали</b><div id="resultHistoryList"></div></div><div id="skippedBox" class="skippedBox"></div><button id="resultDisable" class="resultDisable" type="button">Выключить отмеченные кнопки</button><div class="resultActions"><button id="resultAgain" class="againBtn" type="button">Пройти ещё раз</button><button id="resultClose" class="closeBtn" type="button">Закрыть</button></div></div></div>
-<div id="devEditModal" class="devEditModal"><div class="gmHead"><span>Редактирование задания</span><button id="devEditClose" class="gmClose" type="button">×</button></div><div class="gmBody"><div class="devForm"><div class="devField"><label>№ элемента</label><input id="devEditNumber" class="devReadonly" readonly></div><div class="devField"><label>Название</label><input id="devEditName"></div><div class="devField"><label>Тип</label><select id="devEditType"><option>Кнопка</option><option>Вкладка</option><option>Поле</option><option>Столбец</option><option>Пункт меню</option><option>Раздел</option></select></div><div class="devField"><label>Область</label><input id="devEditZone"></div><div class="devField"><label>Формулировка задания</label><input id="devEditPrompt" placeholder="Например: Найди фильтр по организации"></div><div class="devField"><label><input id="devEditEnabled" type="checkbox" checked> Участвует в игре</label></div><div class="devFormActions"><button id="devEditCancel" class="devCancel" type="button">Отмена</button><button id="devEditSave" class="devSave" type="button">Сохранить</button></div></div></div></div>
-<div id="devModal" class="devModal"><div class="gmHead"><span>Режим разработчика</span><button id="devClose" class="gmClose" type="button">×</button></div><div id="devLogin" class="gmBody"><div class="gmGroupTitle">Введите пароль</div><div class="passwordWrap"><input id="devPassword" type="password" inputmode="numeric" autocomplete="off" placeholder="Пароль"><button id="devEye" class="eyeBtn" type="button" title="Показать пароль"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="2.7"/></svg></button></div><div id="devError" class="devError"></div><button id="devLoginBtn" class="gmStart" type="button">Войти</button></div><div id="devPanel" class="gmBody" style="display:none"><div class="gmGroupTitle">Режим разработчика включён</div><div class="devPanelText">Здесь будут размещаться инструменты управления тренажёром. Базовый интерфейс 1С остаётся отдельным и не изменяется настройками игры.</div><button id="devLayoutBtn" class="closeBtn" type="button" style="margin-top:12px">Разметка страницы</button><p class="devPanelText" style="margin-top:8px">Включи разметку и нажми на проблемный элемент. Его название и координаты появятся в панели — можно сделать скриншот.</p><div id="devLayoutInfo" class="devPanelText" style="word-break:break-word"></div><button id="devLogout" class="closeBtn" type="button" style="margin-top:14px">Выйти из режима разработчика</button></div></div>
-<div id="toast" class="toast"></div></section></div>
+<div class="gameModal" id="gameModal"><div class="gmHead"><span>Проверка знаний</span><button class="gmClose" id="gameClose" type="button">×</button></div><div class="gmBody">
+<div class="gmGroup"><div class="gmGroupTitle">Количество заданий</div><div class="gmHint gameAvailable" id="gameAllMeta"></div><div class="gmCountLabel">Сколько заданий пройти?</div><div class="gmRow"><input class="gmNumber" id="gameCount" min="1" type="number" value="10"/><span class="gmMeta" id="gameCountMax"></span></div><div class="gameQuickCounts" id="gameQuickCounts"></div></div>
+<div class="gmGroup"><div class="gmGroupTitle">Время на задание</div><select class="gmSelect" id="gameSeconds"><option value="10">10 секунд</option><option selected="" value="15">15 секунд</option><option value="20">20 секунд</option><option value="30">30 секунд</option><option value="60">60 секунд</option></select></div>
+<div class="poolLauncher"><div class="poolLauncherRow"><div><strong>Набор заданий</strong><small id="poolLauncherMeta">Выбрано: —</small></div><button class="poolOpenBtn" id="poolOpen" type="button">Настроить набор →</button></div></div>
+<button class="gmStart" id="gameStart" style="margin-top:14px" type="button">Начать проверку</button></div></div>
+<div class="poolModal" id="poolModal"><div class="gmHead"><span>Набор заданий</span><button class="gmClose" id="poolCloseX" type="button">×</button></div><div class="gmBody"><div class="poolToolbar"><input class="poolSearch" id="poolSearch" placeholder="Найти элемент…"/><select class="poolFilter" id="poolType"><option value="">Все типы</option></select><select class="poolFilter" id="poolZone"><option value="">Все области</option></select></div><div class="poolActions"><button class="poolSmallBtn" id="poolAll" type="button">Выбрать все</button><button class="poolSmallBtn" id="poolNone" type="button">Снять все</button><button class="poolSmallBtn restoreBtn" id="poolRestore" type="button">Вернуть выключенные</button></div><div class="poolList" id="poolList"></div><div class="poolModalFoot"><div class="poolCount" id="poolCount"></div><button class="poolDone" id="poolDone" type="button">Готово</button></div></div></div>
+<div class="gameBar" id="gameBar"><div><div class="gameTaskMeta" id="gameProgress"></div><div class="gameTaskLine"><div class="gameTask" id="gameTaskText"><span id="gameVerb">Найди</span>: «<span id="gameWanted"></span>»</div><span class="devTaskTools" id="devTaskTools"><button class="devTaskIcon" id="devEditTask" title="Редактировать задание" type="button"><svg viewbox="0 0 24 24"><path d="M4 20l4.5-1 10-10-3.5-3.5-10 10zM13.8 6.7l3.5 3.5"></path></svg></button><button class="devTaskIcon" id="devShowTarget" title="Показать цель" type="button"><svg viewbox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path><circle cx="12" cy="12" r="2.7"></circle></svg></button></span></div><div class="gameTaskContext" id="gameContext"></div><div class="gameFeedback" id="gameFeedback">Нажми на нужный элемент интерфейса</div></div><div class="gameStats"><span class="gameTime">⏱ <span id="gameTime">15</span></span><span class="gameOk">✓ <span id="gameOk">0</span></span><span class="gameBad">✕ <span id="gameBad">0</span></span><span class="gameSkipCount">↷ <span id="gameSkipped">0</span></span><span class="gameTimeoutStat">⌛ <span id="gameTimeouts">0</span></span><button class="gameSkip" id="gameBack" type="button">← Назад</button><button class="gameSkip" id="gameSkip" type="button">Пропустить — не полезно</button><button class="gameSkip" id="gameBackV8" title="Предыдущее задание" type="button">←</button><button class="gameSkip" id="gameHintV8" title="Показать ответ" type="button">?</button><button class="gameEnd" id="gameEnd" type="button">Завершить игру</button></div></div>
+<div class="resultModal" id="resultModal"><div class="gmHead"><span id="resultTitle">Проверка завершена</span><button class="gmClose" id="resultCloseX" type="button">×</button></div><div class="resultBody"><div class="gameTaskMeta">РЕЗУЛЬТАТ</div><div class="resultScore" id="resultScore"></div><div class="gmMeta" id="resultProgress"></div><div class="resultStats"><span class="gameOk">✓ <span id="resultOk"></span> верно</span><span class="gameBad">✕ <span id="resultBad"></span> неверных кликов</span><span class="gameSkipCount">↷ <span id="resultSkipped"></span> не полезно</span><span class="gameTimeoutStat">⌛ <span id="resultTimeouts"></span> не успел</span></div><div class="gmMeta" id="resultTime"></div><div class="resultHistory" id="resultHistory" style="display:none"><b>Какие элементы искали</b><div id="resultHistoryList"></div></div><div class="skippedBox" id="skippedBox"></div><button class="resultDisable" id="resultDisable" type="button">Выключить отмеченные кнопки</button><div class="resultActions"><button class="againBtn" id="resultAgain" type="button">Пройти ещё раз</button><button class="closeBtn" id="resultClose" type="button">Закрыть</button></div></div></div>
+<div class="devEditModal" id="devEditModal"><div class="gmHead"><span>Редактирование задания</span><button class="gmClose" id="devEditClose" type="button">×</button></div><div class="gmBody"><div class="devForm"><div class="devField"><label>№ элемента</label><input class="devReadonly" id="devEditNumber" readonly=""/></div><div class="devField"><label>Название</label><input id="devEditName"/></div><div class="devField"><label>Тип</label><select id="devEditType"><option>Кнопка</option><option>Вкладка</option><option>Поле</option><option>Столбец</option><option>Пункт меню</option><option>Раздел</option></select></div><div class="devField"><label>Область</label><input id="devEditZone"/></div><div class="devField"><label>Формулировка задания</label><input id="devEditPrompt" placeholder="Например: Найди фильтр по организации"/></div><div class="devField"><label><input checked="" id="devEditEnabled" type="checkbox"/> Участвует в игре</label></div><div class="devFormActions"><button class="devCancel" id="devEditCancel" type="button">Отмена</button><button class="devSave" id="devEditSave" type="button">Сохранить</button></div></div></div></div>
+<div class="devModal" id="devModal"><div class="gmHead"><span>Режим разработчика</span><button class="gmClose" id="devClose" type="button">×</button></div><div class="gmBody" id="devLogin"><div class="gmGroupTitle">Введите пароль</div><div class="passwordWrap"><input autocomplete="off" id="devPassword" inputmode="numeric" placeholder="Пароль" type="password"/><button class="eyeBtn" id="devEye" title="Показать пароль" type="button"><svg fill="none" height="17" stroke="currentColor" stroke-width="1.7" viewbox="0 0 24 24" width="17"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"></path><circle cx="12" cy="12" r="2.7"></circle></svg></button></div><div class="devError" id="devError"></div><button class="gmStart" id="devLoginBtn" type="button">Войти</button></div><div class="gmBody" id="devPanel" style="display:none"><div class="gmGroupTitle">Режим разработчика включён</div><div class="devPanelText">Здесь будут размещаться инструменты управления тренажёром. Базовый интерфейс 1С остаётся отдельным и не изменяется настройками игры.</div><button class="closeBtn" id="devLayoutBtn" style="margin-top:12px" type="button">Разметка страницы</button><p class="devPanelText" style="margin-top:8px">Включи разметку и нажми на проблемный элемент. Его название и координаты появятся в панели — можно сделать скриншот.</p><div class="devPanelText" id="devLayoutInfo" style="word-break:break-word"></div><button class="closeBtn" id="devLogout" style="margin-top:14px" type="button">Выйти из режима разработчика</button></div></div>
+<div class="toast" id="toast"></div></section></div>
 <script>
 const state={numbering:false,section:'incoming',openMenu:null,route:[],routeIndex:0};
 const sections=[{n:4,id:'send',name:'Для отправки',type:'Вкладка',zone:'Разделы'},{n:5,id:'outgoing',name:'Исходящие',type:'Вкладка',zone:'Разделы'},{n:6,id:'incoming',name:'Входящие',type:'Вкладка',zone:'Разделы'},{n:7,id:'transport',name:'Перевозочные',type:'Вкладка',zone:'Разделы'}];
@@ -605,9 +646,14 @@ function navSvg(kind){const m={home:'<path d="M5 2.5v13M9 2.5v13M13 2.5v13"/>',m
 const settings=[[26,'Подписки и оплата'],[27,'Организации'],[28,'Ваши контрагенты'],[29,'Поиск новых контрагентов'],[30,'Доверенности'],[31,'Расширенные настройки']];
 const help=[[32,'Быстрая настройка'],[33,'Руководство пользователя'],[34,'Техническая информация'],[35,'История обновлений'],[36,'Служебные сообщения'],[37,'Нужна помощь'],[38,'Написать в поддержку'],[39,'Провести диагностику'],[40,'Удаленное подключение'],[41,'Телефон поддержки 8-800-500-10-18'],[42,'Заказать обратный звонок']];
 const cols=[[0,'','☐',42],[57,'Документ','Документ',260],[58,'Номер','Номер',100],[59,'Дата документа','Дата документа',110],[60,'Сумма','Сумма',110],[61,'Документ в 1С','Документ в 1С',160],[62,'Статус','Статус',170],[63,'Доп. статус','Доп. статус',150],[64,'Статус МЧД','Статус МЧД',150],[65,'Контрагент','Контрагент',200],[66,'Организация','Организация',190],[67,'Отправлен','Отправлен',110]];
-const sampleRows=[['☐','Входящая УПД (статус 1)','C0467405','31.08.2026','1 971,20','','Ожидается подпись...','','Не приложена довер...','АО «Мармеладное...»','Карамельные пёсики...','18.09.2026'],['☐','УПД_СНДОП','C0467405','31.08.2026','1 971,20','','Ожидается подпись...','','Не приложена довер...','АО «Мармеладное...»','Карамельные пёсики...','17.09.2026'],['☐','Счет-фактура','3','12.02.2026','612 250,00','Счет-фактура...','Подписан контрагент...','','Не приложена довер...','АО «Карамельные...»','Мармеладные котики...','13.09.2026']];
+const sampleRows=[
+ ['☐','УПД','1548','12.10.2026','45 600,00','Реализация №1548','Ожидает подписи','','МЧД не требуется','ООО «Вектор»','ООО «Альтаир»','12.10.2026'],
+ ['☐','УПД','1549','11.10.2026','128 350,00','Реализация №1549','Подписан','','МЧД проверена','ООО «Меридиан»','ООО «Альтаир»','11.10.2026'],
+ ['☐','Акт','87','10.10.2026','18 900,00','Акт услуг №87','Ожидает подписи','','МЧД не требуется','ИП Соколов А.А.','ООО «Альтаир»','10.10.2026'],
+ ['☐','Накладная','321','09.10.2026','76 420,00','Накладная №321','Доставлен','','МЧД проверена','ООО «Партнер»','ООО «Альтаир»','09.10.2026']
+];
 const meta={1:['Кнопка','Навигация'],2:['Кнопка','Навигация'],3:['Кнопка','Навигация'],8:['Кнопка','Фильтры'],9:['Поле','Фильтры'],10:['Поле','Фильтры'],11:['Поле','Фильтры'],12:['Поле','Фильтры'],13:['Кнопка','Действия'],14:['Кнопка','Действия'],15:['Кнопка','Действия'],16:['Кнопка','Действия'],17:['Кнопка','Действия'],18:['Кнопка','Действия'],19:['Кнопка','Действия'],20:['Кнопка','Действия'],21:['Кнопка','Действия'],22:['Кнопка','Верхняя панель'],23:['Кнопка','Верхняя панель'],24:['Кнопка','Верхняя панель'],25:['Кнопка','Верхняя панель'],56:['Кнопка','Таблица'],57:['Столбец','Таблица'],58:['Столбец','Таблица'],59:['Столбец','Таблица'],60:['Столбец','Таблица'],61:['Столбец','Таблица'],62:['Столбец','Таблица'],63:['Столбец','Таблица'],64:['Столбец','Таблица'],65:['Столбец','Таблица'],66:['Столбец','Таблица'],67:['Столбец','Таблица']};
-function render(){stage.classList.toggle('numbering',state.numbering);toggle.classList.toggle('on',state.numbering);sectionButtons.innerHTML=sections.map(x=>`<button class="sectionBtn target ${state.section===x.id?'active':''}" data-n="${x.n}" data-name="${x.name}" data-type="Вкладка" data-zone="Разделы" data-action="section" data-section="${x.id}"><i class="badge">${x.n}</i>${x.name}</button>`).join('');nav.innerHTML=navItems.map(([n,name,icon])=>`<div class="navItem target ${name==='Контур.Диадок'?'active':''}" data-n="${n}" data-name="${name}" data-type="Раздел" data-zone="Левое меню" data-action="nav"><i class="badge">${n}</i><span class="navIcon ${icon==='diadoc'?'diadocIcon':''}">${navSvg(icon)}</span>${name}</div>`).join('');settingsDrop.innerHTML=settings.map(([n,name],i)=>`${n===31?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Настройки" data-path="24,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}${n===31?' ▶':''}</div>`).join('');helpDrop.innerHTML=help.map(([n,name],i)=>`${n===37?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Помощь" data-path="25,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}</div>`).join('');thead.innerHTML='<tr>'+cols.map(([n,name,label])=>n?`<th class="target" data-n="${n}" data-name="${name}" data-type="Столбец" data-zone="Таблица" data-action="label"><i class="badge">${n}</i>${label}</th>`:`<th>${label}</th>`).join('')+'</tr>';tbody.innerHTML=(state.section==='incoming'?sampleRows:[]).map(r=>'<tr>'+r.map(v=>`<td>${v}</td>`).join('')+'</tr>').join('');rebuildCollection();syncMenus();const sf=document.querySelector('.statusField');if(sf){const send=state.section==='send';sf.dataset.name=send?'Вид пакета':'Статус';const label=sf.querySelector('.fieldMain');if(label)label.textContent=send?'Вид пакета':'Статус';} }
+function render(){stage.classList.toggle('numbering',state.numbering);toggle.classList.toggle('on',state.numbering);sectionButtons.innerHTML=sections.map(x=>`<button class="sectionBtn target ${state.section===x.id?'active':''}" data-n="${x.n}" data-name="${x.name}" data-type="Вкладка" data-zone="Разделы" data-action="section" data-section="${x.id}"><i class="badge">${x.n}</i>${x.name}</button>`).join('');nav.innerHTML=navItems.map(([n,name,icon])=>`<div class="navItem target ${name==='Контур.Диадок'?'active':''}" data-n="${n}" data-name="${name}" data-type="Раздел" data-zone="Левое меню" data-action="nav"><i class="badge">${n}</i><span class="navIcon ${icon==='diadoc'?'diadocIcon':''}">${navSvg(icon)}</span>${name}</div>`).join('');settingsDrop.innerHTML=settings.map(([n,name],i)=>`${n===31?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Настройки" data-path="24,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}${n===31?' ▶':''}</div>`).join('');helpDrop.innerHTML=help.map(([n,name],i)=>`${n===37?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Помощь" data-path="25,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}</div>`).join('');thead.innerHTML='<tr>'+cols.map(([n,name,label])=>n?`<th class="target" data-n="${n}" data-name="${name}" data-type="Столбец" data-zone="Таблица" data-action="label"><i class="badge">${n}</i>${label}</th>`:`<th>${label}</th>`).join('')+'</tr>';tbody.innerHTML=(state.section==='transport'?[]:sampleRows).map(r=>'<tr>'+r.map(v=>`<td>${v}</td>`).join('')+'</tr>').join('');rebuildCollection();syncMenus();const sf=document.querySelector('.statusField');if(sf){const send=state.section==='send';sf.dataset.name=send?'Вид пакета':'Статус';const label=sf.querySelector('.fieldMain');if(label)label.textContent=send?'Вид пакета':'Статус';} }
 function syncMenus(){settingsDrop.classList.toggle('open',state.openMenu==='settings');helpDrop.classList.toggle('open',state.openMenu==='help')}
 function allTargets(){return [...document.querySelectorAll('.target')].sort((a,b)=>+a.dataset.n-+b.dataset.n)}
 function targetInfo(el){const n=+el.dataset.n;const m=meta[n]||[];return{n,name:el.dataset.name,type:el.dataset.type||m[0]||(n>=43&&n<=55?'Раздел':n>=26&&n<=42?'Пункт меню':'Кнопка'),zone:el.dataset.zone||m[1]||(n>=43&&n<=55?'Левое меню':n>=26&&n<=31?'Настройки':n>=32&&n<=42?'Помощь':'Стартовая страница'),path:el.dataset.path||'',el}}
@@ -688,7 +734,6 @@ document.addEventListener('click',e=>{if(e.target.closest('#gameBar,#gameModal,#
 toggle.onclick=()=>{state.numbering=!state.numbering;stage.classList.toggle('numbering',state.numbering);toggle.classList.toggle('on',state.numbering)};collectionBtn.onclick=()=>{collection.classList.toggle('open');chev.textContent=collection.classList.contains('open')?'⌃':'⌄'};document.addEventListener('click',e=>{if(!e.target.closest('.navSearchWrap'))quickResults.classList.remove('open')});
 resetSelectedToAvailable();render();
 </script>
-
 <script id="beta16-js">
 (()=>{
 const APP=document.querySelector('.app'), TRAINER=document.querySelector('.trainer');
@@ -752,7 +797,6 @@ const oldDisable=resultDisable.onclick;resultDisable.onclick=()=>{oldDisable();s
 updateGameSetup();
 })();
 </script>
-
 <style id="beta17-css">
 /* β17 — agreed patch. Trainer additions must not change 1C control geometry. */
 .route{outline:3px solid #ff9800!important;outline-offset:2px;background:#fff4e5!important}
@@ -817,8 +861,6 @@ poolRestore.onclick=()=>{disabledTasks.clear();saveDisabled(disabledTasks);save1
 rebuildCollection();fillPoolFilters();renderPool();updateGameSetup();
 })();
 </script>
-
-
 <style id="beta18-style">
 /* β18: native menu hover, route/target semantics, compact service strip, stable Diadoc icon */
 .mi:hover{background:#ffd21d!important;color:#333!important}
@@ -856,8 +898,6 @@ const names={22:'Плагины',23:'Уведомления',24:'Настрой�
 updateGameSetup();renderPool();rebuildCollection();
 })();
 </script>
-
-
 <style id="beta19-style">
 /* β19: no persistent native selection in dropdowns; orange only hover/route, green only target. */
 .mi{background:#fff!important;color:#555!important}
@@ -893,8 +933,6 @@ updateGameSetup=function(){updateBefore19();beta19Counters()};
 updateGameSetup();
 })();
 </script>
-
-
 <style id="beta20-final-fixes">
 
 .sections{margin-top:1px!important;margin-bottom:5px!important;min-height:29px!important;gap:8px!important}
@@ -937,8 +975,6 @@ updateGameSetup();
  updateGameSetup();
 })();
 </script>
-
-
 <script id="master26-bindings">
 (()=>{
   const openBtn=document.getElementById('poolOpen');
@@ -951,10 +987,6 @@ updateGameSetup();
   if(resultAgain) resultAgain.onclick=openGameSetup;
 })();
 </script>
-
-
-
-
 <style id="master48-form-and-header">
 /* MASTER48 — one owner for the Diadoc title/header geometry.
    Rule: user name + Plugins + Notifications + Settings + Help stay on ONE row.
@@ -1026,50 +1058,48 @@ updateGameSetup();
 .fdNode.route,.fdButton.route,.fdTitleTarget.route{background:#fff4e5!important}.fdNode.found,.fdButton.found,.fdTitleTarget.found{background:#eafff2!important}
 .fdTitleTarget{position:relative;display:inline-flex;align-items:center;min-height:26px;padding:0 4px}
 </style>
-
-<div id="extendedDrop" class="extendedDrop"></div>
-<div id="formDesigner" class="formDesigner" aria-label="Настройка формы">
- <div class="fdTitle"><span id="fdTitleTarget" class="fdTitleTarget target" data-n="81" data-name="Настройка формы" data-type="Окно" data-zone="Настройка формы" data-path="24,31,68,81" data-prompt="Открой окошко «Настройка формы»" data-action="formWindow"><i class="badge">81</i>Настройка формы</span><button id="fdCloseX" class="fdClose" type="button">×</button></div>
- <div class="fdToolbar" aria-label="Панель команд настройки формы">
-  <span class="fdTool"><span class="fdIco"><svg viewBox="0 0 18 18"><circle cx="5" cy="12" r="4" fill="#47b36b"/><path d="M5 9.5v5M2.5 12h5" stroke="#fff" stroke-width="1.4"/><path d="M8 5h7v8H9" fill="#e8c34c" stroke="#b89a35"/></svg></span>Добавить группу</span>
-  <span class="fdTool disabled"><span class="fdIco"><svg viewBox="0 0 18 18"><circle cx="6" cy="9" r="5" fill="#b7c8ba"/><path d="M6 6v6M3 9h6" stroke="#fff" stroke-width="1.3"/></svg></span>Добавить поля</span>
-  <span class="fdTool" title="Удалить"><span class="fdIco"><svg viewBox="0 0 18 18"><path d="M4 4l10 10M14 4L4 14" stroke="#e33434" stroke-width="2.4"/></svg></span></span>
-  <span class="fdTool" title="Переместить вверх"><span class="fdIco"><svg viewBox="0 0 18 18"><path d="M9 15V4M5 8l4-4 4 4" fill="none" stroke="#3198c8" stroke-width="2"/></svg></span></span>
-  <span class="fdTool" title="Переместить вниз"><span class="fdIco"><svg viewBox="0 0 18 18"><path d="M9 3v11M5 10l4 4 4-4" fill="none" stroke="#3198c8" stroke-width="2"/></svg></span></span>
-  <span class="fdTool" title="Показывать"><span class="fdIco"><svg viewBox="0 0 18 18"><rect x="3" y="3" width="12" height="12" fill="#eef3ef" stroke="#9aa7a0"/><path d="M5 9l2.2 2.3L13 5.8" fill="none" stroke="#1aa15f" stroke-width="2"/></svg></span></span>
-  <span class="fdTool" title="Копировать"><span class="fdIco"><svg viewBox="0 0 18 18"><rect x="5" y="3" width="9" height="10" fill="#fff" stroke="#8799a2"/><rect x="3" y="5" width="9" height="10" fill="#eef4f6" stroke="#8799a2"/></svg></span></span>
-  <span class="fdTool" title="Справка"><span class="fdIco"><svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="6" fill="#fff" stroke="#777"/><text x="9" y="12" text-anchor="middle" font-size="10" font-weight="700" fill="#666">?</text></svg></span></span>
-  <span class="fdTool more">Еще <span style="font-size:9px">▼</span></span>
- </div>
- <div class="fdBody">
-  <div class="fdTreePane"><div class="fdCaption">Элементы формы</div><div class="fdTree">
-   <div class="fdNode"><span class="fdExp">−</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа главная</div>
-   <div class="fdNode ind1"><span class="fdExp">−</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа обмена с сервером</div>
-   <div class="fdNode ind1"><span class="fdExp">−</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа разделов</div>
-   <div class="fdNode target ind2" data-n="75" data-name="Для отправки" data-type="Элемент формы" data-zone="Настройка формы" data-path="24,31,68,75" data-action="formLeaf"><i class="badge">75</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Для отправки</div>
-   <div class="fdNode target ind2 selected" data-n="76" data-name="Исходящие" data-type="Элемент формы" data-zone="Настройка формы" data-path="24,31,68,76" data-action="formLeaf"><i class="badge">76</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Исходящие</div>
-   <div class="fdNode target ind2" data-n="77" data-name="Входящие" data-type="Элемент формы" data-zone="Настройка формы" data-path="24,31,68,77" data-action="formLeaf"><i class="badge">77</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Входящие</div>
-   <div class="fdNode ind2"><span class="fdTick">✓</span><span class="fdSepIcon"></span>РазделительОсновногоРаздела</div>
-   <div class="fdNode target ind2" data-n="78" data-name="Перевозочные" data-type="Элемент формы" data-zone="Настройка формы" data-path="24,31,68,78" data-action="formLeaf"><i class="badge">78</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Перевозочные</div>
-   <div class="fdNode ind1"><span class="fdExp">+</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа тематических картинок</div>
-   <div class="fdNode ind1"><span class="fdExp">−</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа авторизации и настроек основания</div>
-   <div class="fdNode ind1"><span class="fdExp">+</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа фильтров</div>
-   <div class="fdNode ind1"><span class="fdExp">+</span><span class="fdTick">✓</span><span class="fdFolder" aria-hidden="true"></span>Группа действий</div>
-  </div></div>
-  <div class="fdProps"><div class="fdCaption">Свойства элемента формы</div><div class="fdPropsBox">
-   <label>Заголовок <input value="Исходящие" readonly></label>
-   <label>Отображение <select disabled><option>Авто</option></select></label>
-   <label>Кнопка по умолчанию <input readonly></label>
-   <label class="fdCheckProp">Активизировать при открытии <input type="checkbox" disabled></label>
-   <label>Отображение подсказки <select disabled><option>Авто</option></select></label>
-   <label>Положение в командной панели <select disabled><option>Авто</option></select></label>
-   <label class="fdCheckProp">Уникальность команды <input type="checkbox" checked disabled></label>
-   <div class="fdSizeRow"><label>Ширина <input value="0" readonly></label><label>Высота <input value="1" readonly></label></div>
-  </div></div>
- </div>
- <div class="fdFoot"><button class="fdButton target" data-n="79" data-name="ОК" data-type="Кнопка" data-zone="Настройка формы" data-path="24,31,68,79" data-action="formClose"><i class="badge">79</i>ОК</button><button class="fdButton target" data-n="80" data-name="Отмена" data-type="Кнопка" data-zone="Настройка формы" data-path="24,31,68,80" data-action="formClose"><i class="badge">80</i>Отмена</button><button class="fdButton" disabled>Применить</button></div>
+<div class="extendedDrop" id="extendedDrop"></div>
+<div aria-label="Настройка формы" class="formDesigner" id="formDesigner">
+<div class="fdTitle"><span class="fdTitleTarget target" data-action="formWindow" data-n="81" data-name="Настройка формы" data-path="24,31,68,81" data-prompt="Открой окошко «Настройка формы»" data-type="Окно" data-zone="Настройка формы" id="fdTitleTarget"><i class="badge">81</i>Настройка формы</span><button class="fdClose" id="fdCloseX" type="button">×</button></div>
+<div aria-label="Панель команд настройки формы" class="fdToolbar">
+<span class="fdTool"><span class="fdIco"><svg viewbox="0 0 18 18"><circle cx="5" cy="12" fill="#47b36b" r="4"></circle><path d="M5 9.5v5M2.5 12h5" stroke="#fff" stroke-width="1.4"></path><path d="M8 5h7v8H9" fill="#e8c34c" stroke="#b89a35"></path></svg></span>Добавить группу</span>
+<span class="fdTool disabled"><span class="fdIco"><svg viewbox="0 0 18 18"><circle cx="6" cy="9" fill="#b7c8ba" r="5"></circle><path d="M6 6v6M3 9h6" stroke="#fff" stroke-width="1.3"></path></svg></span>Добавить поля</span>
+<span class="fdTool" title="Удалить"><span class="fdIco"><svg viewbox="0 0 18 18"><path d="M4 4l10 10M14 4L4 14" stroke="#e33434" stroke-width="2.4"></path></svg></span></span>
+<span class="fdTool" title="Переместить вверх"><span class="fdIco"><svg viewbox="0 0 18 18"><path d="M9 15V4M5 8l4-4 4 4" fill="none" stroke="#3198c8" stroke-width="2"></path></svg></span></span>
+<span class="fdTool" title="Переместить вниз"><span class="fdIco"><svg viewbox="0 0 18 18"><path d="M9 3v11M5 10l4 4 4-4" fill="none" stroke="#3198c8" stroke-width="2"></path></svg></span></span>
+<span class="fdTool" title="Показывать"><span class="fdIco"><svg viewbox="0 0 18 18"><rect fill="#eef3ef" height="12" stroke="#9aa7a0" width="12" x="3" y="3"></rect><path d="M5 9l2.2 2.3L13 5.8" fill="none" stroke="#1aa15f" stroke-width="2"></path></svg></span></span>
+<span class="fdTool" title="Копировать"><span class="fdIco"><svg viewbox="0 0 18 18"><rect fill="#fff" height="10" stroke="#8799a2" width="9" x="5" y="3"></rect><rect fill="#eef4f6" height="10" stroke="#8799a2" width="9" x="3" y="5"></rect></svg></span></span>
+<span class="fdTool" title="Справка"><span class="fdIco"><svg viewbox="0 0 18 18"><circle cx="9" cy="9" fill="#fff" r="6" stroke="#777"></circle><text fill="#666" font-size="10" font-weight="700" text-anchor="middle" x="9" y="12">?</text></svg></span></span>
+<span class="fdTool more">Еще <span style="font-size:9px">▼</span></span>
 </div>
-
+<div class="fdBody">
+<div class="fdTreePane"><div class="fdCaption">Элементы формы</div><div class="fdTree">
+<div class="fdNode"><span class="fdExp">−</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа главная</div>
+<div class="fdNode ind1"><span class="fdExp">−</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа обмена с сервером</div>
+<div class="fdNode ind1"><span class="fdExp">−</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа разделов</div>
+<div class="fdNode target ind2" data-action="formLeaf" data-n="75" data-name="Для отправки" data-path="24,31,68,75" data-type="Элемент формы" data-zone="Настройка формы"><i class="badge">75</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Для отправки</div>
+<div class="fdNode target ind2 selected" data-action="formLeaf" data-n="76" data-name="Исходящие" data-path="24,31,68,76" data-type="Элемент формы" data-zone="Настройка формы"><i class="badge">76</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Исходящие</div>
+<div class="fdNode target ind2" data-action="formLeaf" data-n="77" data-name="Входящие" data-path="24,31,68,77" data-type="Элемент формы" data-zone="Настройка формы"><i class="badge">77</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Входящие</div>
+<div class="fdNode ind2"><span class="fdTick">✓</span><span class="fdSepIcon"></span>РазделительОсновногоРаздела</div>
+<div class="fdNode target ind2" data-action="formLeaf" data-n="78" data-name="Перевозочные" data-path="24,31,68,78" data-type="Элемент формы" data-zone="Настройка формы"><i class="badge">78</i><span class="fdTick">✓</span><span class="fdCmd">OK</span>Перевозочные</div>
+<div class="fdNode ind1"><span class="fdExp">+</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа тематических картинок</div>
+<div class="fdNode ind1"><span class="fdExp">−</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа авторизации и настроек основания</div>
+<div class="fdNode ind1"><span class="fdExp">+</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа фильтров</div>
+<div class="fdNode ind1"><span class="fdExp">+</span><span class="fdTick">✓</span><span aria-hidden="true" class="fdFolder"></span>Группа действий</div>
+</div></div>
+<div class="fdProps"><div class="fdCaption">Свойства элемента формы</div><div class="fdPropsBox">
+<label>Заголовок <input readonly="" value="Исходящие"/></label>
+<label>Отображение <select disabled=""><option>Авто</option></select></label>
+<label>Кнопка по умолчанию <input readonly=""/></label>
+<label class="fdCheckProp">Активизировать при открытии <input disabled="" type="checkbox"/></label>
+<label>Отображение подсказки <select disabled=""><option>Авто</option></select></label>
+<label>Положение в командной панели <select disabled=""><option>Авто</option></select></label>
+<label class="fdCheckProp">Уникальность команды <input checked="" disabled="" type="checkbox"/></label>
+<div class="fdSizeRow"><label>Ширина <input readonly="" value="0"/></label><label>Высота <input readonly="" value="1"/></label></div>
+</div></div>
+</div>
+<div class="fdFoot"><button class="fdButton target" data-action="formClose" data-n="79" data-name="ОК" data-path="24,31,68,79" data-type="Кнопка" data-zone="Настройка формы"><i class="badge">79</i>ОК</button><button class="fdButton target" data-action="formClose" data-n="80" data-name="Отмена" data-path="24,31,68,80" data-type="Кнопка" data-zone="Настройка формы"><i class="badge">80</i>Отмена</button><button class="fdButton" disabled="">Применить</button></div>
+</div>
 <script id="master48-form-and-header-js">
 (()=>{
  const ext=document.getElementById('extendedDrop'),designer=document.getElementById('formDesigner'),titleTarget=document.getElementById('fdTitleTarget');
@@ -1117,8 +1147,6 @@ updateGameSetup();
  rebuildCollection();fillPoolFilters();renderPool();updateGameSetup();
 })();
 </script>
-
-
 <style id="master49-corrections">
 /* Search result state: no green box/fill. A neon check is the only "found" marker. */
 .found{outline:none!important;background:inherit!important;box-shadow:none!important}
@@ -1221,46 +1249,43 @@ updateGameSetup();
 /* service group stays link / kebab / close */
 .module .title .serviceMini{gap:10px!important;font-size:13px!important}
 </style>
-
-<div id="orgScreen" class="orgScreen" aria-label="Организации">
- <div class="orgHead">
-  <button class="orgBack" type="button">←</button><button class="orgForward" type="button">→</button>
-  <span id="orgScreenTarget" class="orgScreenTitle target" data-n="82" data-name="Организации" data-type="Экран" data-zone="Вложенные меню" data-path="24,27,82" data-prompt="Открой экран «Организации»" data-action="orgScreenTarget"><i class="badge">82</i>Организации</span>
-  <div class="orgSvc"><span title="Ссылка">↗</span><span title="Меню">⋮</span><span title="Закрыть">×</span></div>
- </div>
- <div class="orgToolbar">
-  <button id="orgRefresh" class="orgRefresh target" type="button" title="Обновить список" data-n="83" data-name="Обновить список" data-type="Кнопка" data-zone="Организации" data-path="24,27,83" data-action="orgRefresh"><i class="badge">83</i>↻</button>
-  <button class="orgMore target" type="button" data-n="84" data-name="Еще" data-type="Кнопка" data-zone="Организации" data-path="24,27,84" data-action="orgPlaceholder"><i class="badge">84</i>Еще ▾</button>
- </div>
- <div class="orgTableWrap">
-  <table class="orgTable">
-   <thead><tr><th style="width:260px">Наименование</th><th style="width:150px">ИНН</th><th style="width:150px">КПП</th><th style="width:260px">Организация в 1С</th><th style="width:330px">Идентификатор участника ЭДО</th></tr></thead>
-   <tbody id="orgRows"></tbody>
-  </table>
- </div>
+<div aria-label="Организации" class="orgScreen" id="orgScreen">
+<div class="orgHead">
+<button class="orgBack" type="button">←</button><button class="orgForward" type="button">→</button>
+<span class="orgScreenTitle target" data-action="orgScreenTarget" data-n="82" data-name="Организации" data-path="24,27,82" data-prompt="Открой экран «Организации»" data-type="Экран" data-zone="Вложенные меню" id="orgScreenTarget"><i class="badge">82</i>Организации</span>
+<div class="orgSvc"><span title="Ссылка">↗</span><span title="Меню">⋮</span><span title="Закрыть">×</span></div>
 </div>
-
-<div id="orgCard" class="orgCard" aria-label="Карточка организации">
- <div class="orgCardTop"><span id="orgCardTitleTarget" class="target" data-n="85" data-name="Карточка организации" data-type="Окно" data-zone="Организации" data-path="24,27,85" data-prompt="Открой карточку своей организации" data-action="orgCardTarget"><i class="badge">85</i></span><div class="orgCardSvc"><span title="Ссылка">↗</span><span title="Меню">⋮</span><span class="orgDevQ" title="Разработчик ещё доделает: назначение этой маленькой пиктограммы на исходном скриншоте читается недостаточно надёжно.">?</span><span id="orgCardClose" title="Закрыть">×</span></div></div>
- <div class="orgIdentity"><strong id="orgCardName">Организация</strong><span id="orgCardInn" class="orgInn"></span></div>
- <div class="orgTabs">
-  <button class="orgTab target" data-n="86" data-name="Организации в 1С" data-type="Вкладка" data-zone="Карточка организации" data-path="24,27,85,86" data-action="orgCardLeaf"><i class="badge">86</i>Организации в 1С</button>
-  <button class="orgTab target" data-n="87" data-name="Подразделения" data-type="Вкладка" data-zone="Карточка организации" data-path="24,27,85,87" data-action="orgCardLeaf"><i class="badge">87</i>Подразделения</button>
-  <button class="orgTab target" data-n="88" data-name="Настройки документов" data-type="Вкладка" data-zone="Карточка организации" data-path="24,27,85,88" data-action="orgCardLeaf"><i class="badge">88</i>Настройки документов</button>
-  <button class="orgTab target" data-n="89" data-name="Системные настройки" data-type="Вкладка" data-zone="Карточка организации" data-path="24,27,85,89" data-action="orgCardLeaf"><i class="badge">89</i>Системные настройки</button>
- </div>
- <div class="orgLinkTitle">Связи с организациями 1С</div>
- <div class="orgCardActions">
-  <button class="orgCardBtn target" data-n="90" data-name="Добавить организацию" data-type="Кнопка" data-zone="Карточка организации" data-path="24,27,85,90" data-action="orgCardLeaf"><i class="badge">90</i>＋ Добавить организацию</button>
-  <button class="orgCardBtn target" data-n="91" data-name="Удалить" data-type="Кнопка" data-zone="Карточка организации" data-path="24,27,85,91" data-action="orgCardLeaf"><i class="badge">91</i>⊗ Удалить</button>
- </div>
- <div class="orgRelation"><span class="orgRelationIcon">↪</span><span id="orgRelationName">Организация в 1С</span><span id="orgRelationCode" style="margin-left:auto"></span></div>
- <div class="orgCardFoot">
-  <button class="orgCardBtn orgSave target" data-n="92" data-name="Сохранить" data-type="Кнопка" data-zone="Карточка организации" data-path="24,27,85,92" data-action="orgCardLeaf"><i class="badge">92</i>Сохранить</button>
-  <button class="orgCardBtn target" data-n="93" data-name="Отменить" data-type="Кнопка" data-zone="Карточка организации" data-path="24,27,85,93" data-action="orgCardLeaf"><i class="badge">93</i>Отменить</button>
- </div>
+<div class="orgToolbar">
+<button class="orgRefresh target" data-action="orgRefresh" data-n="83" data-name="Обновить список" data-path="24,27,83" data-type="Кнопка" data-zone="Организации" id="orgRefresh" title="Обновить список" type="button"><i class="badge">83</i>↻</button>
+<button class="orgMore target" data-action="orgPlaceholder" data-n="84" data-name="Еще" data-path="24,27,84" data-type="Кнопка" data-zone="Организации" type="button"><i class="badge">84</i>Еще ▾</button>
 </div>
-
+<div class="orgTableWrap">
+<table class="orgTable">
+<thead><tr><th style="width:260px">Наименование</th><th style="width:150px">ИНН</th><th style="width:150px">КПП</th><th style="width:260px">Организация в 1С</th><th style="width:330px">Идентификатор участника ЭДО</th></tr></thead>
+<tbody id="orgRows"></tbody>
+</table>
+</div>
+</div>
+<div aria-label="Карточка организации" class="orgCard" id="orgCard">
+<div class="orgCardTop"><span class="target" data-action="orgCardTarget" data-n="85" data-name="Карточка организации" data-path="24,27,85" data-prompt="Открой карточку своей организации" data-type="Окно" data-zone="Организации" id="orgCardTitleTarget"><i class="badge">85</i></span><div class="orgCardSvc"><span title="Ссылка">↗</span><span title="Меню">⋮</span><span class="orgDevQ" title="Разработчик ещё доделает: назначение этой маленькой пиктограммы на исходном скриншоте читается недостаточно надёжно.">?</span><span id="orgCardClose" title="Закрыть">×</span></div></div>
+<div class="orgIdentity"><strong id="orgCardName">Организация</strong><span class="orgInn" id="orgCardInn"></span></div>
+<div class="orgTabs">
+<button class="orgTab target" data-action="orgCardLeaf" data-n="86" data-name="Организации в 1С" data-path="24,27,85,86" data-type="Вкладка" data-zone="Карточка организации"><i class="badge">86</i>Организации в 1С</button>
+<button class="orgTab target" data-action="orgCardLeaf" data-n="87" data-name="Подразделения" data-path="24,27,85,87" data-type="Вкладка" data-zone="Карточка организации"><i class="badge">87</i>Подразделения</button>
+<button class="orgTab target" data-action="orgCardLeaf" data-n="88" data-name="Настройки документов" data-path="24,27,85,88" data-type="Вкладка" data-zone="Карточка организации"><i class="badge">88</i>Настройки документов</button>
+<button class="orgTab target" data-action="orgCardLeaf" data-n="89" data-name="Системные настройки" data-path="24,27,85,89" data-type="Вкладка" data-zone="Карточка организации"><i class="badge">89</i>Системные настройки</button>
+</div>
+<div class="orgLinkTitle">Связи с организациями 1С</div>
+<div class="orgCardActions">
+<button class="orgCardBtn target" data-action="orgCardLeaf" data-n="90" data-name="Добавить организацию" data-path="24,27,85,90" data-type="Кнопка" data-zone="Карточка организации"><i class="badge">90</i>＋ Добавить организацию</button>
+<button class="orgCardBtn target" data-action="orgCardLeaf" data-n="91" data-name="Удалить" data-path="24,27,85,91" data-type="Кнопка" data-zone="Карточка организации"><i class="badge">91</i>⊗ Удалить</button>
+</div>
+<div class="orgRelation"><span class="orgRelationIcon">↪</span><span id="orgRelationName">Организация в 1С</span><span id="orgRelationCode" style="margin-left:auto"></span></div>
+<div class="orgCardFoot">
+<button class="orgCardBtn orgSave target" data-action="orgCardLeaf" data-n="92" data-name="Сохранить" data-path="24,27,85,92" data-type="Кнопка" data-zone="Карточка организации"><i class="badge">92</i>Сохранить</button>
+<button class="orgCardBtn target" data-action="orgCardLeaf" data-n="93" data-name="Отменить" data-path="24,27,85,93" data-type="Кнопка" data-zone="Карточка организации"><i class="badge">93</i>Отменить</button>
+</div>
+</div>
 <script id="master51-organizations-js">
 (()=>{
  const screen=document.getElementById('orgScreen'), card=document.getElementById('orgCard'),
@@ -1352,8 +1377,6 @@ updateGameSetup();
  rebuildCollection();fillPoolFilters();renderPool();updateGameSetup();
 })();
 </script>
-
-
 <style id="master52-corrections-6">
 /* MASTER52 — Corrections 6.1–6.5 */
 /* Training arrows are overlays only: they never become part of native controls/layout. */
@@ -1384,7 +1407,7 @@ updateGameSetup();
 /* Module exit screen */
 .moduleExit{display:none;position:absolute;z-index:3000;inset:0;background:#f5f5f5;align-items:center;justify-content:center;text-align:center;font:14px Arial,sans-serif}.moduleExit.open{display:flex}.moduleExitBox{background:#fff;border:1px solid #bbb;box-shadow:0 4px 18px #0003;padding:28px 34px;max-width:500px}.moduleExitBox b{display:block;font-size:19px;margin-bottom:12px}.moduleEnter{margin-top:18px;border:1px solid #b89600;background:#f4cf22;padding:9px 24px;font-weight:700;cursor:pointer}
 </style>
-<div id="moduleExit52" class="moduleExit"><div class="moduleExitBox"><b>Вы вышли из модуля.</b><div>В реальной программе вам бы пришлось ждать долгую повторную загрузку, но зато тут вы можете кликнуть на кнопку «ВХОД»))))</div><button id="moduleEnter52" class="moduleEnter" type="button">ВХОД</button></div></div>
+<div class="moduleExit" id="moduleExit52"><div class="moduleExitBox"><b>Вы вышли из модуля.</b><div>В реальной программе вам бы пришлось ждать долгую повторную загрузку, но зато тут вы можете кликнуть на кнопку «ВХОД»))))</div><button class="moduleEnter" id="moduleEnter52" type="button">ВХОД</button></div></div>
 <script id="master52-js">
 (()=>{
  const pane=document.querySelector('.diadocPane'), tabs=document.querySelector('.diadocTabs'), module=document.querySelector('.diadocPane>.module');
@@ -1448,9 +1471,6 @@ updateGameSetup();
  rebuildCollection();if(typeof fillPoolFilters==='function')fillPoolFilters();if(typeof renderPool==='function')renderPool();if(typeof updateGameSetup==='function')updateGameSetup();
 })();
 </script>
-
-
-
 <!-- MASTER60: menus behave like transient dropdowns; every game question starts from module root -->
 <script id="master60-menu-reset-fix-js">
 (()=>{
@@ -1495,8 +1515,6 @@ updateGameSetup();
   },true);
 })();
 </script>
-
-
 <!-- MASTER61: Organizations tab is lazy-created/visible only after first entry; arrows switch only existing tabs -->
 <style id="master61-css">
 /* Native work tab must not be shown before the user actually opens Organizations. */
@@ -1578,8 +1596,6 @@ updateGameSetup();
   sync();
 })();
 </script>
-
-
 <!-- MASTER63: persistent issue reporting + no automatic answer hints during game -->
 <style id="master63-fixes">
 /* During the game we never reveal the answer after a mistake or timeout. */
@@ -1617,7 +1633,6 @@ updateGameSetup();
   };
 })();
 </script>
-
 <style id="master64-org-layout-fix">
 /* MASTER64 — Organizations layout: header and toolbar stay on top; the organization table is a separate row below them. */
 .orgWorkspace.open .orgScreen,
@@ -1645,7 +1660,6 @@ updateGameSetup();
 }
 .orgTable{width:100%!important;}
 </style>
-
 <style id="master65-correct-flash">
 /* Correct knowledge-game click: brief success feedback before the next route level/question. */
 .target.gameCorrectFlash{
@@ -1656,9 +1670,6 @@ updateGameSetup();
   transition:background .08s,border-color .08s,box-shadow .08s!important;
 }
 </style>
-
-
-
 <style id="v7-integrated-css">
 .global1cTop{height:34px!important;min-height:34px!important;background:#fff09a!important;border-bottom:1px solid #d7c45d!important;color:#222!important;gap:8px!important;padding:0 8px!important;font:12px Arial,sans-serif!important}.global1cTop .logo{font-size:20px!important}.onecEquals{font-weight:700}.onecProduct{white-space:nowrap}.onecTopSpacer{flex:1}.onecGlobalSearch{width:230px;height:24px;border:1px solid #c9b95f;background:#fffef3;padding:0 8px}.onecUnknown,.onecBadButton{height:26px;min-width:28px;border:1px solid transparent;background:transparent;position:relative;cursor:pointer}.onecUnknown:hover,.onecBadButton:hover{background:#f3dc67;border-color:#d1b943}.onecGlobalUser{white-space:nowrap}.onecWindow{font-size:16px}.badLines{font-size:17px}.onecMainMenu,.onecFileMenu{display:none;position:absolute;z-index:5000;background:#fff;border:1px solid #aaa;box-shadow:0 4px 12px #0003;padding:4px 0;font:12px Arial,sans-serif;color:#222}.onecMainMenu.open,.onecFileMenu.open{display:block}.onecMainMenu{right:48px;top:34px;width:255px}.onecFileMenu{width:355px}.onecMenuItem{position:relative;min-height:31px;display:flex;align-items:center;gap:8px;padding:0 10px 0 24px;cursor:pointer}.onecMenuItem:hover,.onecMenuItem.route{background:#ffd23b!important}.onecMenuItem>span:first-of-type{flex:1}.onecMenuItem kbd{font:11px Arial;color:#666}.onecMenuItem.disabledNative{color:#aaa}.onecSep{border-top:1px solid #ddd;margin:3px 0}.recentFileExample{display:grid;grid-template-columns:22px 1fr;gap:4px;padding:5px 10px;color:#555;white-space:nowrap;overflow:hidden}.recentFileExample span:last-child{overflow:hidden;text-overflow:ellipsis}.documentListNoteV7{display:none!important;margin:6px 8px 4px;padding:7px 9px;background:#f1f2f4;border:1px solid #d5d7da;color:#666;font:12px Arial,sans-serif}.documentListNoteV7 b{display:block;color:#444;margin-bottom:2px}.gameQuestionAcceptedV7{background:#2fae55!important;color:#fff!important;border-radius:4px;padding:3px 6px!important;transition:background .1s}.openFileTrainingV7{margin-top:6px;padding:7px 9px;background:#f1f2f4;border:1px solid #d5d7da;color:#555;font:12px Arial,sans-serif}.openFileTrainingV7 b{color:#333}
 </style>
@@ -1690,8 +1701,6 @@ updateGameSetup();
  rebuildCollection();fillPoolFilters();renderPool();updateGameSetup();
 })();
 </script>
-
-
 <script id="v8-text-requirements-js">
 (()=>{
 'use strict';
@@ -1845,8 +1854,6 @@ routeObserver.observe(document.body,{attributes:true,subtree:true,attributeFilte
 applyDefaultExclusions();addLevelsToSetup();
 })();
 </script>
-
-
 <!-- NEW APPROVED GAME MOCKUP UI -->
 <style id="m8-css">
 :root{--m8bg:#101115;--m8panel:#18191d;--m8line:#353840;--m8text:#f5f5f5;--m8muted:#9ca1aa}
@@ -1885,55 +1892,50 @@ applyDefaultExclusions();addLevelsToSetup();
 #m8ScrollGuard{position:fixed;z-index:8990;height:12px;overflow-x:scroll;overflow-y:hidden;display:none;bottom:0;background:#e8e8e8}
 #m8ScrollGuard.on{display:block}#m8ScrollGuard>div{height:1px;min-width:100%}
 </style>
-
 <div id="m8Setup"><div class="m8box">
- <div class="m8head"><b>Проверка знаний</b><button class="m8x" data-m8close>×</button></div>
- <div class="m8body">
-  <div class="m8label">Уровень сложности</div>
-  <div class="m8levels">
-   <div class="m8card m8l1"><span class="m8num">УРОВЕНЬ 1</span><i class="m8check">✓</i><b>Кнопки</b><small>Элементы на странице модуля</small></div>
-   <div class="m8card m8l2"><span class="m8num">УРОВЕНЬ 2</span><i class="m8check">✓</i><b>Вложенные</b><small>Кнопки внутри элементов</small></div>
-   <div class="m8card m8l3"><span class="m8num">УРОВЕНЬ 3</span><i class="m8check">✓</i><b>Внутренние настройки</b><small>Меню, настройки и раскрытия</small></div>
-  </div>
-  <div class="m8label m8otherLabel">Другие игры</div>
-  <div class="m8other"><div class="m8future m8tasks"><b>Задачи</b><small>Отдельная игра · будет проработана позже</small></div><div class="m8future m8templates"><b>Шаблоны</b><small>Тренироваться собирать информацию из шаблона по знанию</small></div></div>
-  <div class="m8twocol">
-   <div class="m8compact"><label>Количество заданий</label><small id="m8Available" style="display:block;margin:4px 0;color:#a7b4c0">Подсчитываем…</small><select class="m8select" id="m8Count"><option>Все кнопки</option><option>5 заданий</option><option>10 заданий</option><option>15 заданий</option><option value="custom">Своё число…</option></select></div>
-   <div class="m8compact"><label>Время на задание</label><select class="m8select" id="m8Time"><option>15 секунд</option><option selected>30 секунд</option><option>45 секунд</option><option>60 секунд</option><option value="custom">Своё время…</option></select></div>
-  </div>
-  <div class="m8set"><div><b>Набор заданий</b><small>Выбрать конкретные задания для игры</small></div><button class="m8configure" id="m8Pool">НАСТРОИТЬ →</button></div>
-  <button id="m8Start">НАЧАТЬ ИГРУ</button>
- </div>
+<div class="m8head"><b>Проверка знаний</b><button class="m8x" data-m8close="">×</button></div>
+<div class="m8body">
+<div class="m8label">Уровень сложности</div>
+<div class="m8levels">
+<div class="m8card m8l1"><span class="m8num">УРОВЕНЬ 1</span><i class="m8check">✓</i><b>Кнопки</b><small>Элементы на странице модуля</small></div>
+<div class="m8card m8l2"><span class="m8num">УРОВЕНЬ 2</span><i class="m8check">✓</i><b>Вложенные</b><small>Кнопки внутри элементов</small></div>
+<div class="m8card m8l3"><span class="m8num">УРОВЕНЬ 3</span><i class="m8check">✓</i><b>Внутренние настройки</b><small>Меню, настройки и раскрытия</small></div>
+</div>
+<div class="m8label m8otherLabel">Другие игры</div>
+<div class="m8other"><div class="m8future m8tasks"><b>Задачи</b><small>Отдельная игра · будет проработана позже</small></div><div class="m8future m8templates"><b>Шаблоны</b><small>Тренироваться собирать информацию из шаблона по знанию</small></div></div>
+<div class="m8twocol">
+<div class="m8compact"><label>Количество заданий</label><small id="m8Available" style="display:block;margin:4px 0;color:#a7b4c0">Подсчитываем…</small><select class="m8select" id="m8Count"><option>Все кнопки</option><option>5 заданий</option><option>10 заданий</option><option>15 заданий</option><option value="custom">Своё число…</option></select></div>
+<div class="m8compact"><label>Время на задание</label><select class="m8select" id="m8Time"><option>15 секунд</option><option selected="">30 секунд</option><option>45 секунд</option><option>60 секунд</option><option value="custom">Своё время…</option></select></div>
+</div>
+<div class="m8set"><div><b>Набор заданий</b><small>Выбрать конкретные задания для игры</small></div><button class="m8configure" id="m8Pool">НАСТРОИТЬ →</button></div>
+<button id="m8Start">НАЧАТЬ ИГРУ</button>
+</div>
 </div></div>
-
 <div id="m8PoolModal"><div class="m8poolbox">
- <div class="m8pooltitle"><b>Набор заданий</b><button class="m8x" id="m8PoolX">×</button></div>
- <div class="m8poollist">
-  <label class="m8poolitem"><input type="checkbox" checked> Настройки</label>
-  <label class="m8poolitem"><input type="checkbox" checked> Помощь</label>
-  <label class="m8poolitem"><input type="checkbox" checked> Организации</label>
-  <label class="m8poolitem"><input type="checkbox" checked> Главное меню 1С</label>
-  <label class="m8poolitem"><input type="checkbox" checked> Файл → Открыть…</label>
- </div>
- <button class="m8pooldone" id="m8PoolDone">ГОТОВО</button>
+<div class="m8pooltitle"><b>Набор заданий</b><button class="m8x" id="m8PoolX">×</button></div>
+<div class="m8poollist">
+<label class="m8poolitem"><input checked="" type="checkbox"/> Настройки</label>
+<label class="m8poolitem"><input checked="" type="checkbox"/> Помощь</label>
+<label class="m8poolitem"><input checked="" type="checkbox"/> Организации</label>
+<label class="m8poolitem"><input checked="" type="checkbox"/> Главное меню 1С</label>
+<label class="m8poolitem"><input checked="" type="checkbox"/> Файл → Открыть…</label>
+</div>
+<button class="m8pooldone" id="m8PoolDone">ГОТОВО</button>
 </div></div>
-
 <div id="m8Bar">
- <div class="m8q"><div class="m8tag" id="m8Tag"></div><div class="m8meta" id="m8Meta"></div><strong id="m8Question"></strong></div>
- <div class="m8timer" id="m8Timer">30</div><div class="m8score"><span class="m8ok" id="m8Ok">0</span> / <span class="m8bad" id="m8Bad">0</span></div>
- <button class="m8btn m8arrow" id="m8Back">←</button><button class="m8btn m8arrow" id="m8Next">→</button><button class="m8btn" id="m8Fix">🛠 Чинить</button><button class="m8btn" id="m8Finish">Завершить игру</button>
+<div class="m8q"><div class="m8tag" id="m8Tag"></div><div class="m8meta" id="m8Meta"></div><strong id="m8Question"></strong></div>
+<div class="m8timer" id="m8Timer">30</div><div class="m8score"><span class="m8ok" id="m8Ok">0</span> / <span class="m8bad" id="m8Bad">0</span></div>
+<button class="m8btn m8arrow" id="m8Back">←</button><button class="m8btn m8arrow" id="m8Next">→</button><button class="m8btn" id="m8Fix">🛠 Чинить</button><button class="m8btn" id="m8Finish">Завершить игру</button>
 </div>
 <div id="m8ScrollGuard"><div></div></div>
-
 <div id="m8Result"><div class="m8resultbox">
- <div class="m8rhead"><b>ИТОГИ</b><button class="m8x" id="m8RX">×</button></div>
- <div class="m8summary"><div class="m8stat"><span>Пройдено</span><strong id="m8Passed"></strong></div><div class="m8stat"><span>Время игры</span><strong id="m8Duration"></strong></div><div class="m8stat"><span>Среднее время</span><strong id="m8Avg"></strong></div></div>
- <div class="m8tabs" id="m8Tabs"></div><div id="m8List"></div>
- <div class="m8history"><div class="m8historytop"><b>Прошлые игры</b><button class="m8reset" id="m8Reset">Сбросить рекорд</button></div><div class="m8histgrid"><div class="m8hist"><small>Лучшее время</small><b id="m8Best">—</b></div><div class="m8hist"><small>Прошлая игра</small><b id="m8Prev">—</b></div><div class="m8hist"><small>Игр сыграно</small><b id="m8Games">0</b></div></div></div>
- <button class="m8again" id="m8Again">↻ ПРОЙТИ СНОВА</button>
+<div class="m8rhead"><b>ИТОГИ</b><button class="m8x" id="m8RX">×</button></div>
+<div class="m8summary"><div class="m8stat"><span>Пройдено</span><strong id="m8Passed"></strong></div><div class="m8stat"><span>Время игры</span><strong id="m8Duration"></strong></div><div class="m8stat"><span>Среднее время</span><strong id="m8Avg"></strong></div></div>
+<div class="m8tabs" id="m8Tabs"></div><div id="m8List"></div>
+<div class="m8history"><div class="m8historytop"><b>Прошлые игры</b><button class="m8reset" id="m8Reset">Сбросить рекорд</button></div><div class="m8histgrid"><div class="m8hist"><small>Лучшее время</small><b id="m8Best">—</b></div><div class="m8hist"><small>Прошлая игра</small><b id="m8Prev">—</b></div><div class="m8hist"><small>Игр сыграно</small><b id="m8Games">0</b></div></div></div>
+<button class="m8again" id="m8Again">↻ ПРОЙТИ СНОВА</button>
 </div></div>
 <div class="m8toast" id="m8Toast">Эта игра будет проработана отдельно</div>
-
 <script id="m8-js">
 (()=>{
  const setup=document.getElementById('m8Setup'), pool=document.getElementById('m8PoolModal'), bar=document.getElementById('m8Bar'), result=document.getElementById('m8Result'), scrollGuard=document.getElementById('m8ScrollGuard');
@@ -2117,7 +2119,6 @@ applyDefaultExclusions();addLevelsToSetup();
  document.getElementById('m8Again').onclick=()=>{result.classList.remove('on');setup.classList.add('on')};
 })();
 </script>
-
 <style id="m8-v8-integration">
 #gameModal,#gameBar,#resultModal{display:none!important}
 #m8PoolModal{display:none!important} /* demo pool is not used in V8 */
@@ -2146,8 +2147,6 @@ applyDefaultExclusions();addLevelsToSetup();
   });
 })();
 </script>
-
-
 <style id="devLayoutStyles">
 /* Compact header: the second row stays immediately under the first. */
 .module .title{height:48px!important;min-height:48px!important;padding:2px 8px 0!important}
@@ -2199,7 +2198,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
  document.getElementById('devLogout')?.addEventListener('click',()=>{reset();document.getElementById('devModal')?.classList.remove('open')});
 })();
 </script>
-
 <!-- Final compact header: geometry only; existing buttons, columns and handlers untouched. -->
 <style id="v8-final-compact-header">
 .module{padding-top:0!important}
@@ -2215,6 +2213,296 @@ body.dev-layout-active #devLayoutFloat{display:block}
 .module .viewport{margin-top:1px!important}
 @media(max-width:1100px){.module .sectionButtons{margin-left:24px!important;gap:4px!important}}
 </style>
+<style id="admin-final-stage-style">
+.adminFavorite{display:inline-block;color:#93979b;font-size:19px;margin-right:9px;vertical-align:middle}.adminLink.real{text-decoration:underline}.adminLink.real:hover{background:#f6f6f6}.adminTabsFinal{padding:0;gap:0;background:#f2f2f2}.adminTabsFinal .adminTab{padding:12px 13px 8px;border-right:1px solid #bbb;cursor:pointer}.adminTabsFinal .adminTab:last-child{border-bottom:2px solid #20a46e}.adminFinalHead{padding:10px 16px;gap:0}.adminFinalHead button{min-width:45px}.adminBigStar{font-size:35px;color:#cbd0d4;margin:0 13px}.adminFinalHead strong{font-size:23px;margin:0}.adminRightIcons{margin-left:auto;color:#666}.adminFinalContent{padding:0 16px 15px;height:calc(100% - 105px);display:flex;flex-direction:column;min-height:0}.adminFinalFilters{display:flex;align-items:center;gap:14px;margin:0 0 12px}.adminSelect{display:inline-block;border:1px solid #b9b9b9;color:#b3b8c1;padding:7px;min-width:210px;margin-left:5px}.wideSelect{min-width:300px}.adminFinalActions{display:flex;gap:9px;align-items:center;margin-bottom:12px;flex-wrap:wrap}.adminFinalActions button{font:14px Arial;border:1px solid #aaa;background:linear-gradient(#fff,#e9e9e9);padding:7px 12px;border-radius:2px;color:#444}.adminActionsSpacer{flex:1}.adminFinalActions input{height:32px;max-width:210px;border:1px solid #bbb;padding:5px}.adminFinalTable{flex:1;min-height:200px;border:1px solid #aaa;overflow:auto}.adminFinalTable table{border-collapse:collapse;width:100%;font:14px Arial}.adminFinalTable th{text-align:left;font-weight:400;background:#eee;border-right:1px solid #ccc;padding:9px}.adminFinalTable td{padding:9px 10px;border-top:1px solid #ddd;white-space:nowrap}.adminFinalTable tr:nth-child(odd):not(.adminGroupRow){background:#fafafa}.adminFinalTable .adminGroupRow{background:#fff4c9}.adminFinalTable .adminIndent{padding-left:53px}.adminFinalTable .adminMuted{color:#b9b9b9}.adminSelectedText{border:2px solid #e6b500;padding:4px}.adminBottomArrows{text-align:right;color:#aaa;border:1px solid #ccc;padding:5px}.adminFinalActions button,.adminFinalTable tr{cursor:default}
+</style>
+<script id="admin-preview-script">
+(function(){
+const pane=document.querySelector('.diadocPane');if(!pane)return;
+const view=document.createElement('div');view.className='adminView';view.id='adminPreview';pane.appendChild(view);
+const left=['Функциональность','Обслуживание','Общие настройки','Интерфейс','Параметры учета','Проведение документов','Настройки пользователей и прав','Органайзер','Настройки работы с файлами','Синхронизация данных','Печатные формы, отчеты и обработки','Настройки регистров учета','Настройка колонтитулов','Обмен электронными документами','Поддержка оборудования','Интернет-поддержка и сервисы','Распознавание документов','Интеграция с ЕГАИС','Интеграция с ВетИС (Меркурий)'];
+const right=['Свертка информационной базы','Перейти в облачный сервис','Журнал обмена с контролирующими органами','Удаление помеченных объектов','Проверка записей регистра бухгалтерии','Настройки сообщений из других приложений','Загрузка данных из сервиса','Исправление реквизита "Без закрывающих документов" для УСН с НДС','Проверка дат изменения процентных ставок по займам','Архив ЭДО'];
+const link=(name,real=false,n='')=>`<div class="adminLink ${real?'real target':''}" ${real?`data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Администрирование" data-path="53,${n}"`:''}>${real?`<i class="badge">${n}</i><span class="adminFavorite">★</span>`:''}${name}</div>`;
+const entry=(name,desc,real=false)=>`<div class="adminEntry"><a ${real?'class="real target" data-n="107" data-name="Дополнительные отчеты и обработки" data-type="Пункт меню" data-zone="Печатные формы, отчеты и обработки" data-path="53,106,107"':''}>${name}</a><p>${desc}</p></div>`;
+function show(page){pane.classList.add('adminMode');view.dataset.page=page;document.querySelectorAll('.navItem').forEach(el=>el.classList.toggle('adminChosen',el.dataset.n==='53'));if(page==='root'){
+view.innerHTML=`<div class="adminPage"><div class="adminCols"><div><div class="adminGroup"><h3>Настройки программы</h3>${left.map(x=>link(x,x==='Печатные формы, отчеты и обработки',106)).join('')}</div></div><div><div class="adminGroup"><h3>Сервис</h3>${right.map(x=>link(x)).join('')}</div><div class="adminGroup" style="margin-top:38px"><h3>Информация</h3>${link('Новости')}</div></div></div></div>`;
+}else if(page==='print'){
+view.innerHTML=`<div class="adminTitle"><span class="adminTab">Печатные формы, отчеты и обработки <button type="button" class="adminTabX" data-admin-tab-close="print" aria-label="Закрыть вкладку">×</button></span></div><div class="adminToolbar"><button data-admin-back="root">←</button><button>→</button><strong>Печатные формы, отчеты и обработки</strong></div><div class="adminDetail"><p class="adminIntro">Настройка печатных форм, вариантов отчетов, рассылок отчетов, дополнительных отчетов и обработок.</p><div class="adminCols"><div>${entry('Макеты печатных форм','Настройка макетов печатных форм справочников и документов.')}${entry('Языки печатных форм','Настройка списка языков, на которых доступен вывод печатных форм.')}${entry('Отчеты','Администрирование списка всех вариантов отчетов, назначение ответственных и настройка видимости.')}${entry('Универсальный отчет','Просмотр произвольных справочников, документов, регистров и т.д.')}${entry('Настройка колонтитулов','Установка номеров страниц, даты и других полей в колонтитулах отчетов при печати.')}${entry('Расширения','Установка расширений: разделов, отчетов и обработок в дополнение к предусмотренным в приложении.')}<div class="adminCheck"><input type="checkbox" checked> Дополнительные отчеты и обработки</div><p style="color:#898878">Использование внешних печатных форм, отчетов и обработок в дополнение к предусмотренным в приложении.</p><div class="adminCheck"><input type="checkbox"> Отслеживание состояний напечатанных документов</div></div><div>${entry('Подменю "Печать"','Настройка видимости команд печати в формах.')}<div class="adminCheck"><input type="checkbox"> Перевод текста с помощью внешнего сервиса</div><p style="color:#898878">Предлагать автоматический перевод текста при редактировании макетов печатных форм и вводе реквизитов на выбранных языках.</p>${entry('Рассылки отчетов','Настройка автоматических рассылок отчетов по почте, публикации в папку, на FTP-ресурс по заданному расписанию или по требованию.')}<div class="adminCheck"><input type="checkbox"> Хранить историю за последние　3 мес.　 Очистить</div><p style="color:#898878">Позволяет узнать, когда, кому и с каким результатом были разосланы отчеты.</p>${entry('Внешние компоненты','Подключение внешних компонент сторонних поставщиков к приложению.')}${entry('Дополнительные отчеты и обработки','Подключение внешних печатных форм, отчетов и обработок в дополнение к предусмотренным в приложении.',true)}</div></div></div>`;
+}else{view.innerHTML=`<div class="adminTitle adminTabsFinal"><span class="adminTab" data-admin-back="print">Печатные формы, отчеты и обработки <button type="button" class="adminTabX" data-admin-tab-close="print">×</button></span><span class="adminTab">Дополнительные отчеты и обработки <button type="button" class="adminTabX" data-admin-tab-close="final">×</button></span></div><div class="adminToolbar adminFinalHead"><button data-admin-back="print">⬅</button><button class="decorative">➜</button><span class="adminBigStar">☆</span><strong>Дополнительные отчеты и обработки</strong><span class="adminRightIcons">♧　⋮　×</span></div><div class="adminFinalContent"><div class="adminFinalFilters"><label>Вид: <span class="adminSelect">Все　　▾　×</span></label><label>Публикация: <span class="adminSelect wideSelect">Все　　▾　×</span></label></div><div class="adminFinalActions"><button data-add-file>Добавить из файла...</button><button>Создать группу</button><button>📄 Обновить из файла...</button><button>⬇ Сохранить как...</button><span class="adminActionsSpacer"></span><input placeholder="Поиск (Ctrl+F)" readonly><button>Еще ▾</button><button>?</button></div><div class="adminFinalTable"><table><colgroup><col style="width:79%"><col style="width:13%"><col style="width:8%"></colgroup><thead><tr><th>Наименование <span style="float:right">↓</span></th><th>Публикация</th><th>Версия</th></tr></thead><tbody><tr class="adminGroupRow"><td>⊖　📁 <span class="adminSelectedText">Контур.Диадок</span></td><td></td><td></td></tr><tr><td class="adminIndent">▰　Диадок : Подключаемый модуль Осн</td><td>Используется</td><td>4</td></tr><tr><td class="adminIndent">▰　Диадок (СКБ Контур)</td><td>Используется</td><td>4.70.10</td></tr><tr class="adminMuted"><td class="adminIndent">▰　Диадок (СКБ Контур): Подключаемый модуль</td><td>Отключена</td><td>4</td></tr><tr><td class="adminIndent">▰　Интеграция с Контур.Диадок</td><td>Используется</td><td>0.7.2</td></tr><tr><td>⊖　📁 Контур.Плагины</td><td></td><td></td></tr><tr><td class="adminIndent">▰　Браузер объектов</td><td>Используется</td><td>0.1.2</td></tr><tr><td class="adminIndent">▰　Изменение контента</td><td>Используется</td><td>1.3.11</td></tr></tbody></table></div><div class="adminBottomArrows">▴　▴　▾　▾</div></div>`;}
+}
+window.adminPreviewShow=show;
+view.addEventListener('click',e=>{const back=e.target.closest('[data-admin-back]');if(back){window.adminPreviewShow(back.dataset.adminBack);return}const target=e.target.closest('.target');if(!target)return;e.stopPropagation();if(typeof advanceRoute==='function')advanceRoute(target);if(target.dataset.n==='106')window.adminPreviewShow('print');else if(target.dataset.n==='107')window.adminPreviewShow('final');});
+document.getElementById('nav').addEventListener('click',e=>{const t=e.target.closest('.navItem');if(!t)return;if(t.dataset.n==='53'){show('root');return}pane.classList.remove('adminMode');document.querySelectorAll('.navItem').forEach(x=>x.classList.remove('adminChosen'));},true);
+const originalStart=window.startSearch;
+// Keep all existing search/game systems; the registry discovers only the two newly marked real targets.
+const oldRender=window.render;
+if(typeof rebuildCollection==='function')rebuildCollection();
+})();
+</script>
+<style id="admin-stage4-style">
+/* The starred entry keeps the same baseline, indent and line height as its neighbours. */
+#adminPreview .adminLink{box-sizing:border-box;position:relative;display:block;width:100%;padding:6px 2px!important;min-height:28px;line-height:16px}
+#adminPreview .adminLink.real .adminFavorite{position:absolute;left:-22px;top:5px;margin:0!important;font-size:18px;line-height:18px}
+#adminPreview .adminLink.real{margin:0!important;transform:none!important}
+#adminPreview .adminToolbar button[data-admin-history]{min-width:39px;cursor:pointer}
+#adminPreview .adminToolbar button[data-admin-history]:disabled{color:#bfc0c2;cursor:default}
+</style>
+<script id="admin-stage4-history">
+(()=>{
+const view=document.getElementById('adminPreview');
+const pane=document.querySelector('.diadocPane');
+if(!view||!pane||typeof window.adminPreviewShow!=='function')return;
+const originalShow=window.adminPreviewShow;
+const steps=['root'];let index=0;let replay=false;
+function refresh(){
+ if(!pane.classList.contains('adminMode'))return;
+ const bar=view.querySelector('.adminToolbar');if(!bar)return;
+ const buttons=[...bar.querySelectorAll('button')];
+ if(buttons[0]){buttons[0].dataset.adminHistory='back';buttons[0].removeAttribute('data-admin-back');buttons[0].disabled=index===0;}
+ if(buttons[1]){buttons[1].dataset.adminHistory='forward';buttons[1].disabled=index===steps.length-1;}
+}
+function visit(page){
+ if(!replay&&steps[index]!==page){steps.splice(index+1);steps.push(page);index=steps.length-1;}
+ originalShow(page);refresh();
+}
+window.adminPreviewShow=visit;
+function travel(delta){const next=index+delta;if(next<0||next>=steps.length)return;index=next;replay=true;try{if(steps[index]==='create'&&typeof window.adminStage3CreatePage==='function')window.adminStage3CreatePage();else originalShow(steps[index]);}finally{replay=false;refresh()}}
+// Capture history arrows before legacy click handlers can navigate directly.
+view.addEventListener('click',e=>{const arrow=e.target.closest('[data-admin-history]');if(!arrow)return;e.preventDefault();e.stopImmediatePropagation();travel(arrow.dataset.adminHistory==='back'?-1:1)},true);
+// Existing root/print/final navigation stays intact; observe the resulting page.
+const observer=new MutationObserver(()=>{
+ if(!pane.classList.contains('adminMode'))return;
+ const page=view.dataset.page;
+ if(!page)return;
+ if(!replay&&steps[index]!==page){steps.splice(index+1);steps.push(page);index=steps.length-1;}
+ refresh();
+});
+observer.observe(view,{attributes:true,attributeFilter:['data-page']});
+// The original third-stage function is private, so retain the created markup for history replay.
+let createMarkup=null;
+view.addEventListener('click',e=>{if(e.target.closest('[data-file-open]'))setTimeout(()=>{if(view.dataset.page==='create')createMarkup=view.innerHTML},0)},true);
+window.adminStage3CreatePage=()=>{if(createMarkup){view.dataset.page='create';view.innerHTML=createMarkup}else originalShow('final')};
+// The original navigation buttons are in the Diadoc header (hidden in admin mode).
+// On returning to Diadoc, its independent history remains unchanged.
+refresh();
+})();
+</script>
+<style id="admin-stage5-safe-fixes">
+/* Preserve the original filter geometry even when the 1C area is narrower. */
+.diadocPane .module>.filters{display:flex!important;flex-wrap:nowrap!important;overflow-x:auto!important;overflow-y:hidden!important;min-width:0!important;scrollbar-width:thin;}
+.diadocPane .module>.filters>.control{flex-shrink:0!important;box-sizing:border-box!important;}
+.diadocPane .module>.filters>.period{width:310px!important;flex:0 0 310px!important;}
+.diadocPane .module>.filters>.org,.diadocPane .module>.filters>.partner{width:218px!important;flex:0 0 218px!important;}
+.diadocPane .module>.filters>.statusField{width:188px!important;flex:0 0 188px!important;}
+.diadocPane .module>.filters>.filterBtn{width:42px!important;flex:0 0 42px!important;}
+/* The root administration page overlays Diadoc, but can always be dismissed. */
+#adminPreview{position:relative!important;}
+#adminPreview .adminRootClose{position:sticky;top:8px;float:right;z-index:60;margin:14px 19px -42px 0;border:0;background:transparent;color:#555;font:22px Arial;cursor:pointer;width:30px;height:30px;display:grid;place-items:center;}
+#adminPreview .adminRootClose:hover{background:#eee;color:#111;}
+</style>
+<script id="admin-stage5-safe-script">
+(()=>{
+ const pane=document.querySelector('.diadocPane');
+ const view=document.getElementById('adminPreview');
+ if(!pane||!view)return;
+ function closeAdmin(){
+   pane.classList.remove('adminMode');
+   document.querySelectorAll('.navItem.adminChosen').forEach(el=>el.classList.remove('adminChosen'));
+   document.querySelectorAll('.navItem').forEach(el=>el.classList.toggle('active',el.dataset.name==='Контур.Диадок'));
+ }
+ function addClose(){
+   if(view.dataset.page!=='root'||view.querySelector('.adminRootClose'))return;
+   const btn=document.createElement('button');btn.type='button';btn.className='adminRootClose';btn.textContent='×';btn.title='Закрыть Администрирование';btn.setAttribute('aria-label','Закрыть Администрирование');
+   view.prepend(btn);
+ }
+ view.addEventListener('click',e=>{
+   if(e.target.closest('.adminRootClose')){e.preventDefault();e.stopImmediatePropagation();closeAdmin();return;}
+   // The close symbol in the heading of the other administration pages.
+   if(e.target.closest('[data-admin-close]')){e.preventDefault();e.stopImmediatePropagation();closeAdmin();}
+ },true);
+ const observer=new MutationObserver(addClose);
+ observer.observe(view,{childList:true,attributes:true,attributeFilter:['data-page']});
+ addClose();
+ // Preserve existing handlers and data-paths: only the visual close control is added.
+})();
+</script>
+<style id="v8-stage6-restoration">
+/* Isolated repair of Diadoc geometry; no changes to the administration overlay. */
+.diadocPane .module>.filters{
+ display:flex!important;flex-wrap:nowrap!important;gap:3px!important;
+ overflow-x:auto!important;overflow-y:hidden!important;min-width:0!important;
+ scrollbar-width:thin;align-items:center!important;
+}
+.diadocPane .module>.filters>.control{min-width:0!important;box-sizing:border-box!important}
+.diadocPane .module>.filters>.filterBtn{flex:0 0 34px!important;width:34px!important}
+.diadocPane .module>.filters>.period{flex:2 1 225px!important;width:auto!important;min-width:185px!important}
+.diadocPane .module>.filters>.org{flex:1 1 160px!important;width:auto!important;min-width:125px!important}
+.diadocPane .module>.filters>.partner{flex:1 1 160px!important;width:auto!important;min-width:125px!important}
+.diadocPane .module>.filters>.statusField{flex:1 1 145px!important;width:auto!important;min-width:115px!important}
+.diadocPane .module>.filters .fieldMain{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.diadocPane .module>.filters .fieldMini{min-width:20px!important;padding:0 3px!important}
+.diadocPane .module>.actions{overflow-x:auto!important;overflow-y:hidden!important;flex-wrap:nowrap!important;gap:5px!important;scrollbar-width:thin}
+.diadocPane .module>.actions>.control{flex-shrink:0!important}
+.diadocPane .module>.actions [data-n="18"],.diadocPane .module>.actions [data-n="19"]{display:none!important}
+.diadocPane .module>.actions>.push{flex:1 0 8px!important}
+.v8MoreWrap{position:relative;flex:0 0 auto}
+.v8MoreBtn{height:31px;border:1px solid #aaa;background:linear-gradient(#fff,#e9e9e9);padding:0 11px;cursor:pointer;font:12px Arial}
+.v8MoreMenu{display:none;position:fixed;z-index:550;background:#fff;border:1px solid #999;box-shadow:0 5px 14px #0003;width:290px}
+.v8MoreMenu.open{display:block}
+.v8MoreMenu button{display:block;width:100%;border:0;border-bottom:1px solid #eee;background:white;text-align:left;padding:10px 12px;cursor:pointer;font:13px Arial}
+.v8MoreMenu button:hover{background:#ffe077}
+.v8SendExtras{display:flex;align-items:center;gap:5px;flex:0 0 auto}
+.v8SendExtras button{height:31px;white-space:nowrap;border:1px solid #aaa;background:linear-gradient(#fff,#e9e9e9);cursor:pointer;padding:0 9px;font:12px Arial}
+</style>
+<script id="v8-stage6-toolbar">
+(function(){
+ const actions=document.querySelector('.diadocPane .module>.actions');
+ const sections=document.getElementById('sectionButtons');
+ if(!actions||!sections)return;
+ const more=document.createElement('span');
+ more.className='v8MoreWrap';
+ more.innerHTML='<button type="button" class="v8MoreBtn">Еще ▾</button>';
+ const menu=document.createElement('div');menu.className='v8MoreMenu';
+ menu.innerHTML=['Выделение документов','Подписать и отправить','Согласование ▸','Аннулирование ▸','Переотправить','Передать в подразделение','Скачать документ','Получить печатную форму'].map(x=>'<button type="button">'+x+'</button>').join('');
+ document.body.appendChild(menu);
+ const refresh=actions.querySelector('[data-n="20"]');
+ actions.insertBefore(more,refresh||null);
+ const extra=document.createElement('span');extra.className='v8SendExtras';
+ extra.innerHTML='<button type="button">Найти нужный документ</button><button type="button">☑ Показывать черновики</button><button type="button" title="Помощь">?</button>';
+ actions.insertBefore(extra,refresh||null);
+ const moreBtn=more.querySelector('button');
+ moreBtn.addEventListener('click',function(e){
+  e.stopPropagation();
+  const r=moreBtn.getBoundingClientRect();
+  menu.style.left=Math.max(5,Math.min(r.left,innerWidth-300))+'px';
+  menu.style.top=Math.min(r.bottom+2,innerHeight-330)+'px';
+  menu.classList.toggle('open');
+ });
+ document.addEventListener('click',e=>{if(!menu.contains(e.target)&&e.target!==moreBtn)menu.classList.remove('open')});
+ menu.addEventListener('click',e=>{if(e.target.closest('button'))menu.classList.remove('open')});
+ extra.querySelectorAll('button')[1].addEventListener('click',e=>{e.currentTarget.classList.toggle('selected');e.currentTarget.style.background=e.currentTarget.classList.contains('selected')?'#ffe39b':''});
+ function sync(){
+  const active=sections.querySelector('.sectionBtn.active');
+  const isSend=active?.dataset.section==='send';
+  extra.style.display=isSend?'flex':'none';
+  const refreshBtn=actions.querySelector('[data-n="20"]');
+  const eventsBtn=actions.querySelector('[data-n="21"]');
+  if(refreshBtn)refreshBtn.style.display='flex';
+  if(eventsBtn)eventsBtn.style.display='flex';
+ }
+ sections.addEventListener('click',()=>setTimeout(sync,0));
+ const observer=new MutationObserver(sync);
+ observer.observe(sections,{childList:true});
+ sync();
+})();
+</script>
+<style id="v8-stage7-precise">
+#adminPreview .adminTabX{font:20px Arial;border:0;background:transparent;color:#555;padding:0 3px;cursor:pointer;vertical-align:middle}
+#adminPreview .adminTabX:hover{background:#eee;color:#111}
+#adminPreview .adminFinalActions button[data-add-file]{cursor:pointer!important}
+#adminPreview .adminEntry a.real{cursor:pointer!important;text-decoration:underline;color:#2862a2}
+#adminPreview .adminCreatePage{padding:0 16px 10px;min-height:0}
+#adminPreview .adminCreateTabs{margin:0 -16px 10px;height:38px;flex:0 0 38px}
+#adminPreview .adminCreateTabs span{cursor:pointer;white-space:nowrap;padding:8px 13px}
+#adminPreview .adminCreateTitle{font-size:22px;line-height:30px;margin:0 0 8px}
+#adminPreview .adminCreateActions{flex-wrap:nowrap;gap:9px;margin-bottom:12px}
+#adminPreview .adminCreateActions button{padding:6px 12px;white-space:nowrap;cursor:pointer}
+#adminPreview .adminCreateActions button:first-child{background:#ffdf00;border-color:#c0a000}
+#adminPreview .adminCreateField{margin-bottom:8px;min-height:31px}
+#adminPreview .adminCreateField input{height:33px;flex:0 1 550px}
+#adminPreview .adminCreateBody{min-height:280px}
+#adminPreview .adminCreateTable tr:first-child td{background:#ffe69b}
+#adminPreview .adminCreateTable td{padding:7px 9px}
+</style>
+<script id="v8-stage7-navigation-repair">
+(()=>{
+const view=document.getElementById('adminPreview'),pane=document.querySelector('.diadocPane');
+if(!view||!pane)return;
+function closeTab(tab){
+ if(tab==='create'){window.adminPreviewShow('final');return;}
+ if(tab==='final'){window.adminPreviewShow('print');return;}
+ pane.classList.remove('adminMode');
+ document.querySelectorAll('.navItem.adminChosen').forEach(el=>el.classList.remove('adminChosen'));
+}
+view.addEventListener('click',function(e){
+ const close=e.target.closest('[data-admin-tab-close]');
+ if(close){e.preventDefault();e.stopImmediatePropagation();closeTab(close.dataset.adminTabClose);return;}
+ // Clicking the label of a 1C tab should return to that tab.
+ const tab=e.target.closest('[data-admin-create-back]');
+ if(tab){e.preventDefault();e.stopImmediatePropagation();window.adminPreviewShow('final');return;}
+},true);
+})();
+</script>
+
+<script id="v8-stage8-close-fix">
+(()=>{
+ const view=document.getElementById('adminPreview');if(!view)return;
+ // Handle close before the page's legacy click handlers and the game's hit detector.
+ view.addEventListener('click',function(e){
+   const x=e.target.closest('.adminCreateActiveTab .adminTabX');
+   if(!x)return;
+   e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+   if(typeof window.adminPreviewShow==='function')window.adminPreviewShow('final');
+ },true);
+ // Make the toolbar icons self-describing without turning them into new game targets.
+ const download=document.querySelector('.diadocPane .module>.actions [data-n="18"]');
+ const print=document.querySelector('.diadocPane .module>.actions [data-n="19"]');
+ if(download){download.title='Сохранить документ';download.setAttribute('aria-label','Сохранить документ');}
+ if(print){print.title='Получить печатную форму';print.setAttribute('aria-label','Получить печатную форму');}
+})();
+</script>
+
+<script id="dd-final-reference-controls">
+(()=>{
+ const module=document.querySelector('.diadocPane .module');
+ if(!module)return;
+ const sectionRow=module.querySelector(':scope>.sectionRow');
+ const title=module.querySelector(':scope>.title');
+ if(sectionRow&&title&&!sectionRow.querySelector('.ddToolsRow')){
+  const toolsRow=document.createElement('div');toolsRow.className='ddToolsRow';
+  const user=title.querySelector(':scope>.userArea'),tools=title.querySelector(':scope>.tools');
+  if(user)toolsRow.appendChild(user);
+  if(tools)toolsRow.appendChild(tools);
+  sectionRow.appendChild(toolsRow);
+ }
+ const filters=module.querySelector(':scope>.filters');
+ const period=filters?.querySelector('.period .fieldMain');if(period)period.textContent='12 октября 2026 г. (по дате документа)';
+ const buttons=module.querySelector('#sectionButtons');
+ const actions=module.querySelector(':scope>.actions');
+ const sign=actions?.querySelector('[data-n="13"]');
+ const add=actions?.querySelector('[data-n="16"]');
+ const more=actions?.querySelector('.v8MoreWrap');
+ const extras=actions?.querySelector('.v8SendExtras');
+ const refresh=actions?.querySelector('[data-n="20"]');
+ const events=actions?.querySelector('[data-n="21"]');
+ if(extras){
+  const find=extras.querySelector('button');if(find)find.textContent='Найти нужный документ';
+  const drafts=extras.querySelectorAll('button')[1];if(drafts)drafts.textContent='☑ Показывать черновики';
+ }
+ function sync(){
+  const active=buttons?.querySelector('.sectionBtn.active');
+  const sec=active?.dataset.section||'send';
+  if(sign)sign.textContent=sec==='send'?'Подписать и отправить':'Подписать и отправить';
+  if(add)add.textContent=sec==='send'?'📎 Добавить файлы ▾':'Действия в 1С ▾';
+  if(more)more.style.display=sec==='send'?'none':'';
+  if(extras)extras.style.display=sec==='send'?'flex':'none';
+  if(refresh)refresh.style.display='inline-flex';if(events)events.style.display='inline-flex';
+  const save=actions?.querySelector('[data-n="18"]'),print=actions?.querySelector('[data-n="19"]');
+  if(save){save.title='Сохранить документ';save.setAttribute('aria-label','Сохранить документ');save.style.display=sec==='incoming'?'inline-flex':'none';}
+  if(print){print.title='Получить печатную форму';print.setAttribute('aria-label','Получить печатную форму');print.style.display=sec==='incoming'?'inline-flex':'none';}
+  const sf=filters?.querySelector('.statusField .fieldMain');if(sf)sf.textContent=sec==='send'?'Вид пакета':'Статус';
+  if(sec==='transport'){
+   // Three empty columns only in Transport; preserve the original table and its gameplay targets for other sections.
+   const head=module.querySelector('#thead'),body=module.querySelector('#tbody');
+   if(head)head.innerHTML='<tr><th>Документ</th><th>Номер</th><th>Дата</th></tr>';
+   if(body)body.innerHTML='';
+  }
+ }
+ if(buttons){buttons.addEventListener('click',()=>setTimeout(sync,0));}
+ // render() rebuilds table after every section change; sync only after its synchronous handler.
+ sync();
+})();
+</script>
 </body></html>
 <!-- MASTER54: nested-button search route repair -->
 <script id="master54-nested-search-fix">
@@ -2459,7 +2747,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
   document.querySelectorAll('[data-mini="search"],#quickSearch,.navSearchWrap').forEach(el=>el.addEventListener('click',()=>{if(!state.route.length)clearMarks()},true));
 })();
 </script>
-
 <style id="master57-arrow-cleanup">
 /* MASTER57: search pointer is a clean neon arrow only — no circular green contour/rays. */
 .trainerOverlayArrow.final .r{display:none!important;box-shadow:none!important;animation:none!important}
@@ -2522,7 +2809,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
   document.addEventListener('keydown',e=>{if(e.key==='Escape')clearMarks()},true);
 })();
 </script>
-
 <!-- MASTER58: deterministic game clicks for nested targets; Back/Forward disabled by default in game -->
 <script id="master58-game-target-fix-js">
 (()=>{
@@ -2568,7 +2854,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
   },true);
 })();
 </script>
-
 <style id="trainer-feedback-repair">
 .target.gameCorrectFlash,.target.m8target-ok{outline:4px solid #12c95b!important;outline-offset:2px!important;background:#9ff3b6!important;box-shadow:0 0 0 6px #23c95a55,0 0 20px #1acc63!important;position:relative!important;z-index:9100!important}
 </style>
@@ -2676,7 +2961,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
   syncNav62();
 })();
 </script>
-
 <!-- MASTER66: accumulated training/reporting rules -->
 <style id="master66-css">
 .orgTrainingNote66{margin:10px 16px 0;padding:8px 10px;background:#f1f2f4;border:1px solid #d5d7da;color:#666;font:12px Arial,sans-serif;border-radius:2px}
@@ -2759,8 +3043,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
   if(ct){ct.dataset.name='Карточка организации';ct.dataset.type='Учебный экран';ct.dataset.zone='Организации';ct.dataset.prompt='Открой карточку одной из организаций'}
 })();
 </script>
-
-
 <!-- Учебная авторизация 1сД: локальные вымышленные данные, без внешнего входа -->
 <style>
 #trainingGate{position:fixed;inset:0;z-index:2147483000;background:rgba(14,18,26,.75);display:flex;align-items:center;justify-content:center;padding:20px;font:14px Arial,sans-serif;color:#20242a}
@@ -2829,36 +3111,36 @@ body.dev-layout-active #devLayoutFloat{display:block}
 .module .title>.tools{position:absolute!important;inset:30px 9px auto auto!important;margin:0!important;height:24px!important;display:flex!important;align-items:center!important;gap:3px!important}
 .module .title>.userArea{position:absolute!important;inset:30px 252px auto auto!important;margin:0!important;height:24px!important;display:flex!important;align-items:center!important;gap:4px!important}
 </style>
-<div id="trainingGate" hidden><div class="trainingDialog" role="dialog" aria-modal="true" aria-label="Учебная авторизация">
+<div hidden="" id="trainingGate"><div aria-label="Учебная авторизация" aria-modal="true" class="trainingDialog" role="dialog">
 <section id="trainingWelcome">
 <h2>Хелоу! 👋</h2><p>Этот тренажёрчик поможет тебе освоиться в модуле 1С:Диадок и перестать воспринимать работу с ним как что-то сложное и пугающее.</p>
-<label for="trainingPerson">Фамилия и имя участника</label><input id="trainingPerson" type="text" maxlength="90" placeholder="Например: Иванова Мария">
+<label for="trainingPerson">Фамилия и имя участника</label><input id="trainingPerson" maxlength="90" placeholder="Например: Иванова Мария" type="text"/>
 <h3>Учебные организации</h3><p>Придумай одну или несколько компаний. У каждой будет свой учебный ИНН и КПП.</p><div id="trainingOrgList"></div>
-<div class="trainingOrgInput"><input id="trainingOrgName" type="text" maxlength="110" placeholder="Например, ООО «Маг огня в гневе»"><button id="trainingAddOrg" type="button">+ Добавить</button></div>
+<div class="trainingOrgInput"><input id="trainingOrgName" maxlength="110" placeholder="Например, ООО «Маг огня в гневе»" type="text"/><button id="trainingAddOrg" type="button">+ Добавить</button></div>
 <h3>Учебные контрагенты</h3><p>Добавь до двух контрагентов. Серые названия — примеры, можно придумать свои.</p>
-<label for="trainingPartner1">Контрагент 1</label><input id="trainingPartner1" type="text" maxlength="110" placeholder="Фуфелшмерц Пакастин Карпарайтек">
-<label for="trainingPartner2">Контрагент 2</label><input id="trainingPartner2" type="text" maxlength="110" placeholder="ООО «Тмыв денег»">
+<label for="trainingPartner1">Контрагент 1</label><input id="trainingPartner1" maxlength="110" placeholder="Фуфелшмерц Пакастин Карпарайтек" type="text"/>
+<label for="trainingPartner2">Контрагент 2</label><input id="trainingPartner2" maxlength="110" placeholder="ООО «Тмыв денег»" type="text"/>
 <p class="trainingNote">Нажми «Добавить», чтобы внести ещё одну организацию, затем «Сохранить». ИНН и КПП создаются автоматически и используются только в тренажёре. Данные ученика и учебных организаций сохраняются в этом браузере до очистки данных сайта. При повторном входе заполнять их заново не потребуется.</p>
-<p id="trainingWelcomeError" class="trainingStatus"></p><div class="trainingActions"><button class="primary" id="trainingContinue" type="button">Сохранить →</button></div>
+<p class="trainingStatus" id="trainingWelcomeError"></p><div class="trainingActions"><button class="primary" id="trainingContinue" type="button">Сохранить →</button></div>
 </section>
-<section id="trainingUsers" hidden>
-<div class="training1cTitle"><span class="trainingStar">☆</span> Авторизация: Пользователи <span class="training1cWindowIcons">♧ &nbsp; ⋮ &nbsp; □ &nbsp; <button type="button" class="trainingClose" title="Закрыть окно">×</button></span></div>
-<div class="training1cToolbar"><button type="button" id="trainingAddUser">⊕ Добавить пользователя</button><button type="button" id="trainingEndUser">Завершить работу пользователя</button></div>
+<section hidden="" id="trainingUsers">
+<div class="training1cTitle"><span class="trainingStar">☆</span> Авторизация: Пользователи <span class="training1cWindowIcons">♧   ⋮   □   <button class="trainingClose" title="Закрыть окно" type="button">×</button></span></div>
+<div class="training1cToolbar"><button id="trainingAddUser" type="button">⊕ Добавить пользователя</button><button id="trainingEndUser" type="button">Завершить работу пользователя</button></div>
 <div class="trainingGrid" style="grid-template-columns:1fr 1fr 1fr"><div class="head">Пользователь</div><div class="head">Почта</div><div class="head">Способ входа</div><div id="trainingUserCell"></div><div id="trainingMockEmail">student1@training.test</div><div>Портал (имитация)</div></div>
 <div class="trainingActions"><button id="trainingBackWelcome">← Изменить данные</button><button class="primary" id="trainingToOrgs">К списку организаций →</button></div>
 </section>
-<section id="trainingOrganizations" hidden>
-<div class="training1cTitle"><span class="trainingStar">☆</span> Авторизация: Доступные организации <span class="training1cWindowIcons">♧ &nbsp; ⋮ &nbsp; □ &nbsp; <button type="button" class="trainingClose" title="Закрыть окно">×</button></span></div>
+<section hidden="" id="trainingOrganizations">
+<div class="training1cTitle"><span class="trainingStar">☆</span> Авторизация: Доступные организации <span class="training1cWindowIcons">♧   ⋮   □   <button class="trainingClose" title="Закрыть окно" type="button">×</button></span></div>
 <div class="training1cSign">Способ подписания документов</div>
-<div class="training1cRadios"><label><input type="radio" name="trainingSign" checked> Без подписи</label><label><input type="radio" name="trainingSign"> Сертификатом на моём компьютере</label></div>
+<div class="training1cRadios"><label><input checked="" name="trainingSign" type="radio"/> Без подписи</label><label><input name="trainingSign" type="radio"/> Сертификатом на моём компьютере</label></div>
 <div class="training1cSign">Мои организации</div><p>Выберите организации для работы в модуле. Заполните пользователя и сертификат для каждой из них.</p>
-<div class="training1cToolbar"><button type="button" id="trainingSelectAll">☑</button><button type="button" id="trainingDeselectAll">▢</button><span class="trainingToolbarSpacer"></span><input id="trainingOrgSearch" placeholder="Поиск (Ctrl+F)" type="text"></div>
+<div class="training1cToolbar"><button id="trainingSelectAll" type="button">☑</button><button id="trainingDeselectAll" type="button">▢</button><span class="trainingToolbarSpacer"></span><input id="trainingOrgSearch" placeholder="Поиск (Ctrl+F)" type="text"/></div>
 <div class="training1cOrgHead"><span></span><span>Организация</span><span>ИНН</span><span>КПП</span><span>Пользователь</span></div>
-<div id="trainingAuthOrgList"></div><p id="trainingAuthError" class="trainingStatus"></p>
+<div id="trainingAuthOrgList"></div><p class="trainingStatus" id="trainingAuthError"></p>
 <div class="trainingActions"><button id="trainingBackUsers">← К списку пользователей</button><button class="primary" id="trainingFinish">Приступить к работе →</button></div>
 </section>
 </div></div>
-<div id="trainingOrgPicker" hidden></div>
+<div hidden="" id="trainingOrgPicker"></div>
 <script>
 (function(){
  'use strict';
@@ -2935,8 +3217,6 @@ body.dev-layout-active #devLayoutFloat{display:block}
  $('trainingPerson').value=profile.name;$('trainingPartner1').value=profile.partners?.[0]||'';$('trainingPartner2').value=profile.partners?.[1]||'';renderList();syncNames();if(profile.name&&profile.orgs.length){syncOrganizations();gate.hidden=true}else show('trainingWelcome');
 })();
 </script>
-
-
 <style id="v8-final-reference-geometry">
 /* Geometry matching the reference 1C compact toolbar. Keep all buttons and columns. */
 .stage .diadocPane .module {padding:0 8px!important; gap:0!important}
@@ -2988,3 +3268,38 @@ body.dev-layout-active #devLayoutFloat{display:block}
   .stage .diadocPane .module>.title>.tools{gap:1px!important}
 }
 </style>
+<style id="admin-stage3-style">
+#adminPreview .adminLink.real{ text-decoration:none!important; }
+#adminPreview .adminLink.real .adminFavorite{visibility:hidden!important;}
+#adminPreview .adminLink.real:hover,#adminPreview .adminLink.real:focus-visible,#adminPreview .adminLink.real.route,#adminPreview .adminLink.real.found{ text-decoration:underline!important; }
+#adminPreview .adminLink.real:hover .adminFavorite,#adminPreview .adminLink.real:focus-visible .adminFavorite,#adminPreview .adminLink.real.route .adminFavorite,#adminPreview .adminLink.real.found .adminFavorite{visibility:visible!important;}
+#adminPreview .adminFinalActions button[data-add-file]{cursor:pointer!important}
+.adminFileOverlay{position:fixed;inset:0;z-index:3500;background:#0003;display:grid;place-items:center;font:14px 'Segoe UI',Arial,sans-serif}
+.adminFileDialog{width:min(800px,94vw);height:min(560px,85vh);background:#fff;border:1px solid #aeb8c5;box-shadow:0 16px 45px #0005;display:flex;flex-direction:column;color:#242424;border-radius:8px;overflow:hidden}
+.adminFileTop{padding:13px 18px;border-bottom:1px solid #ddd;display:flex;align-items:center;gap:12px}.adminFileTop strong{flex:1}.adminFileTop button{border:0;background:transparent;font-size:22px;cursor:pointer}
+.adminFilePath{margin:12px 18px;border:1px solid #c5cbd2;padding:9px;background:#fafafa;color:#555}
+.adminFileContents{flex:1;display:flex;gap:14px;padding:18px 24px;align-items:flex-start}
+.adminInstaller{width:145px;border:1px solid transparent;background:white;cursor:pointer;padding:9px;text-align:center;color:#222;word-break:break-word}.adminInstaller.selected{background:#dbeafa;border-color:#83afe2}.adminInstaller svg{display:block;width:85px;height:100px;margin:0 auto 6px}
+.adminFileFoot{border-top:1px solid #ddd;padding:13px 18px;display:flex;align-items:center;gap:10px}.adminFileFoot input{flex:1;min-width:0;padding:8px;border:1px solid #aaa}.adminFileFoot button{padding:8px 22px;border:1px solid #aab0b6;border-radius:4px;background:#f7f7f7;cursor:pointer}.adminFileFoot button.primary{border-color:#5794d5;background:#e6f2ff}
+.adminCreatePage{height:100%;display:flex;flex-direction:column;padding:0 16px 10px;background:white;color:#222;font:14px Arial,sans-serif;overflow:auto}.adminCreateTabs{margin:0 -16px 12px;background:#f2f2f2;border-bottom:1px solid #bbb;display:flex}.adminCreateTabs span{padding:11px 13px;border-right:1px solid #bbb}.adminCreateTabs span:last-child{border-bottom:2px solid #1aa46d}
+.adminCreateTitle{font-size:22px;margin-bottom:10px}.adminCreateActions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.adminCreateActions button{padding:8px 13px;border:1px solid #aaa;background:linear-gradient(white,#eee);cursor:default}.adminCreateActions button:first-child{background:#ffe400;font-weight:bold}
+.adminCreateField{display:flex;align-items:center;gap:10px;margin-bottom:10px}.adminCreateField input{padding:7px;border:1px solid #e0b600;min-width:340px}.adminCreateField .state{border:1px solid #aaa;padding:7px 10px;color:#168a54}.adminCreateSubtabs{display:flex;border-bottom:1px solid #aaa;margin-top:3px}.adminCreateSubtabs span{padding:9px 13px;background:#eee;border:1px solid #bbb;border-bottom:0}.adminCreateSubtabs span:first-child{background:white}.adminCreateBody{border:1px solid #bbb;border-top:0;flex:1;min-height:280px;padding:12px;display:flex;flex-direction:column}.adminCreateTable{border-collapse:collapse;width:100%;margin-top:12px}.adminCreateTable th,.adminCreateTable td{border:1px solid #ddd;text-align:left;padding:9px}.adminCreateTable th{background:#eee;font-weight:400}.adminCreateTable tr:first-child td{background:#fff0a4}
+</style>
+<script id="admin-stage3-script">
+(()=>{
+ const view=document.getElementById('adminPreview');if(!view)return;
+ function createPage(){
+ view.dataset.page='create';view.innerHTML=`<div class="adminCreatePage"><div class="adminCreateTabs"><span data-admin-create-back="final">Печатные формы, отчеты и обработки</span><span data-admin-create-back="final">Дополнительные отчеты и обработки</span><span class="adminCreateActiveTab">Дополнительная обработка (создание) * <button type="button" class="adminTabX" data-admin-tab-close="create" aria-label="Закрыть Дополнительную обработку">×</button></span></div><div class="adminCreateTitle">☆ &nbsp; Дополнительная обработка (создание) *</div><div class="adminCreateActions"><button>Записать и закрыть</button><button>💾</button><button>📄 Обновить из файла...</button><button>⬇ Сохранить как...</button><span style="flex:1"></span><button>Еще ▾</button><button>?</button></div><div class="adminCreateField">Наименование: <input value="Диадок (СКБ Контур)"></div><div class="adminCreateField">Публикация: <span class="state">Используется</span><span class="state" style="color:#444">Режим отладки</span><span class="state" style="color:#444">Отключена</span></div><div class="adminCreateSubtabs"><span>Команды (3)</span><span>Разрешения (2)</span><span>Дополнительная информация</span></div><div class="adminCreateBody"><div>Размещение: <u style="color:#1763af">Не определено</u></div><div style="margin-top:12px"><button style="padding:7px 24px">▶ Выполнить</button></div><table class="adminCreateTable"><thead><tr><th>Наименование</th><th>Быстрый доступ</th><th>◷</th><th>Расписание</th></tr></thead><tbody><tr><td>Выполнение регламентных операций</td><td>Нет</td><td>□</td><td>Не заполнено</td></tr><tr><td>Диадок (СКБ Контур)</td><td>Нет</td><td></td><td style="color:#aaa">Неприменимо для команд с вариантом запуска «Открытие формы»</td></tr><tr><td>Длительные операции (служебные)</td><td>Нет</td><td>□</td><td>Не заполнено</td></tr></tbody></table></div><div style="padding-top:12px">Ответственный: &nbsp; &lt;&gt; &nbsp;&nbsp;&nbsp; Комментарий: <input style="width:30%"></div></div>`;
+ }
+ function openDialog(){
+ const layer=document.createElement('div');layer.className='adminFileOverlay';layer.innerHTML=`<div class="adminFileDialog" role="dialog" aria-label="Открытие файла"><div class="adminFileTop">📁 <strong>Открытие файла</strong><button data-file-cancel>×</button></div><div class="adminFilePath">Этот компьютер &gt; Загрузки</div><div class="adminFileContents"><button class="adminInstaller" data-file-select><svg viewBox="0 0 100 116" xmlns="http://www.w3.org/2000/svg"><path d="M12 3H66L90 27V108H12Z" fill="#fffde8" stroke="#d5c990" stroke-width="3"/><path d="M66 3V27H90" fill="#e4dcb3"/><text x="48" y="72" text-anchor="middle" font-size="48" fill="#aaa">⚙</text><path d="M20 78Q35 98 55 81L49 81L66 72L65 96L58 88Q36 109 20 78" fill="#10b522"/></svg><span>diadoc_4_70_10.epf</span></button></div><div class="adminFileFoot">Имя файла: <input data-file-name value=""><button class="primary" data-file-open>Открыть</button><button data-file-cancel>Отмена</button></div></div>`;
+ document.body.appendChild(layer);
+ const select=()=>{layer.querySelector('.adminInstaller').classList.add('selected');layer.querySelector('[data-file-name]').value='diadoc_4_70_10.epf'};
+ layer.addEventListener('click',e=>{if(e.target.closest('[data-file-cancel]')||e.target===layer){layer.remove();return}if(e.target.closest('[data-file-select]')){select();return}if(e.target.closest('[data-file-open]')){if(!layer.querySelector('[data-file-name]').value.trim())return;layer.remove();createPage()}});
+ layer.querySelector('.adminInstaller').addEventListener('dblclick',()=>{layer.remove();createPage()});
+ }
+ view.addEventListener('click',e=>{if(e.target.closest('[data-admin-tab-close]'))return;if(e.target.closest('[data-admin-create-back]')){window.adminPreviewShow('final');return}if(e.target.closest('[data-add-file]')){openDialog();return}},true);
+ const observer=new MutationObserver(()=>{if(view.dataset.page==='final'){const b=[...view.querySelectorAll('.adminFinalActions button')].find(x=>x.textContent.includes('Добавить из файла'));if(b&&!b.hasAttribute('data-add-file'))b.setAttribute('data-add-file','')}});
+ observer.observe(view,{childList:true,subtree:false});
+})();
+</script>
