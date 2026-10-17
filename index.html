@@ -671,7 +671,7 @@ function render(){stage.classList.toggle('numbering',state.numbering);toggle.cla
 function syncMenus(){settingsDrop.classList.toggle('open',state.openMenu==='settings');helpDrop.classList.toggle('open',state.openMenu==='help')}
 function allTargets(){return [...document.querySelectorAll('.target')].sort((a,b)=>+a.dataset.n-+b.dataset.n)}
 function targetInfo(el){const n=+el.dataset.n;const m=meta[n]||[];return{n,name:el.dataset.name,type:el.dataset.type||m[0]||(n>=43&&n<=55?'Раздел':n>=26&&n<=42?'Пункт меню':'Кнопка'),zone:el.dataset.zone||m[1]||(n>=43&&n<=55?'Левое меню':n>=26&&n<=31?'Настройки':n>=32&&n<=42?'Помощь':'Стартовая страница'),path:el.dataset.path||'',el}}
-function registry(){const seen=new Map();allTargets().forEach(el=>{const n=+el.dataset.n;if(![1,2,108,109,29,35,77,76,30,70,26,79,36,72,32,74,33,68,78,75,73].includes(n))seen.set(n,targetInfo(el))});return [...seen.values()].sort((a,b)=>a.n-b.n)}
+function registry(){const seen=new Map();allTargets().forEach(el=>{const n=+el.dataset.n;if(![1,2,108,109,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(n))seen.set(n,targetInfo(el))});return [...seen.values()].sort((a,b)=>a.n-b.n)}
 function nameFor(n){return registry().find(x=>x.n===+n)?.name||''}
 function contextText(x){return `${x.type} · ${x.zone}`}
 function rebuildCollection(){items.innerHTML='';registry().forEach(x=>{const d=document.createElement('div');d.className='item';d.dataset.q=(x.name+' '+x.n+' '+x.type+' '+x.zone).toLowerCase();d.innerHTML=`<span class="itemNo">${x.n}</span><span>${x.name}<small>${contextText(x)}</small></span>`;d.onclick=()=>startSearch(x.el,d);items.appendChild(d)});}
@@ -698,8 +698,8 @@ function loadTaskEdits(){try{return JSON.parse(localStorage.getItem(TASK_EDIT_KE
 let taskEdits=loadTaskEdits();
 function saveTaskEdits(){localStorage.setItem(TASK_EDIT_KEY,JSON.stringify(taskEdits))}
 function effectiveTask(x){const e=taskEdits[x.n]||{};return {...x,name:e.name||x.name,type:e.type||x.type,zone:e.zone||x.zone,prompt:e.prompt||'',gameEnabled:e.gameEnabled!==false}}
-function gameRegistry(){return registry().map(effectiveTask).filter(x=>x.gameEnabled!==false && ![29,35,77,76,30,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n)))}
-function defaultPrompt(t){if(t.prompt)return t.prompt;if(t.type==='Поле'&&['Организация','Контрагент','Статус','Вид пакета'].includes(t.name))return `Найди фильтр по ${t.name.toLowerCase()}`;if(t.type==='Столбец')return `Найди столбец «${t.name}»`;if(t.type==='Вкладка')return `Найди вкладку «${t.name}»`;if(t.type==='Пункт меню')return `Найди пункт «${t.name}»`;if(t.type==='Кнопка')return `Найди кнопку «${t.name}»`;return `Найди «${t.name}»`}
+function gameRegistry(){return registry().map(effectiveTask).filter(x=>x.gameEnabled!==false && ![29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n)))}
+function defaultPrompt(t){if(+t.n===111)return 'Где посмотреть информацию об ошибке в доверенности при подписании документов?';if(t.prompt)return t.prompt;if(t.type==='Поле'&&['Организация','Контрагент','Статус','Вид пакета'].includes(t.name))return `Найди фильтр по ${t.name.toLowerCase()}`;if(t.type==='Столбец')return `Найди столбец «${t.name}»`;if(t.type==='Вкладка')return `Найди вкладку «${t.name}»`;if(t.type==='Пункт меню')return `Найди пункт «${t.name}»`;if(t.type==='Кнопка')return `Найди кнопку «${t.name}»`;return `Найди «${t.name}»`}
 
 function availableRegistry(){return gameRegistry().filter(x=>!disabledTasks.has(x.n))}
 function resetSelectedToAvailable(){selectedTasks=new Set(availableRegistry().map(x=>x.n))}
@@ -3043,6 +3043,77 @@ body.dev-layout-active #devWorkspaceV2,body.dev-layout-active #devWorkspaceV2 *{
  observer.observe(ws,{attributes:true,attributeFilter:['class']});
 })();
 </script>
+<style id="config-final-row-110-fix">
+/* Highlight the actual information row, not only the parent dialog. */
+#onecAboutBackdrop.open #onecConfigInfo110.configSearchFinal110{
+ background:#dff9e8!important;outline:3px solid #16a34a!important;
+ outline-offset:3px!important;box-shadow:0 0 0 5px #16a34a33!important;
+ position:relative!important;z-index:1!important;
+}
+#onecConfigInfo110.configSearchFinal110 .answerArrow{display:inline-flex!important;visibility:visible!important;opacity:1!important;z-index:2!important}
+</style>
+<style id="mchd111-css">
+#mchd111,#mchdInfo111{position:fixed;inset:7% 9%;z-index:1800;background:#fff;color:#242424;box-shadow:0 12px 48px #0007;border:1px solid #aaa;font:14px Arial,sans-serif;display:none;flex-direction:column}#mchd111.open,#mchdInfo111.open{display:flex}#mchdInfo111{inset:20% 14% 12% 35%;z-index:1900}.mchdHead{display:flex;align-items:center;gap:15px;padding:12px;font-size:23px}.mchdHead button{margin-left:auto;border:0;background:transparent;font-size:24px;cursor:pointer}.mchdToolbar{display:flex;align-items:center;gap:8px;padding:8px 14px 16px}.mchdToolbar select,.mchdToolbar button{padding:7px;border:1px solid #bbb;background:#fff}.mchdTable{margin:0 14px;border-collapse:collapse;width:calc(100% - 28px)}.mchdTable th{background:#eee;font-weight:400;text-align:left;padding:9px}.mchdTable td{padding:10px 8px;border-bottom:1px solid #ddd}.mchdTable tr.selected{background:#fff1bd}.mchdTable a{color:#2769d5;cursor:pointer;text-decoration:underline}.mchdInfoBtn{position:relative;border:1px solid #4382cd;color:#2872c6;background:#fff;font-weight:bold;cursor:pointer;border-radius:2px}.mchdWarn{color:#e87521}.mchdFooter{margin-top:auto;padding:12px;display:flex;justify-content:space-between}.mchdFooter button{padding:8px}.mchdDetails{margin:8px 15px 15px;padding:16px;border:1px solid #d6b849;overflow:auto;line-height:1.8}.mchdDetails h4{margin:12px 0 3px}.mchdDetails .problem{color:#b44916}.mchd111Target{position:relative;display:inline-block}.mchd111Target.found,.mchd111Target.route{outline:3px solid #39ff88!important;outline-offset:3px}
+#mchd111 .mchd111Target .answerArrow{left:-49px!important;top:50%!important}
+</style>
+<div id="mchd111" role="dialog" aria-label="Доверенности"><div class="mchdHead">Доверенности<button id="mchdClose111" aria-label="Закрыть">×</button></div><div class="mchdToolbar">Организация: <select id="mchdOrg111"></select><button id="mchdAdd111">＋ Добавить доверенность</button></div><table class="mchdTable"><thead><tr><th>Доверенность</th><th>Срок действия</th><th>По умолчанию</th><th>Полномочия и реквизиты</th></tr></thead><tbody id="mchdRows111"></tbody></table><div class="mchdFooter"><a href="https://support.kontur.ru/diadoc-1s8x/41655-zagruzka_mchd" target="_blank">Как добавить доверенность в Диадок?</a><button id="mchdRefresh111">⟳ Обновить данные</button></div></div>
+<div id="mchdInfo111" role="dialog" aria-label="Данные МЧД"><div class="mchdHead">Данные МЧД<button id="mchdInfoClose111" aria-label="Закрыть">×</button></div><div class="mchdDetails"><div>Регистрационный номер: <span id="mchdReg111"></span></div><h4>Организация-доверитель</h4><div id="mchdTrust111"></div><h4>Представитель</h4><div id="mchdPerson111"></div><div>Дата выдачи: 01.10.2026</div><div>Срок действия: 02.12.2027</div><h4>Сведения о полномочиях</h4><div>Полные полномочия</div><h4>Сведения о проверке доверенности</h4><div class="problem" id="mchdProblem111">ИНН доверителя в МЧД не совпадает с ИНН в сертификате подписи под МЧД (учебный пример).</div></div></div>
+<script id="mchd111-js">
+(()=>{
+const dlg=document.getElementById('mchd111'),info=document.getElementById('mchdInfo111'),org=document.getElementById('mchdOrg111'),rows=document.getElementById('mchdRows111');
+const PROFILE_KEY='diadocTrainer.trainingProfile.v1';
+const CACHE_KEY='diadocTrainer.organizationsCache.v1';
+const perOrgDefaults=new Map();
+const escapeHtml=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function profile(){try{return JSON.parse(localStorage.getItem(PROFILE_KEY)||'{}')}catch{return {}}}
+function person(){return profile().name?.trim()||document.querySelector('.onecGlobalUser')?.textContent?.trim()||'Учебный пользователь'}
+function organizations(){
+ const p=profile();
+ if(Array.isArray(p.orgs))return p.orgs.filter(o=>o&&o.name&&(!Array.isArray(p.selected)||p.selected.includes(o.id))).map(o=>({name:o.name,inn:o.inn||'',kpp:o.kpp||''}));
+ try{const a=JSON.parse(localStorage.getItem(CACHE_KEY)||'[]');return Array.isArray(a)?a.filter(o=>o?.name).map(o=>({name:o.name,inn:o.inn||'',kpp:o.kpp||''})):[]}catch{return []}
+}
+function currentOrg(){return organizations().find(o=>o.name===org.value)}
+function refreshOrg(){
+ const prev=org.value,arr=organizations();org.replaceChildren();
+ arr.forEach(o=>{const option=document.createElement('option');option.value=o.name;option.textContent=o.name;org.appendChild(option)});
+ if(arr.some(o=>o.name===prev))org.value=prev;
+ org.disabled=!arr.length;
+}
+function defaultIndex(){return perOrgDefaults.get(org.value)??0}
+function renderRows(){
+ const o=currentOrg();rows.replaceChildren();
+ if(!o){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=4;td.textContent='Нет организаций, добавленных при регистрации в 1С.';tr.appendChild(td);rows.appendChild(tr);return}
+ const selected=defaultIndex();
+ [0,1].forEach(i=>{
+  const tr=document.createElement('tr');if(i===selected)tr.className='selected';
+  const who=document.createElement('td');who.textContent=person();who.appendChild(document.createElement('br'));who.appendChild(document.createTextNode(o.name));
+  const date=document.createElement('td');date.textContent='до '+(i?'30.11.2027':'02.12.2027')+' г.';
+  const def=document.createElement('td');if(i===selected)def.textContent='По умолчанию';else{const a=document.createElement('a');a.dataset.default=String(i);a.textContent='Назначить по умолчанию';def.appendChild(a)}
+  const detail=document.createElement('td');const btn=document.createElement('button');btn.className='mchdInfoBtn'+(i===0?' target mchd111Target':'');btn.dataset.info=String(i);btn.title='Данные МЧД';btn.textContent='ⓘ';
+  if(i===0){Object.assign(btn.dataset,{n:'111',name:'Сведения о проверке доверенности',type:'Кнопка',zone:'Доверенности',path:'24,30,111'})}
+  detail.appendChild(btn);if(i===0){const warn=document.createElement('span');warn.className='mchdWarn';warn.textContent=' Есть проблемы с МЧД';detail.appendChild(warn)}
+  tr.append(who,date,def,detail);rows.appendChild(tr);
+ });
+}
+function open(){refreshOrg();renderRows();dlg.classList.add('open')}
+function showInfo(i){
+ clearMarks();state.route=[];state.routeIndex=0;
+ document.getElementById('mchdReg111').textContent=i===0?'c96959e6-e04d-4f03-8153-d63fc782cf0b':'f2d704ab-61d8-4a88-a5bd-111111111111';
+ const o=currentOrg();document.getElementById('mchdTrust111').textContent=o?[o.name,o.inn&&'ИНН '+o.inn,o.kpp&&'КПП '+o.kpp].filter(Boolean).join(' · '):'Организация не выбрана';
+ document.getElementById('mchdPerson111').textContent=person();
+ document.getElementById('mchdProblem111').textContent=i===0?'Учебное предупреждение: ИНН доверителя в МЧД не совпадает с ИНН в сертификате подписи под МЧД.':'Ошибок проверки не обнаружено.';
+ info.classList.add('open');
+}
+document.getElementById('mchdClose111').onclick=()=>{clearMarks();state.route=[];info.classList.remove('open');dlg.classList.remove('open')};document.getElementById('mchdInfoClose111').onclick=()=>info.classList.remove('open');org.onchange=renderRows;document.getElementById('mchdRefresh111').onclick=()=>{refreshOrg();renderRows()};document.getElementById('mchdAdd111').onclick=()=>alert('Учебный режим: выпустите МЧД и загрузите её в веб-версию Диадока. После этого действующая МЧД будет доступна в модуле.');
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&(dlg.classList.contains('open')||info.classList.contains('open'))){clearMarks();state.route=[];info.classList.remove('open');dlg.classList.remove('open')}});
+rows.addEventListener('click',e=>{const a=e.target.closest('[data-default]');if(a){perOrgDefaults.set(org.value,+a.dataset.default);renderRows();return}const b=e.target.closest('[data-info]');if(b)showInfo(+b.dataset.info)});
+document.addEventListener('click',e=>{const t=e.target.closest('.target[data-n="30"]');if(t)setTimeout(open,0)},true);
+const originalRegistry=window.registry;registry=function(){const r=originalRegistry();if(!r.some(x=>x.n===111)){const b=dlg.querySelector('[data-n="111"]');if(b)r.push(targetInfo(b));else r.push({n:111,name:'Сведения о проверке доверенности',type:'Кнопка',zone:'Доверенности',path:'24,30,111',el:null})}return r.sort((a,b)=>a.n-b.n)};
+const oldSearch=window.startSearch;startSearch=function(target,item){if(target?.dataset?.n==='111'){if(!dlg.classList.contains('open'))open();target=dlg.querySelector('[data-n="111"]')}else{info.classList.remove('open');dlg.classList.remove('open')}return oldSearch(target,item)};
+const oldGameRegistry=window.gameRegistry;gameRegistry=function(){return oldGameRegistry().map(t=>t.n===111?{...t,prompt:'Где посмотреть информацию об ошибке в доверенности при подписании документов?',path:'24,30,111'}:t)};
+renderRows();rebuildCollection();fillPoolFilters();renderPool();updateGameSetup();
+})();
+</script>
 </body></html>
 <!-- MASTER54: nested-button search route repair -->
 <script id="master54-nested-search-fix">
@@ -3834,13 +3905,13 @@ body.dev-layout-active #devWorkspaceV2,body.dev-layout-active #devWorkspaceV2 *{
   if(!live){live=document.createElement('div');Object.assign(live.dataset,{n:String(x.n),name:x.name||'',path:x.path||'',zone:x.zone||'',type:x.type||'Пункт меню'});}
   if(typeof window.startSearch==='function')window.startSearch(live,null);
  }
- function draw(){const q=query.value.trim().toLocaleLowerCase('ru'),lvl=filter.value;const list=allEntries().filter(x=>![1,2,108,109,29,35,77,76,30,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n))).filter(x=>(lvl==='all'||String(level(x))===lvl)&&(!q||(x.name+' '+x.n+' '+x.zone).toLocaleLowerCase('ru').includes(q))).sort((a,b)=>Number(a.n)-Number(b.n));
+ function draw(){const q=query.value.trim().toLocaleLowerCase('ru'),lvl=filter.value;const list=allEntries().filter(x=>![1,2,108,109,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n))).filter(x=>(lvl==='all'||String(level(x))===lvl)&&(!q||(x.name+' '+x.n+' '+x.zone).toLocaleLowerCase('ru').includes(q))).sort((a,b)=>Number(a.n)-Number(b.n));
   results.replaceChildren();for(const x of list){const b=document.createElement('button');b.type='button';const strong=document.createElement('span');strong.textContent='№'+x.n+' — '+x.name;const small=document.createElement('small');small.textContent='Уровень '+level(x)+' · '+x.zone;b.append(strong,small);b.addEventListener('click',()=>navigate(x));results.appendChild(b)}if(!list.length)results.textContent='Кнопок не найдено';}
  filter.addEventListener('change',draw);query.addEventListener('input',draw);updateVisible();draw();
  // Page changes are performed only by the learner, never by the search widget.
  // Keep the ordinary quick-search and collection in sync with pages that are not currently rendered.
  const previousRegistry=registry;
- registry=function(){const base=previousRegistry(),seen=new Map(base.map(x=>[x.n,x]));for(const x of allEntries()){if(![29,35,77,76,30,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n))&&!seen.has(x.n))seen.set(x.n,x)}return [...seen.values()].sort((a,b)=>a.n-b.n)};
+ registry=function(){const base=previousRegistry(),seen=new Map(base.map(x=>[x.n,x]));for(const x of allEntries()){if(![29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n))&&!seen.has(x.n))seen.set(x.n,x)}return [...seen.values()].sort((a,b)=>a.n-b.n)};
  if(typeof rebuildCollection==='function')rebuildCollection();
 })();
 </script>
@@ -3887,7 +3958,7 @@ body.dev-layout-active #devWorkspaceV2,body.dev-layout-active #devWorkspaceV2 *{
    <div class="aboutTop"><div class="aboutLogo">1С</div><div>
     <div>1С:Предприятие 8.3 (8.3.27.1859)</div>
     <p>Copyright © ООО «1С-Софт», 1996–2025. Все права защищены</p>
-    <div class="aboutLabel">Конфигурация:</div>
+    <div class="aboutLabel" id="onecConfigInfo110" data-n="110" data-name="Конфигурация 1С" data-type="Информация" data-zone="О программе" tabindex="0" role="button" aria-label="№110 Конфигурация 1С, информационная строка">Конфигурация:</div>
     <div>Бухгалтерия предприятия КОРП, редакция 3.0 (3.0.191.41)<br><a href="http://v8.1c.ru/buh8corp/" target="_blank" rel="noopener">http://v8.1c.ru/buh8corp/</a><br>Copyright © ООО «1С-Софт», 2009–2026. Все права защищены<br><a href="http://www.1c.ru" target="_blank" rel="noopener">http://www.1c.ru</a></div>
     <div class="aboutLabel">Расширения конфигурации:</div><div>— Контур.Диадок (4.70.4)</div>
    </div></div>
@@ -3967,21 +4038,23 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
 <script id="guided-config-task-js">
 (()=>{'use strict';
  const taskButton=document.querySelector('.m8tasks'),panel=document.getElementById('m8GuidedTask'),instruction=document.getElementById('m8GuidedInstruction'),progress=document.getElementById('m8GuidedProgress');
- const modal=document.getElementById('onecAboutBackdrop'),config=document.querySelector('#onecAboutDialog .aboutLabel');
- if(!taskButton||!panel||!config)return;
- const targets=[()=>document.querySelector('#onecBadButton'),()=>document.querySelector('.onecMenuItem[data-n="104"]'),()=>config];
- const prompts=['Найди и нажми «Сервис и настройки» в верхней панели 1С.','В открытом меню выбери «О программе».','Нажми строку «Конфигурация» в окне «О программе».'];
+ const hintBtn=document.getElementById('m8GuidedHint');
+ if(!taskButton||!panel||!hintBtn)return;
+ const targets=[()=>document.getElementById('onecBadButton'),()=>document.querySelector('.onecMenuItem[data-n="104"]'),()=>document.querySelector('#onecAboutDialog .aboutLabel')];
+ const prompts=['Нажми «Сервис и настройки» в верхней панели 1С.','В меню нажми «О программе».','Нажми строку «Конфигурация» в окне «О программе».'];
  let step=-1,hint=false,marked=null;
- function clear(){marked?.classList.remove('guideTargetConfig');marked=null}
- function draw(){clear();if(step<0)return;progress.textContent=step===3?'Задание выполнено · 3 из 3':'Выполнено шагов: '+step+' из 3';instruction.textContent=step===3?'✓ Верно! Конфигурация: Бухгалтерия предприятия КОРП, редакция 3.0 (3.0.191.41).':hint?prompts[step]:'Выполняй действия самостоятельно. Если нужна помощь, нажми «? Подсказка».';const b=document.getElementById('m8GuidedHint');b.hidden=step===3;b.textContent=hint?'Скрыть подсказку':'? Подсказка';if(hint&&step<3){marked=targets[step]();marked?.classList.add('guideTargetConfig')}}
+ const pointer=document.createElement('div');pointer.id='configHintPointer';pointer.innerHTML='<span>✓</span><b>Нажми сюда</b>';document.body.append(pointer);
+ function point(){if(!hint||step<0||step>2){pointer.style.display='none';return}const el=targets[step]();if(!el){pointer.style.display='none';return}const r=el.getBoundingClientRect();if(!r.width||!r.height){pointer.style.display='none';return}pointer.style.display='flex';const x=Math.max(8,Math.min(window.innerWidth-155,r.left+r.width/2-60));const y=r.bottom+42<window.innerHeight?r.bottom+9:Math.max(8,r.top-44);pointer.style.left=x+'px';pointer.style.top=y+'px';}
+ function clear(){marked?.classList.remove('guideTargetConfig');marked=null;pointer.style.display='none'}
+ function draw(){clear();if(step<0)return;progress.textContent=step===3?'✓ Задание выполнено · 3 из 3':'Выполнено шагов: '+step+' из 3';instruction.textContent=step===3?'✓ Верно! Бухгалтерия предприятия КОРП, редакция 3.0 (3.0.191.41).':hint?prompts[step]:'Выполняй действия самостоятельно. Для помощи нажми «? Подсказка».';hintBtn.hidden=step===3;hintBtn.textContent=hint?'Скрыть подсказку':'? Подсказка';if(hint&&step<3){marked=targets[step]();marked?.classList.add('guideTargetConfig');point()}}
  function stop(){step=-1;hint=false;clear();panel.classList.remove('open')}
- function start(){stop();step=0;panel.classList.add('open');document.getElementById('m8Setup')?.classList.remove('on');modal?.classList.remove('open');document.getElementById('onecMainMenu')?.classList.remove('open');draw()}
+ function start(){stop();step=0;panel.classList.add('open');document.getElementById('m8Setup')?.classList.remove('on');document.getElementById('onecAboutBackdrop')?.classList.remove('open');document.getElementById('onecMainMenu')?.classList.remove('open');draw()}
  taskButton.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();start()},true);
- taskButton.querySelector('small')?.replaceChildren(document.createTextNode('Задача №1 · Где находится конфигурация 1С?'));
  document.getElementById('m8GuidedClose').onclick=stop;
- document.getElementById('m8GuidedHint').onclick=()=>{if(step<0||step>=3)return;hint=!hint;draw()};
- document.addEventListener('click',e=>{if(step<0||step>=3)return;const t=targets[step]();if(!t||!t.contains(e.target))return;step++;hint=false;setTimeout(draw,90)},true);
+ hintBtn.onclick=()=>{if(step<0||step>=3)return;hint=!hint;draw()};
+ document.addEventListener('click',e=>{if(step<0||step>=3)return;const t=targets[step]();if(!t||!t.contains(e.target))return;step++;hint=false;setTimeout(draw,120)},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&step>=0)stop()});
+ window.addEventListener('resize',point);window.addEventListener('scroll',point,true);
  window.DiadocConfigTask={start,stop,isActive:()=>step>=0&&step<3};
 })();
 </script>
@@ -3992,42 +4065,35 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
 #m8GuidedTask #m8GuidedQuestion{font-weight:700;font-size:17px;margin:14px 0!important}
 #m8GuidedTask #m8GuidedInstruction{font-size:16px;line-height:1.6;margin:12px 0!important}
 #m8GuidedTask .guideProgress{font-size:14px!important;margin-top:18px!important}
-#quickResults .configInfoResult{border-left:3px solid #64cb8b;background:#26352d}
+#quickResults .configInfoResult{background:#202329;border-left:0}
 #quickResults .configInfoResult small{display:block;margin-top:4px}
 </style>
 <script id="guided-info-search-js">
 (()=>{'use strict';
- const input=document.getElementById('quickSearch'), results=document.getElementById('quickResults');
+ const input=document.getElementById('quickSearch'),results=document.getElementById('quickResults');
  if(!input||!results)return;
- input.placeholder='Найти кнопку или информацию…';
- const matches=q=>/конфигурац|версия\s*1с|редакция\s*1с/i.test(q||'');
- const targets=[()=>document.getElementById('onecBadButton'),()=>document.querySelector('.onecMenuItem[data-n="104"]'),()=>document.querySelector('#onecAboutDialog .aboutLabel')];
- let step=-1,highlight=null;
- function clear(){highlight?.classList.remove('configSearchRoute');highlight=null}
- function mark(){clear();if(step<0||step>2)return;highlight=targets[step]();highlight?.classList.add('configSearchRoute')}
- function stop(){step=-1;clear()}
- function begin(){window.DiadocConfigTask?.stop?.();step=0;results.classList.remove('open');mark()}
- function show(){
-   if(!matches(input.value))return;
-   results.replaceChildren();
-   const b=document.createElement('div');b.className='searchResult configInfoResult';b.setAttribute('role','button');b.tabIndex=0;
-   const name=document.createElement('b');name.textContent='Конфигурация 1С';
-   const type=document.createElement('small');type.textContent='Информация · Не кнопка';
-   const route=document.createElement('small');route.textContent='Показать путь к информации';
-   b.append(name,type,route);
-   b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();begin()});
-   b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();begin()}});
-   results.append(b);results.classList.add('open');
+ const isConfig=q=>/конф|версия\s*1с|редакция\s*1с/i.test(q||'');
+ const targets=[()=>document.getElementById('onecBadButton'),()=>document.querySelector('.onecMenuItem[data-n="104"]'),()=>document.getElementById('onecConfigInfo110')];
+ let step=-1,marked=null,refreshing=false;
+ function unmark(){marked?.classList.remove('configSearchRoute','configSearchFinal110');marked=null;clearMarks()}
+ function point(){
+   if(step<0)return;
+   const el=targets[step]();
+   if(!el||!el.getClientRects().length){clearMarks();return}
+   marked=el;
+   if(step===2){found(el);el.classList.add('configSearchFinal110')}else routeMark(el);
  }
- // Capture before existing input handlers; no task is launched by typing.
- input.addEventListener('input',e=>{stop();if(!matches(input.value))return;e.stopImmediatePropagation();show()},true);
- input.addEventListener('focus',e=>{if(!matches(input.value))return;e.stopImmediatePropagation();show()},true);
- input.addEventListener('keydown',e=>{if(e.key!=='Enter'||!matches(input.value))return;e.preventDefault();e.stopImmediatePropagation();show()},true);
- // Legacy search code may rebuild results: restore the info entry after it runs.
- const observer=new MutationObserver(()=>{if(matches(input.value)&&document.activeElement===input&&!results.querySelector('.configInfoResult'))show()});
+ function stop(){step=-1;unmark()}
+ function begin(){window.DiadocConfigTask?.stop?.();stop();step=0;results.classList.remove('open');point()}
+ function addInfo(){if(refreshing||!isConfig(input.value))return;if(results.querySelector('.configInfoResult'))return;refreshing=true;const row=document.createElement('div');row.className='searchResult configInfoResult';row.tabIndex=0;row.setAttribute('role','button');row.innerHTML='<b>№110 Конфигурация 1С</b><small>Информация · О программе</small>';row.addEventListener('click',e=>{e.stopPropagation();begin()});row.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();begin()}});results.prepend(row);results.classList.add('open');refreshing=false}
+ input.addEventListener('input',()=>{stop();setTimeout(addInfo,0)});
+ input.addEventListener('focus',()=>setTimeout(addInfo,0));
+ const observer=new MutationObserver(()=>{if(isConfig(input.value)&&!results.querySelector('.configInfoResult'))queueMicrotask(addInfo)});
  observer.observe(results,{childList:true});
- document.addEventListener('click',e=>{if(step<0||step>2)return;const t=targets[step]();if(!t||!t.contains(e.target))return;step++;setTimeout(mark,100)},true);
+ input.addEventListener('keydown',e=>{if(e.key==='Enter'&&isConfig(input.value)){e.preventDefault();e.stopImmediatePropagation();begin()}},true);
+ document.addEventListener('click',e=>{if(step<0)return;const target=targets[step]();if(!target||!target.contains(e.target))return;step++;setTimeout(()=>{if(step===3)stop();else point()},160)},true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape')stop()});
+ window.addEventListener('resize',()=>{if(step>=0)point()});
  window.DiadocConfigSearch={begin,stop};
 })();
 </script>
@@ -4037,3 +4103,96 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
 </style>
 
 <style id="config-route-visible-css">.configSearchRoute{outline:3px solid #16a34a!important;outline-offset:4px!important;box-shadow:0 0 0 5px #16a34a30!important;position:relative;z-index:15010!important}#onecAboutBackdrop.open .configSearchRoute{z-index:auto!important;background:#dff9e8!important;cursor:pointer!important}#m8GuidedTask{z-index:15100!important}#m8GuidedHint[hidden]{display:none!important}</style>
+
+<style id="config-pointer-final">#configHintPointer,#configSearchPointer{position:fixed;z-index:2147483000;pointer-events:none;display:none;align-items:center;gap:6px;padding:5px 10px;border-radius:8px;background:#176b38;color:white;box-shadow:0 3px 12px #0006;font:700 14px Arial,sans-serif}#configHintPointer span,#configSearchPointer span{font-size:23px;line-height:1}#configHintPointer:before,#configSearchPointer:before{content:"";position:absolute;left:35px;top:-9px;border-left:9px solid transparent;border-right:9px solid transparent;border-bottom:10px solid #176b38}#m8GuidedTask #m8GuidedHint{display:inline-flex!important}#m8GuidedTask #m8GuidedHint[hidden]{display:none!important}</style>
+
+<style id="service-window-icons-left-fix">
+/* One header row: navigation and title on the left, window commands at the far right. */
+.stage .diadocPane .module>.title{
+ position:relative!important;display:flex!important;align-items:center!important;
+ padding:2px 7px!important;padding-top:2px!important;
+ height:38px!important;min-height:38px!important;max-height:38px!important;
+ box-sizing:border-box!important;gap:5px!important;
+}
+.stage .diadocPane .module>.title>.serviceMini{
+ position:static!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;
+ transform:none!important;margin:0 0 0 auto!important;align-self:center!important;
+ display:flex!important;align-items:center!important;justify-content:flex-end!important;
+ gap:12px!important;width:auto!important;height:26px!important;flex:0 0 auto!important;order:99!important;
+ z-index:12!important;
+}
+.stage .diadocPane .module>.title>.serviceMini span{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ width:20px!important;height:24px!important;font-size:15px!important;
+}
+/* No duplicate spacer or extra header row. */
+.stage .diadocPane .module>.title>.moduleName{flex:0 1 auto!important}
+</style>
+
+<style id="config-info-110-css">
+#onecConfigInfo110{display:table;cursor:pointer;border-radius:3px;padding:3px 8px;margin-left:-8px}
+#onecConfigInfo110:focus-visible{outline:2px solid #16a34a}
+#onecAboutBackdrop.open #onecConfigInfo110.configSearchRoute{background:#dff9e8!important;outline:3px solid #16a34a!important}
+#quickResults .configInfoResult{cursor:pointer}
+</style>
+
+
+<!-- PATCH111: accurate 1C service icon and search completion for MChD -->
+<style id="patch111-heading-pointer">
+/* Search #111 points to the Доверенности heading, never to a table row. */
+#mchd111 .mchdHead{position:relative;padding-left:62px}
+#mchd111 .mchdHead.found{background:#fff!important}
+#mchd111 .mchdHead>.answerArrow{left:8px!important;top:50%!important}
+</style>
+<style id="patch111-icon-css">
+#onecBadButton .badLines{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:20px;height:20px;font-size:0!important;letter-spacing:normal!important;line-height:1!important}
+#onecBadButton .badLines svg{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<script id="patch111-finish-search-js">
+(()=>{
+ 'use strict';
+ const icon=document.querySelector('#onecBadButton .badLines');
+ if(icon){icon.innerHTML='<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M3 5.5H19M3 10H19"/><path d="M8 14.5L11 17.5L14 14.5"/></svg>';}
+ const dlg=document.getElementById('mchd111');
+ const info=document.getElementById('mchdInfo111');
+ const rows=document.getElementById('mchdRows111');
+ if(!dlg||!rows)return;
+ let active=false;
+ const removePointers=()=>{
+   clearMarks();
+   document.querySelectorAll('.trainerOverlayArrow,.answerArrow,.trainerFoundCheck').forEach(el=>el.remove());
+   document.querySelectorAll('#mchd111 .found,#mchd111 .route').forEach(el=>el.classList.remove('found','route'));
+ };
+ const finish=()=>{
+   active=false;
+   state.route=[];state.routeIndex=0;
+   removePointers();
+   // A legacy route may schedule a pointer after its click handler; clear that too.
+   requestAnimationFrame(removePointers);
+   setTimeout(removePointers,90);
+   setTimeout(removePointers,250);
+ };
+ const baseStart=startSearch;
+ startSearch=function(target,item){
+   if(String(target?.dataset?.n)==='111'||Number(item?.n)===111){
+     finish();
+     document.getElementById('mchdRefresh111')?.click();
+     dlg.classList.add('open');
+     active=true;
+     const heading=dlg.querySelector('.mchdHead');
+     if(heading){requestAnimationFrame(()=>{if(active)found(heading)})}
+     return;
+   }
+   if(active)finish();
+   return baseStart(target,item);
+ };
+ // Completion occurs at the requested information button, not on an unrelated row.
+ rows.addEventListener('click',e=>{
+   if(e.target.closest('[data-info="0"]'))finish();
+ },true);
+ document.getElementById('mchdClose111')?.addEventListener('click',finish,true);
+ document.getElementById('mchdInfoClose111')?.addEventListener('click',finish,true);
+ document.getElementById('mchdOrg111')?.addEventListener('change',finish,true);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&active)finish()},true);
+})();
+</script>
