@@ -568,6 +568,19 @@
 #m8Setup .m8card{min-height:135px!important;padding:20px!important}
 #m8Setup .m8head{padding:24px 34px 14px!important}
 </style>
+
+<style id="v8-page-scoped-numbering-fix">
+/* Only the currently active page owns visible button numbers. */
+#stage .diadocPane:has(> #v8SalesPage.open) > .module .badge,
+#stage .diadocPane:has(> #v8SalesPage.open) > .diadocTabs .badge {display:none!important;}
+/* The sales homepage has no Diadoc buttons; show only its own real targets. */
+#stage #v8SalesPage.open .badge {display:none!important;}
+#stage.numbering #v8SalesPage.open .target[data-n] > .badge {display:flex!important;}
+/* A hidden sales subpage cannot contribute numbering to another page. */
+#stage.numbering #v8SalesPage.open #v8SalesHome:has(~ #v8SalesList.visible) .badge {display:none!important;}
+#stage.numbering #v8SalesPage.open #v8SalesHome:has(~ #v8DocEditor:not([hidden])) .badge {display:none!important;}
+#stage:not(.numbering) .badge {display:none!important;}
+</style>
 </head>
 <body>
 <div class="app">
@@ -660,14 +673,9 @@ function navSvg(kind){const m={"home": `<path d="M3 5h12M3 9h12M3 13h12"/>`, "ma
 const settings=[[26,'Подписки и оплата'],[27,'Организации'],[28,'Ваши контрагенты'],[29,'Поиск новых контрагентов'],[30,'Доверенности'],[31,'Расширенные настройки']];
 const help=[[32,'Быстрая настройка'],[33,'Руководство пользователя'],[34,'Техническая информация'],[35,'История обновлений'],[36,'Служебные сообщения'],[37,'Нужна помощь'],[38,'Написать в поддержку'],[39,'Провести диагностику'],[40,'Удаленное подключение'],[41,'Телефон поддержки 8-800-500-10-18'],[42,'Заказать обратный звонок']];
 const cols=[[0,'','☐',42],[57,'Документ','Документ',260],[58,'Номер','Номер',100],[59,'Дата документа','Дата документа',110],[60,'Сумма','Сумма',110],[61,'Документ в 1С','Документ в 1С',160],[62,'Статус','Статус',170],[63,'Доп. статус','Доп. статус',150],[64,'Статус МЧД','Статус МЧД',150],[65,'Контрагент','Контрагент',200],[66,'Организация','Организация',190],[67,'Отправлен','Отправлен',110]];
-const sampleRows=[
- ['☐','УПД','1548','12.10.2026','45 600,00','Реализация №1548','Ожидает подписи','','МЧД не требуется','ООО «Вектор»','ООО «Альтаир»','12.10.2026'],
- ['☐','УПД','1549','11.10.2026','128 350,00','Реализация №1549','Подписан','','МЧД проверена','ООО «Меридиан»','ООО «Альтаир»','11.10.2026'],
- ['☐','Акт','87','10.10.2026','18 900,00','Акт услуг №87','Ожидает подписи','','МЧД не требуется','ИП Соколов А.А.','ООО «Альтаир»','10.10.2026'],
- ['☐','Накладная','321','09.10.2026','76 420,00','Накладная №321','Доставлен','','МЧД проверена','ООО «Партнер»','ООО «Альтаир»','09.10.2026']
-];
+const sampleRows=[];
 const meta={1:['Кнопка','Навигация'],2:['Кнопка','Навигация'],3:['Кнопка','Навигация'],8:['Кнопка','Фильтры'],9:['Поле','Фильтры'],10:['Поле','Фильтры'],11:['Поле','Фильтры'],12:['Поле','Фильтры'],13:['Кнопка','Действия'],14:['Кнопка','Действия'],15:['Кнопка','Действия'],16:['Кнопка','Действия'],17:['Кнопка','Действия'],18:['Кнопка','Действия'],19:['Кнопка','Действия'],20:['Кнопка','Действия'],21:['Кнопка','Действия'],22:['Кнопка','Верхняя панель'],23:['Кнопка','Верхняя панель'],24:['Кнопка','Верхняя панель'],25:['Кнопка','Верхняя панель'],56:['Кнопка','Таблица'],57:['Столбец','Таблица'],58:['Столбец','Таблица'],59:['Столбец','Таблица'],60:['Столбец','Таблица'],61:['Столбец','Таблица'],62:['Столбец','Таблица'],63:['Столбец','Таблица'],64:['Столбец','Таблица'],65:['Столбец','Таблица'],66:['Столбец','Таблица'],67:['Столбец','Таблица']};
-function render(){stage.classList.toggle('numbering',state.numbering);toggle.classList.toggle('on',state.numbering);sectionButtons.innerHTML=sections.map(x=>`<button class="sectionBtn target ${state.section===x.id?'active':''}" data-n="${x.n}" data-name="${x.name}" data-type="Вкладка" data-zone="Разделы" data-action="section" data-section="${x.id}"><i class="badge">${x.n}</i>${x.name}</button>`).join('');nav.innerHTML=navItems.map(([n,name,icon])=>`<div class="navItem ${n===54?'decorativeOnly':'target'} ${name==='Контур.Диадок'?'active':''}" ${n===54?'':`data-n="${n}"`} data-name="${name}" data-type="Раздел" data-zone="Левое меню" data-action="nav"><i class="badge">${n}</i><span class="navIcon ${icon==='diadoc'?'diadocIcon':''}">${navSvg(icon)}</span>${name}</div>`).join('');settingsDrop.innerHTML=settings.map(([n,name],i)=>`${n===31?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Настройки" data-path="24,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}${n===31?' ▶':''}</div>`).join('');helpDrop.innerHTML=help.map(([n,name],i)=>`${n===37?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Помощь" data-path="25,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}</div>`).join('');thead.innerHTML='<tr>'+cols.map(([n,name,label])=>n?`<th class="target" data-n="${n}" data-name="${name}" data-type="Столбец" data-zone="Таблица" data-action="label"><i class="badge">${n}</i>${label}</th>`:`<th>${label}</th>`).join('')+'</tr>';tbody.innerHTML=(state.section==='transport'?[]:sampleRows).map(r=>'<tr>'+r.map(v=>`<td>${v}</td>`).join('')+'</tr>').join('');rebuildCollection();syncMenus();const sf=document.querySelector('.statusField');if(sf){const send=state.section==='send';sf.dataset.name=send?'Вид пакета':'Статус';const label=sf.querySelector('.fieldMain');if(label)label.textContent=send?'Вид пакета':'Статус';} }
+function render(){stage.classList.toggle('numbering',state.numbering);toggle.classList.toggle('on',state.numbering);sectionButtons.innerHTML=sections.map(x=>`<button class="sectionBtn target ${state.section===x.id?'active':''}" data-n="${x.n}" data-name="${x.name}" data-type="Вкладка" data-zone="Разделы" data-action="section" data-section="${x.id}"><i class="badge">${x.n}</i>${x.name}</button>`).join('');nav.innerHTML=navItems.map(([n,name,icon])=>`<div class="navItem ${n===54?'decorativeOnly':'target'} ${name==='Контур.Диадок'?'active':''}" ${n===54?'':`data-n="${n}"`} data-name="${name}" data-type="Раздел" data-zone="Левое меню" data-action="nav"><i class="badge">${n}</i><span class="navIcon ${icon==='diadoc'?'diadocIcon':''}">${navSvg(icon)}</span>${name}</div>`).join('');settingsDrop.innerHTML=settings.map(([n,name],i)=>`${n===31?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Настройки" data-path="24,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}${n===31?' ▶':''}</div>`).join('');helpDrop.innerHTML=help.map(([n,name],i)=>`${n===37?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Помощь" data-path="25,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}</div>`).join('');thead.innerHTML='<tr>'+cols.map(([n,name,label])=>n?`<th class="target" data-n="${n}" data-name="${name}" data-type="Столбец" data-zone="Таблица" data-action="label"><i class="badge">${n}</i>${label}</th>`:`<th>${label}</th>`).join('')+'</tr>';tbody.innerHTML=(state.section==='send' ? (window.v8StudentDiadocRows?.()||[]) : []).map(r=>'<tr>'+r.map(v=>`<td>${v}</td>`).join('')+'</tr>').join('');rebuildCollection();syncMenus();const sf=document.querySelector('.statusField');if(sf){const send=state.section==='send';sf.dataset.name=send?'Вид пакета':'Статус';const label=sf.querySelector('.fieldMain');if(label)label.textContent=send?'Вид пакета':'Статус';} }
 function syncMenus(){settingsDrop.classList.toggle('open',state.openMenu==='settings');helpDrop.classList.toggle('open',state.openMenu==='help')}
 function allTargets(){return [...document.querySelectorAll('.target')].sort((a,b)=>+a.dataset.n-+b.dataset.n)}
 function targetInfo(el){const n=+el.dataset.n;const m=meta[n]||[];return{n,name:el.dataset.name,type:el.dataset.type||m[0]||(n>=43&&n<=55?'Раздел':n>=26&&n<=42?'Пункт меню':'Кнопка'),zone:el.dataset.zone||m[1]||(n>=43&&n<=55?'Левое меню':n>=26&&n<=31?'Настройки':n>=32&&n<=42?'Помощь':'Стартовая страница'),path:el.dataset.path||'',el}}
@@ -2279,7 +2287,7 @@ refresh();
  if(!actions||!sections)return;
  const more=document.createElement('span');
  more.className='v8MoreWrap';
- more.innerHTML='<button type="button" class="v8MoreBtn">Еще ▾</button>';
+ more.innerHTML='<button type="button" class="v8MoreBtn target" data-n="115" data-name="Еще" data-type="Кнопка" data-zone="Контур.Диадок — действия с документами"><i class="badge">115</i>Еще ▾</button>';
  const menu=document.createElement('div');menu.className='v8MoreMenu';
  menu.innerHTML=['Выделение документов','Подписать и отправить','Согласование ▸','Аннулирование ▸','Переотправить','Передать в подразделение','Скачать документ','Получить печатную форму'].map(x=>'<button type="button">'+x+'</button>').join('');
  document.body.appendChild(menu);
@@ -3546,6 +3554,158 @@ startSearch=function(target,item){
  window.addEventListener('scroll',()=>{if(!pop.hidden)hide()},true);
 })();
 </script>
+
+<style id="v8-two-fixes-20261018">
+/* Only the training catalogue and the two document selectors. */
+#v8DocOrgSuggestions,#v8StoreSuggestions{position:fixed!important;z-index:2147480000!important;background:#fff!important;color:#222!important;border:1px solid #aaa!important;box-shadow:0 3px 8px #0004!important;font:16px Arial,sans-serif!important;max-height:280px;overflow:auto}
+#v8DocOrgSuggestions[hidden],#v8StoreSuggestions[hidden]{display:none!important}
+#v8DocOrgSuggestions button,#v8StoreSuggestions button{display:block;width:100%;text-align:left;padding:10px 16px;background:white;border:0;border-bottom:1px solid #eee;cursor:pointer;color:#222;font:inherit}
+#v8DocOrgSuggestions button:hover,#v8StoreSuggestions button:hover{background:#fff0b8}
+</style>
+<script id="v8-two-fixes-20261018-js">
+(()=>{
+ const $=id=>document.getElementById(id);
+ const org=$('v8DocOrg'),store=$('v8DocStore');
+ if(org){
+  const popup=document.createElement('div');popup.id='v8DocOrgSuggestions';popup.hidden=true;document.body.appendChild(popup);
+  const names=()=>{try{const p=JSON.parse(localStorage.getItem('diadocTrainer.trainingProfile.v1')||'{}');if(Array.isArray(p.orgs))return p.orgs.filter(o=>o?.name&&(!Array.isArray(p.selected)||p.selected.includes(o.id))).map(o=>o.name)}catch(e){}return []};
+  const hide=()=>{popup.hidden=true};
+  const show=()=>{
+   popup.replaceChildren();const r=org.getBoundingClientRect();popup.style.left=Math.min(r.left,innerWidth-280)+'px';popup.style.top=Math.min(r.bottom+2,innerHeight-120)+'px';popup.style.width=Math.max(280,r.width)+'px';
+   const list=names();if(!list.length){const empty=document.createElement('div');empty.textContent='Добавьте организацию при начале игры';empty.style.padding='12px';popup.appendChild(empty)}
+   list.forEach(name=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.addEventListener('mousedown',e=>e.preventDefault());b.addEventListener('click',()=>{org.value=name;org.dispatchEvent(new Event('input',{bubbles:true}));org.dispatchEvent(new Event('change',{bubbles:true}));hide()});popup.appendChild(b)});
+   popup.hidden=false;
+  };
+  org.addEventListener('focus',show);org.addEventListener('click',show);
+  org.closest('.v8Select')?.querySelector('span')?.addEventListener('click',()=>show());
+  document.addEventListener('pointerdown',e=>{if(!popup.contains(e.target)&&e.target!==org&&!org.closest('.v8Select')?.contains(e.target))hide()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')hide()});
+ }
+ // Keep the existing warehouse handler; ensure its only option is visible when opened.
+ if(store){store.setAttribute('autocomplete','off')}
+ // Renumber the visual catalogue sequentially without changing original task IDs,
+ // routes, scores, saved training settings or the 1C button labels.
+ const items=$('items');
+ if(items){
+  const renumber=()=>{let i=0;items.querySelectorAll('.item').forEach(el=>{const badge=el.querySelector('.itemNo');if(badge)badge.textContent=String(++i)})};
+  const observer=new MutationObserver(renumber);observer.observe(items,{childList:true});renumber();
+ }
+})();
+</script>
+
+<script id="trainer-curated-exclusions-20261018">
+/* Exclude from training registries only; never remove or disable the 1C UI elements. */
+(()=>{
+ const excluded=new Set([37, 39, 40, 41, 43, 47, 52, 55, 80, 83, 84, 91, 92, 93, 100, 103, 106, 107]);
+ const originalRegistry=registry;
+ registry=function(){return originalRegistry().filter(item=>!excluded.has(Number(item.n)))};
+ /* Game registries may be wrapped independently by previous releases. */
+ const originalGameRegistry=gameRegistry;
+ gameRegistry=function(){return originalGameRegistry().filter(item=>!excluded.has(Number(item.n)))};
+ for(const n of excluded){if(typeof selectedTasks!=='undefined')selectedTasks.delete(n)}
+ if(typeof rebuildCollection==='function')rebuildCollection();
+ if(typeof fillPoolFilters==='function')fillPoolFilters();
+ if(typeof renderPool==='function')renderPool();
+ if(typeof updateGameSetup==='function')updateGameSetup();
+})();
+</script>
+
+<style id="v8-dynamic-pickers-fix">
+#v8DynamicPicker{position:fixed;z-index:2147483000;background:white;color:#222;border:1px solid #999;box-shadow:0 4px 10px #0004;font:16px Arial,sans-serif;max-height:280px;overflow:auto;min-width:280px}
+#v8DynamicPicker[hidden]{display:none!important}
+#v8DynamicPicker button{display:block;width:100%;text-align:left;padding:10px 16px;border:0;border-bottom:1px solid #ddd;background:white;color:#222;font:inherit;cursor:pointer}
+#v8DynamicPicker button:hover{background:#fff1bb}
+#v8DynamicPicker .v8PickerFoot{border-top:1px solid #bbb;color:#0875bf;text-decoration:underline}
+</style>
+<script id="v8-dynamic-pickers-fix-js">
+(()=>{
+ // Delegated handlers: the realization editor is created after earlier scripts execute.
+ const picker=document.createElement('div');picker.id='v8DynamicPicker';picker.hidden=true;document.body.appendChild(picker);
+ const getNames=()=>{
+  try{const p=JSON.parse(localStorage.getItem('diadocTrainer.trainingProfile.v1')||'{}');
+   if(Array.isArray(p.orgs))return [...new Set(p.orgs.filter(o=>o&&o.name&&(!Array.isArray(p.selected)||p.selected.includes(o.id))).map(o=>o.name.trim()).filter(Boolean))];
+  }catch(e){}return [];
+ };
+ let active=null;
+ const close=()=>{picker.hidden=true;active=null};
+ function open(field){
+  active=field;picker.replaceChildren();const r=field.getBoundingClientRect();
+  picker.style.left=Math.max(4,Math.min(r.left,window.innerWidth-Math.min(440,Math.max(280,r.width))-8))+'px';
+  picker.style.top=(r.bottom+4+150<innerHeight?r.bottom+3:Math.max(4,r.top-170))+'px';
+  picker.style.width=Math.min(Math.max(280,r.width),innerWidth-12)+'px';
+  const options=field.id==='v8DocStore'?['Основной']:getNames();
+  const add=(name,cls)=>{const b=document.createElement('button');b.type='button';b.textContent=name;if(cls)b.className=cls;b.addEventListener('click',()=>{field.value=name;field.dispatchEvent(new Event('input',{bubbles:true}));field.dispatchEvent(new Event('change',{bubbles:true}));close()});picker.appendChild(b)};
+  if(!options.length){const e=document.createElement('div');e.style.padding='12px';e.textContent='Нет организаций. Добавьте их при начале игры.';picker.appendChild(e)}
+  options.forEach(name=>add(name));
+  if(field.id==='v8DocStore'){const foot=document.createElement('button');foot.type='button';foot.className='v8PickerFoot';foot.textContent='Показать все';foot.onclick=()=>{picker.replaceChildren();add('Основной')};picker.appendChild(foot)}
+  picker.hidden=false;
+ }
+ const fieldFor=target=>{const select=target.closest?.('.v8Select');const field=select?.querySelector('input');return field&&['v8DocOrg','v8DocStore'].includes(field.id)?field:null};
+ document.addEventListener('pointerdown',e=>{
+  if(picker.contains(e.target))return;
+  const field=fieldFor(e.target);
+  if(field){e.preventDefault();open(field);field.focus({preventScroll:true})}else close();
+ },true);
+ document.addEventListener('focusin',e=>{if(['v8DocOrg','v8DocStore'].includes(e.target.id)&&active!==e.target)open(e.target)});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')close();if(e.key==='Enter'&&active&&!picker.hidden){e.preventDefault();picker.querySelector('button')?.click()}});
+})();
+</script>
+
+<style id="trainer-numbering-actions-fix">
+/* Badges belong only to numbered learning targets, never to the whole toolbar. */
+.numbering .diadocPane .module>.actions [data-n="16"] .badge,
+.numbering .diadocPane .module>.actions .v8MoreBtn[data-n="115"] .badge {display:flex!important;}
+.diadocPane .module>.actions [data-n="16"],
+.diadocPane .module>.actions .v8MoreBtn[data-n="115"] {position:relative;padding-left:27px!important;white-space:nowrap;}
+.diadocPane .module>.actions [data-n="16"]>.badge,
+.diadocPane .module>.actions .v8MoreBtn[data-n="115"]>.badge {top:50%!important;left:3px!important;transform:translateY(-50%);}
+</style>
+<script id="trainer-reindex-more-action">
+(function(){
+ function refresh(){
+  const more=document.querySelector('.diadocPane .module>.actions .v8MoreBtn[data-n="115"]');
+  const action=document.querySelector('.diadocPane .module>.actions [data-n="16"]');
+  if(!more||!action)return;
+  if(typeof rebuildCollection==='function')rebuildCollection();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(refresh,0));
+ else setTimeout(refresh,0);
+})();
+</script>
+
+<style id="v8-student-document-sync-style">
+#v8SalesList tr.v8NewestSale{background:#fff0b9!important;outline:1px solid #e6bd43;outline-offset:-1px}
+#v8StudentHint{margin:8px 12px;padding:10px 14px;border:1px solid #d4dce8;border-left:3px solid #e6bb37;border-radius:4px;background:#fffdf3;color:#333;font:13px Arial,sans-serif;max-width:730px}
+#v8StudentHint strong{display:block;margin-bottom:4px}
+</style>
+<script id="v8-student-document-sync-script">
+(()=>{
+ const key='diadocTrainerV8.salesDocuments.v1';
+ const read=()=>{try{const d=JSON.parse(localStorage.getItem(key)||'[]');return Array.isArray(d)?d:[]}catch{return []}};
+ const fmt=v=>Number(v||0).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2});
+ window.v8StudentDiadocRows=()=>read().map(d=>['☐','УПД',d.number||'',d.date||'',fmt(d.sum),`Реализация №${d.number||''}`,'Для отправки','','МЧД не требуется',d.partner||'',d.org||'','']);
+ window.v8RefreshStudentDocs=()=>{
+  const sec=document.querySelector('.sectionBtn.active');
+  if(sec?.dataset.section==='send'){
+   const body=document.querySelector('#viewport table tbody');
+   if(body)body.innerHTML=window.v8StudentDiadocRows().map(r=>'<tr>'+r.map(v=>{const td=document.createElement('td');td.textContent=v;return td.outerHTML}).join('')+'</tr>').join('');
+  }
+ };
+ const hint=document.createElement('div');hint.id='v8StudentHint';hint.innerHTML='<strong>Подсказка новичку</strong>В 1С документы для отправки находятся в разделе «Реализации», а в модуле Диадок — в разделе «Для отправки».';
+ const list=document.getElementById('v8SalesList');
+ if(list){const bar=list.querySelector('.v8Toolbar');if(bar)bar.insertAdjacentElement('afterend',hint);else list.prepend(hint)}
+ const observer=new MutationObserver(()=>{
+  const sec=document.querySelector('.sectionBtn.active');
+  if(sec?.dataset.section!=='send')return;
+  const body=document.querySelector('#viewport table tbody');
+  if(!body)return;
+  const expected=window.v8StudentDiadocRows();
+  if(body.rows.length!==expected.length)window.v8RefreshStudentDocs();
+ });
+ const vp=document.getElementById('viewport');if(vp)observer.observe(vp,{childList:true,subtree:true});
+ window.v8RefreshStudentDocs();
+})();
+</script>
 </body></html>
 <!-- MASTER54: nested-button search route repair -->
 <script id="master54-nested-search-fix">
@@ -4669,7 +4829,7 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
  const save=()=>{try{localStorage.setItem(key,JSON.stringify(docs))}catch(e){console.warn('Не удалось сохранить реализации',e)}};
  const td=(tr,value)=>{const c=document.createElement('td');c.textContent=value==null?'':String(value);tr.appendChild(c)};
  function render(){rows.replaceChildren();docs.forEach((d,i)=>{const tr=document.createElement('tr');tr.dataset.index=String(i);
- [d.date,d.number,d.partner,d.sum?' '+Number(d.sum).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}):'', 'руб.','Не требуется','--',d.store||'Основной','Товары',d.org,'','', ''].forEach(v=>td(tr,v));rows.appendChild(tr)})}
+ [d.date,d.number,d.partner,d.sum?' '+Number(d.sum).toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2}):'', 'руб.','Не требуется','--',d.store||'Основной','Товары',d.org,'','', ''].forEach(v=>td(tr,v));if(i===docs.length-1)tr.classList.add('v8NewestSale');rows.appendChild(tr)})}
  render();
  const first=menu.querySelector('button');if(first){first.dataset.v8Kind='goods';first.textContent='Товары (накладная, УПД)'}
  [...menu.querySelectorAll('button')].slice(1).forEach(b=>{b.disabled=true;b.title='Этот вид документа пока не разрабатываем'});
@@ -4684,7 +4844,7 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
   <div class="v8RealLine"><label>Счет на оплату: <input placeholder="" /></label><span class="v8FakeLink">Добавить</span><span class="v8FakeLink">Документ без НДС</span></div>
  </div>
  <div class="v8RealTableTools"><button type="button" id="v8AddGoodsRow">Добавить</button><button type="button">Заполнить ▾</button><button type="button">Подбор</button><button type="button">Изменить</button><button type="button">⬆</button><button type="button">⬇</button><button type="button">▤</button><button type="button">▣</button><button type="button" style="margin-left:auto">Еще ▾</button></div>
- <div class="v8RealTableBox"><table><thead><tr><th>N</th><th>Номенклатура</th><th>Количество</th><th>Цена</th><th>Сумма</th><th>Счета учета</th></tr></thead><tbody id="v8GoodsRows"></tbody></table></div>
+ <div class="v8RealTableBox"><table><thead><tr><th>N</th><th>Номенклатура</th><th>Количество</th><th>Цена</th><th>Сумма</th><th>% НДС</th><th>НДС</th><th>Всего</th><th>Счета учета</th></tr></thead><tbody id="v8GoodsRows"></tbody></table></div>
  <div class="v8RealBottom"><div><label><input type="checkbox"/> УПД</label> <a>Реквизиты печатных форм и ЭДО</a> <a>Доставка</a> <label><input type="checkbox"/> Документ подписан</label><p><a>Статформа</a> &nbsp; ?</p><label>Комментарий: <input class="v8Comment"/></label></div><div class="v8RealTotal">Всего: <strong id="v8TotalText">0,00</strong> руб.</div></div>
  <input type="hidden" id="v8DocSum" value="0"/><button type="button" id="v8EditorBack" class="v8RealBack">← К списку реализаций</button>`;
  shell.appendChild(editor);
@@ -4699,12 +4859,12 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
   const number=$('v8DocNumber').value.trim()||String(docs.length+1).padStart(11,'0');
   const raw=date.value;const formatted=raw?raw.split('-').reverse().join('.'):'';
   docs.push({date:formatted,number,org,partner,store:$('v8DocStore').value.trim(),sum:$('v8DocSum').value||'0'});
-  save();render();closeEditor();$('v8DocNumber').value='';$('v8DocPartner').value='';$('v8DocSum').value='0';
+  save();render();closeEditor();window.v8RefreshStudentDocs?.();$('v8DocNumber').value='';$('v8DocPartner').value='';$('v8DocSum').value='0';
  });
  // Explicit reset is intentionally confined to the student's sales documents.
  const reset=document.createElement('button');reset.id='v8SalesReset';reset.type='button';reset.textContent='Сбросить реализации';reset.title='Удалить только созданные в тренажёре реализации';
  list.querySelector('.v8Toolbar')?.appendChild(reset);
- reset.addEventListener('click',()=>{if(!confirm('Удалить все созданные учебные реализации? Документы Диадока не затрагиваются.'))return;docs=[];save();render()});
+ reset.addEventListener('click',()=>{if(!confirm('Удалить все созданные учебные реализации? Документы Диадока не затрагиваются.'))return;docs=[];save();render();window.v8RefreshStudentDocs?.()});
  // Persist the tab in the real tab bar. Do not move or rebuild the Diadoc pane.
  const back=$('v8SalesBackTab'),active=$('v8SalesActiveTab'),retained=$('v8ReturnSalesTab');
  if(retained){retained.hidden=true;retained.style.display='none'}
@@ -4823,5 +4983,167 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
  modal.addEventListener('click',e=>{if(e.target===modal)close()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();suggestions.classList.remove('open')}});
  document.addEventListener('click',e=>{if(!wrap.contains(e.target))suggestions.classList.remove('open')});
+})();
+</script>
+
+<style id="v8-goods-catalog-20261018">
+#v8GoodsSuggest{position:fixed;z-index:2147481000;background:white;border:1px solid #999;box-shadow:0 3px 9px #0004;width:430px;max-width:calc(100vw - 20px);font:15px Arial;color:#222}
+#v8GoodsSuggest[hidden],#v8GoodsCatalog[hidden],#v8GoodsForm[hidden]{display:none!important}
+#v8GoodsSuggest .goodsOption{display:block;width:100%;border:0;border-bottom:1px solid #ddd;background:#fff;text-align:left;padding:12px 16px;cursor:pointer}
+#v8GoodsSuggest .goodsOption:hover{background:#fff0bc}
+#v8GoodsSuggest .goodsFoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #ccc;padding:9px 14px}
+#v8GoodsSuggest a{color:#0072bd;text-decoration:underline;cursor:pointer}
+#v8GoodsSuggest .goodsPlus{font:bold 27px Arial;color:#009650;border:1px solid #aaa;background:linear-gradient(white,#eee);width:43px;cursor:pointer}
+.v8GoodsOverlay{position:fixed;inset:0;z-index:2147481500;background:#0002;display:flex;align-items:center;justify-content:center;font:15px Arial;color:#222}
+.v8GoodsWindow{background:#fff;width:min(1060px,90vw);height:min(740px,84vh);border:1px solid #999;box-shadow:0 8px 28px #0005;display:flex;flex-direction:column;padding:16px;gap:12px}
+.v8GoodsWindow h2{font:24px Arial;margin:0}.v8GoodsWindow button{padding:7px 13px;border:1px solid #aaa;background:linear-gradient(#fff,#eee);cursor:pointer;font:15px Arial}.v8GoodsWindow button.gold{background:#ffdf00;font-weight:bold}
+.v8GoodsWindow .goodsToolbar{display:flex;gap:10px;align-items:center}.v8GoodsWindow input,.v8GoodsWindow select,.v8GoodsWindow textarea{border:1px solid #aaa;padding:7px;font:15px Arial}
+.v8GoodsWindow .goodsScroll{overflow:auto;flex:1;border:1px solid #bbb}.v8GoodsWindow table{width:100%;border-collapse:collapse}.v8GoodsWindow th,.v8GoodsWindow td{border-bottom:1px solid #ddd;padding:10px;text-align:left}.v8GoodsWindow th{background:#eee;font-weight:normal}.v8GoodsWindow tr.active{background:#fff0bf}
+.v8GoodsWindow .goodsFormGrid{display:grid;grid-template-columns:180px minmax(0,550px);gap:12px;align-items:start}.v8GoodsWindow .goodsFormGrid input,.v8GoodsWindow .goodsFormGrid textarea{width:100%}
+#v8GoodsForm #goodsName{outline:2px solid #26a65b!important;outline-offset:1px}#v8GoodsForm [data-cmd="saveclose"]{outline:2px solid #26a65b!important;outline-offset:1px}
+/* Badges must be attached only to registered training targets and must not bleed into 1C overlay pages. */
+body .target:not([data-n])>.badge{display:none!important}
+#v8SalesPage .badge,#v8DocEditor .badge,.v8GoodsOverlay .badge{display:none!important}
+</style>
+<script id="v8-goods-catalog-20261018-js">
+(()=>{'use strict';
+ const rows=document.getElementById('v8GoodsRows'),add=document.getElementById('v8AddGoodsRow');if(!rows||!add)return;
+ const key='diadocTrainer.goodsCatalog.v1';let goods=[];try{goods=JSON.parse(localStorage.getItem(key)||'[]');if(!Array.isArray(goods))goods=[]}catch{goods=[]}
+ const persist=()=>{try{localStorage.setItem(key,JSON.stringify(goods))}catch(e){console.warn(e)}};
+ const escape=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ let current=null,selected=-1;
+ const suggest=document.createElement('div');suggest.id='v8GoodsSuggest';suggest.hidden=true;document.body.append(suggest);
+ const catalog=document.createElement('div');catalog.id='v8GoodsCatalog';catalog.className='v8GoodsOverlay';catalog.hidden=true;document.body.append(catalog);
+ const form=document.createElement('div');form.id='v8GoodsForm';form.className='v8GoodsOverlay';form.hidden=true;document.body.append(form);
+ const hideSuggest=()=>{suggest.hidden=true};
+ function recalc(){let total=0;rows.querySelectorAll('tr').forEach(tr=>{const q=Number(tr.querySelector('.v8Qty')?.value)||0,p=Number(tr.querySelector('.v8Price')?.value)||0;const val=q*p;const sum=tr.querySelector('.v8LineSum');if(sum)sum.value=val.toFixed(2);total+=val});const sum=document.getElementById('v8DocSum'),label=document.getElementById('v8TotalText');if(sum)sum.value=total.toFixed(2);if(label)label.textContent=total.toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2})}
+ function choose(g){if(!current)return;current.value=g.name;current.dataset.goodId=g.id;const tr=current.closest('tr');const vat=tr.querySelector('.v8GoodsVat');if(vat)vat.textContent=g.vat||'22%';hideSuggest();catalog.hidden=true;form.hidden=true;recalc()}
+ function position(){if(!current)return;const r=current.getBoundingClientRect();suggest.style.left=Math.max(8,Math.min(r.left,innerWidth-440))+'px';suggest.style.top=Math.min(r.bottom+2,innerHeight-240)+'px'}
+ function showSuggest(){if(!current)return;position();const q=current.value.trim().toLowerCase();const matches=goods.filter(g=>g.name.toLowerCase().includes(q));suggest.innerHTML=(q&&!matches.length?'<div style="padding:12px 16px">«'+escape(current.value)+'» нет в списке.</div>':'')+matches.slice(0,6).map(g=>'<button type="button" class="goodsOption" data-good="'+escape(g.id)+'">'+escape(g.name)+'</button>').join('')+'<div class="goodsFoot"><a data-action="all">Показать все</a><button type="button" class="goodsPlus" title="Создать номенклатуру" data-action="create">+</button></div>';suggest.hidden=false}
+ function addRow(){const tr=document.createElement('tr');tr.innerHTML='<td></td><td><div style="display:flex;min-width:260px"><input class="v8GoodsName" placeholder="Введите наименование" autocomplete="off" style="flex:1;min-width:0"><button type="button" class="v8GoodsArrow" style="border:1px solid #aaa;background:#eee;cursor:pointer">▾</button><button type="button" class="v8GoodsLookup" style="border:1px solid #aaa;background:#eee;cursor:pointer">▣</button></div></td><td><input type="number" class="v8Qty" min="0" value="1" /></td><td><input type="number" class="v8Price" min="0" step="0.01" value="0" /></td><td><input class="v8LineSum" readonly value="0.00" /></td><td><span class="v8GoodsVat">22%</span></td><td class="v8VatAmount">0,00</td><td class="v8RowTotal">0,00</td><td>41.01</td>';tr.cells[0].textContent=String(rows.children.length+1);rows.append(tr);tr.addEventListener('input',recalc);const inp=tr.querySelector('.v8GoodsName');inp.addEventListener('focus',()=>{current=inp;showSuggest()});inp.addEventListener('input',()=>{current=inp;showSuggest()});tr.querySelector('.v8GoodsArrow').onclick=()=>{current=inp;showSuggest()};tr.querySelector('.v8GoodsLookup').onclick=()=>{current=inp;openCatalog()};current=inp;inp.focus();showSuggest()}
+ add.addEventListener('click',e=>{e.stopImmediatePropagation();addRow()},true);
+ function openCatalog(){hideSuggest();selected=-1;catalog.hidden=false;renderCatalog()}
+ function renderCatalog(){catalog.innerHTML='<div class="v8GoodsWindow"><div style="display:flex;justify-content:space-between"><h2>☆ Номенклатура: Товары</h2><button data-cmd="close">×</button></div><div class="goodsToolbar"><button class="gold" data-cmd="choose">Выбрать</button><button data-cmd="create">Создать</button><button data-cmd="group">Создать группу</button><input id="v8GoodsSearch" placeholder="Поиск (Ctrl+F)" style="margin-left:auto"></div><div class="goodsScroll"><table><thead><tr><th>Наименование</th><th>Артикул</th><th>Единица</th><th>% НДС</th></tr></thead><tbody id="v8GoodsList"></tbody></table></div></div>';const body=catalog.querySelector('#v8GoodsList');function draw(){const q=catalog.querySelector('#v8GoodsSearch').value.toLowerCase();body.innerHTML=goods.map((g,i)=>({...g,i})).filter(g=>g.name.toLowerCase().includes(q)).map(g=>'<tr data-index="'+g.i+'" class="'+(selected===g.i?'active':'')+'"><td>'+escape(g.name)+'</td><td>'+escape(g.article)+'</td><td>'+escape(g.unit)+'</td><td>'+escape(g.vat)+'</td></tr>').join('');body.querySelectorAll('tr').forEach(tr=>{tr.onclick=()=>{selected=Number(tr.dataset.index);draw()};tr.ondblclick=()=>{choose(goods[Number(tr.dataset.index)])}})}draw();catalog.querySelector('#v8GoodsSearch').oninput=draw;catalog.querySelector('[data-cmd="close"]').onclick=()=>catalog.hidden=true;catalog.querySelector('[data-cmd="create"]').onclick=openForm;catalog.querySelector('[data-cmd="group"]').onclick=()=>alert('Группы номенклатуры пока не реализованы.');catalog.querySelector('[data-cmd="choose"]').onclick=()=>{if(selected>=0)choose(goods[selected])}}
+ function openForm(){hideSuggest();catalog.hidden=true;form.hidden=false;form.innerHTML='<div class="v8GoodsWindow"><div style="display:flex;justify-content:space-between"><h2>☆ Номенклатура (создание)</h2><button data-cmd="close">×</button></div><div class="goodsToolbar"><button class="gold" data-cmd="saveclose">Записать и закрыть</button><button data-cmd="save">Записать</button><button>▤</button><button>📎</button><button>Этикетка</button></div><div style="padding:12px;background:#fff0b0">Автоматическое заполнение реквизитов по штрихкоду или наименованию<br><input placeholder="Введите значение или отсканируйте штрихкод" style="width:65%"><button type="button">Заполнить</button></div><div class="goodsFormGrid"><label>Вид номенклатуры:</label><select id="goodsType"><option>Товары</option></select><label>Наименование:</label><input id="goodsName"><label>Полное наименование:</label><textarea id="goodsFull" rows="3"></textarea><label>Артикул:</label><input id="goodsArticle"><label>Входит в группу:</label><input placeholder=""><label>Единица:</label><select id="goodsUnit"><option>шт</option><option>кг</option><option>м</option><option>л</option><option>упак</option></select><label>% НДС:</label><select id="goodsVat"><option>22%</option><option>10%</option><option>0%</option><option>Без НДС</option></select><label>Комментарий:</label><input id="goodsComment"></div><label><input type="checkbox"> Скрывать в списках</label><div style="color:#00994d">› Описание<br><br>› Классификация</div></div>';const name=form.querySelector('#goodsName'),full=form.querySelector('#goodsFull');name.addEventListener('input',()=>{if(!full.dataset.edited)full.value=name.value});full.addEventListener('input',()=>full.dataset.edited='1');form.querySelector('[data-cmd="close"]').onclick=()=>{form.hidden=true;openCatalog()};function save(close){const n=name.value.trim();if(!n){alert('Укажите наименование товара.');name.focus();return}const g={id:String(Date.now())+'_'+goods.length,name:n,full:full.value.trim()||n,article:form.querySelector('#goodsArticle').value.trim(),unit:form.querySelector('#goodsUnit').value,vat:form.querySelector('#goodsVat').value};goods.push(g);persist();if(close){form.hidden=true;openCatalog()}else{alert('Номенклатура записана');form.querySelector('[data-cmd="save"]').disabled=true}}form.querySelector('[data-cmd="saveclose"]').onclick=()=>save(true);form.querySelector('[data-cmd="save"]').onclick=()=>save(false);name.focus()}
+ suggest.addEventListener('click',e=>{const option=e.target.closest('[data-good]');if(option){const g=goods.find(x=>x.id===option.dataset.good);if(g)choose(g)}else if(e.target.closest('[data-action="all"]'))openCatalog();else if(e.target.closest('[data-action="create"]'))openForm()});
+ document.addEventListener('pointerdown',e=>{if(!suggest.hidden&&!suggest.contains(e.target)&&!e.target.closest('.v8GoodsName,.v8GoodsArrow,.v8GoodsLookup'))hideSuggest()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){hideSuggest();if(!form.hidden){form.hidden=true;openCatalog()}else if(!catalog.hidden)catalog.hidden=true}});
+ // Remove badges for excluded tasks and badges on unrelated dynamically displayed pages.
+ const excluded=new Set([37,39,40,41,43,47,52,55,80,83,84,91,92,93,100,103,106,107]);
+ function cleanBadges(){document.querySelectorAll('.badge').forEach(b=>{const t=b.closest('[data-n]');if(!t||excluded.has(Number(t.dataset.n))||!t.classList.contains('target'))b.style.setProperty('display','none','important')})}
+ cleanBadges();
+ const observer=new MutationObserver(()=>{observer.disconnect();cleanBadges();observer.observe(document.body,{childList:true,subtree:true})});observer.observe(document.body,{childList:true,subtree:true});
+})();
+</script>
+<style id="v8-fix-numbers-table-20261018">
+/* Reserve a dedicated lane for numbered toolbar controls. */
+.diadocPane .module>.actions .target[data-n]{position:relative!important;padding-left:29px!important;overflow:visible!important}
+.diadocPane .module>.actions .target[data-n]>.badge{position:absolute!important;left:3px!important;top:50%!important;transform:translateY(-50%)!important;margin:0!important;z-index:2!important}
+#v8DocEditor .v8RealTableBox table{min-width:1300px;table-layout:fixed;border-collapse:collapse}
+#v8DocEditor .v8RealTableBox{overflow:auto}
+#v8DocEditor .v8RealTableBox th,#v8DocEditor .v8RealTableBox td{box-sizing:border-box;border:1px solid #ddd;padding:5px 7px;white-space:nowrap}
+#v8DocEditor .v8RealTableBox th:nth-child(1){width:52px}
+#v8DocEditor .v8RealTableBox th:nth-child(2){width:290px}
+#v8DocEditor .v8RealTableBox th:nth-child(3){width:160px}
+#v8DocEditor .v8RealTableBox th:nth-child(4){width:140px}
+#v8DocEditor .v8RealTableBox th:nth-child(5){width:140px}
+#v8DocEditor .v8RealTableBox th:nth-child(6){width:100px}
+#v8DocEditor .v8RealTableBox th:nth-child(7){width:130px}
+#v8DocEditor .v8RealTableBox th:nth-child(8){width:130px}
+#v8DocEditor .v8RealTableBox th:nth-child(9){width:130px}
+#v8DocEditor .v8RealTableBox input{min-width:0;width:100%;box-sizing:border-box}
+#v8DocEditor .v8RealTableBox td:focus-within{background:#fff0b0!important}
+#v8DocEditor .v8RealTableBox td:focus-within input{background:#fff0b0!important;outline:1px solid #e5b000}
+</style>
+<script id="v8-fix-numbers-table-20261018-js">
+(()=>{
+ const excluded=new Set([17,37,39,40,41,43,47,52,55,80,83,84,91,92,93,100,103,106,107]);
+ // 17 was subsequently explicitly restored to training by the user.
+ excluded.delete(17);
+ const oldIds=new Set([18,19,21,23,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73]);
+ function updateNumbers(){
+   const targets=[...document.querySelectorAll('.target[data-n]')];
+   const valid=[...new Set(targets.map(el=>Number(el.dataset.n)).filter(n=>Number.isFinite(n)&&!excluded.has(n)&&!oldIds.has(n)))].sort((a,b)=>a-b);
+   const map=new Map(valid.map((n,i)=>[n,i+1]));
+   const action=targets.find(el=>Number(el.dataset.n)===16&&el.closest('.diadocPane .module>.actions'));
+   if(action&&!action.querySelector(':scope > .badge')){const b=document.createElement('i');b.className='badge';action.prepend(b)}
+   targets.forEach(el=>{
+     const n=Number(el.dataset.n),b=el.querySelector(':scope > .badge');if(!b)return;
+     if(!map.has(n)){b.style.setProperty('display','none','important');return}
+     b.textContent=String(map.get(n));b.style.removeProperty('display');
+   });
+   document.querySelectorAll('#items .item').forEach(el=>{
+     const n=Number(el.dataset.n||el.dataset.originalN);const b=el.querySelector('.itemNo,.itemNum');if(b&&map.has(n))b.textContent=map.get(n);
+   });
+   window.v8NumberMap=map;
+ }
+ function vatNumber(s){return s==='Без НДС'?0:parseFloat(String(s).replace(',','.'))||0}
+ function format(n){return n.toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2})}
+ function calculate(){
+   const rows=document.querySelectorAll('#v8GoodsRows tr');let total=0,vatTotal=0;
+   rows.forEach(tr=>{
+     const q=parseFloat(tr.querySelector('.v8Qty')?.value)||0,p=parseFloat(tr.querySelector('.v8Price')?.value)||0;
+     const sum=Math.round(q*p*100)/100;
+     const vatRate=vatNumber(tr.querySelector('.v8GoodsVat')?.textContent);
+     // Prices are VAT-inclusive: 10.00 at 22% -> VAT 1.80.
+     const vat=Math.round(sum*vatRate/(100+vatRate)*100)/100;
+     const line=tr.querySelector('.v8LineSum');if(line)line.value=format(sum);
+     const vatCell=tr.querySelector('.v8VatAmount');if(vatCell)vatCell.textContent=format(vat);
+     const totalCell=tr.querySelector('.v8RowTotal');if(totalCell)totalCell.textContent=format(sum);
+     total+=sum;vatTotal+=vat;
+   });
+   const totalEl=document.getElementById('v8TotalText');if(totalEl)totalEl.textContent=format(total);
+   const hidden=document.getElementById('v8DocSum');if(hidden)hidden.value=total.toFixed(2);
+   const footer=document.querySelector('#v8DocEditor .v8RealTotal');if(footer){let tax=footer.querySelector('.v8TaxSummary');if(!tax){tax=document.createElement('span');tax.className='v8TaxSummary';footer.append(tax)}tax.textContent='  в т.ч. НДС: '+format(vatTotal)}
+ }
+ document.addEventListener('input',e=>{if(e.target.closest('#v8GoodsRows'))queueMicrotask(calculate)},true);
+ document.addEventListener('change',e=>{if(e.target.closest('#v8GoodsRows'))queueMicrotask(calculate)},true);
+ let scheduled=false;const schedule=()=>{if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;updateNumbers();calculate()})};
+ const watch=document.getElementById('v8GoodsRows');if(watch)new MutationObserver(schedule).observe(watch,{childList:true,subtree:true});
+ document.addEventListener('click',schedule);
+ window.addEventListener('load',schedule);schedule();
+})();
+</script>
+
+<style id="v8-cross-tab-sync-fix">
+/* 1C tabs stay visible independently of the currently displayed workspace. */
+#v8CrossTab{display:inline-flex;align-items:center;gap:7px;height:24px;flex:0 0 auto;border:0;border-right:1px solid #bbb;background:#eee;padding:2px 7px;font:11px Arial;cursor:pointer;color:#333}
+#v8CrossTab.current{background:#fff;border-bottom:2px solid #28a879}
+#v8CrossTab[hidden]{display:none!important}
+#v8CrossTab .crossClose{font-size:15px;line-height:15px;padding:0 3px}
+#v8CrossTab .crossClose:hover{background:#ddd}
+</style>
+<script id="v8-cross-tab-sync-fix-js">
+(()=>{
+ const sales=document.getElementById('v8SalesPage');
+ const bar=document.querySelector('.diadocTabs');
+ const salesTab=document.getElementById('v8SalesActiveTab');
+ if(!sales||!bar||!salesTab)return;
+ const tab=document.createElement('button');tab.id='v8CrossTab';tab.type='button';
+ const name=document.createElement('span');name.textContent='Реализация (акты, накладные, УПД)';
+ const close=document.createElement('span');close.className='crossClose';close.textContent='×';close.title='Закрыть вкладку';
+ tab.append(name,close);bar.append(tab);
+ let explicitlyClosed=false;
+ const sync=()=>{
+   const inSales=sales.classList.contains('open');
+   tab.hidden=explicitlyClosed;
+   tab.classList.toggle('current',inSales);
+   // The native sales tab bar is hidden with the sales workspace; this companion tab remains.
+   if(!inSales)window.v8RefreshStudentDocs?.();
+ };
+ tab.addEventListener('click',e=>{
+   if(e.target===close){e.stopPropagation();explicitlyClosed=true;tab.hidden=true;return}
+   explicitlyClosed=false;
+   window.v8SalesShowList?.();
+   sales.classList.add('open');
+   sync();
+ });
+ salesTab.addEventListener('click',()=>{explicitlyClosed=false;queueMicrotask(sync)});
+ document.getElementById('v8SalesBackTab')?.addEventListener('click',()=>setTimeout(sync,0));
+ // Any navigation between Diadoc and Sales updates the persistent tab.
+ new MutationObserver(sync).observe(sales,{attributes:true,attributeFilter:['class']});
+ // Ensure document data refreshes when user returns to the send section.
+ document.querySelectorAll('.sectionBtn').forEach(b=>b.addEventListener('click',()=>setTimeout(()=>window.v8RefreshStudentDocs?.(),0)));
+ window.addEventListener('storage',e=>{if(e.key==='diadocTrainerV8.salesDocuments.v1')window.v8RefreshStudentDocs?.()});
+ sync();
 })();
 </script>
