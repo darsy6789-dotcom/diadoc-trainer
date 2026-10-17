@@ -671,7 +671,7 @@ function render(){stage.classList.toggle('numbering',state.numbering);toggle.cla
 function syncMenus(){settingsDrop.classList.toggle('open',state.openMenu==='settings');helpDrop.classList.toggle('open',state.openMenu==='help')}
 function allTargets(){return [...document.querySelectorAll('.target')].sort((a,b)=>+a.dataset.n-+b.dataset.n)}
 function targetInfo(el){const n=+el.dataset.n;const m=meta[n]||[];return{n,name:el.dataset.name,type:el.dataset.type||m[0]||(n>=43&&n<=55?'Раздел':n>=26&&n<=42?'Пункт меню':'Кнопка'),zone:el.dataset.zone||m[1]||(n>=43&&n<=55?'Левое меню':n>=26&&n<=31?'Настройки':n>=32&&n<=42?'Помощь':'Стартовая страница'),path:el.dataset.path||'',el}}
-function registry(){const seen=new Map();allTargets().forEach(el=>{const n=+el.dataset.n;if(![1,2,3,18,19,21,23,108,109,29,35,77,76,70,71,114,26,79,36,72,32,74,33,68,78,75,73].includes(n))seen.set(n,targetInfo(el))});return [...seen.values()].sort((a,b)=>a.n-b.n)}
+function registry(){const seen=new Map();allTargets().forEach(el=>{const n=+el.dataset.n;if(![1,2,3,18,19,21,23,108,109,29,35,77,76,70,71,114,26,79,36,72,32,74,33,68,78,75,73].includes(n)){const info=targetInfo(el);const excludedNames=new Set(['Помощь','Написать в поддержку','Заказать обратный звонок','Заказать колбэк','Руководителю','Банк и касса','Склад','Зарплата и кадры','Операции','Отчеты','Получить ссылку','Перейти по ссылке','Календарь','Калькулятор','Показать М','Окна']);if(!excludedNames.has(info.name)&&!(n===25&&info.name==='Поддержка'))seen.set(n,info)}});return [...seen.values()].sort((a,b)=>a.n-b.n)}
 function nameFor(n){return registry().find(x=>x.n===+n)?.name||''}
 function contextText(x){return `${x.type} · ${x.zone}`}
 function rebuildCollection(){items.innerHTML='';registry().forEach(x=>{const d=document.createElement('div');d.className='item';d.dataset.q=(x.name+' '+x.n+' '+x.type+' '+x.zone).toLowerCase();d.innerHTML=`<span class="itemNo">${x.n}</span><span>${x.name}<small>${contextText(x)}</small></span>`;d.onclick=()=>startSearch(x.el,d);items.appendChild(d)});}
@@ -2016,6 +2016,7 @@ applyDefaultExclusions();addLevelsToSetup();
  function hist(){try{return JSON.parse(localStorage.getItem('diadocTrainer.mockup08History')||'[]')}catch{return[]}}
  function showResult(duration){
    let h=hist();h.push(duration);localStorage.setItem('diadocTrainer.mockup08History',JSON.stringify(h));
+   try{const key='diadocTrainer.datedHistory.v1';const entries=JSON.parse(localStorage.getItem(key)||'[]');entries.push({at:new Date().toISOString(),duration,passed:found.length,total:tasks.length});localStorage.setItem(key,JSON.stringify(entries))}catch(e){console.warn('История:',e)}
    document.getElementById('m8Passed').textContent=found.length+' из '+tasks.length;document.getElementById('m8Duration').textContent=fmt(duration);document.getElementById('m8Avg').textContent=Math.round(duration/Math.max(1,tasks.length))+' сек';
    document.getElementById('m8Best').textContent=h.length?fmt(Math.min(...h)):'—';document.getElementById('m8Prev').textContent=h.length>1?fmt(h[h.length-2]):'—';document.getElementById('m8Games').textContent=h.length;
    const tabs=document.getElementById('m8Tabs'), list=document.getElementById('m8List');tabs.innerHTML='';list.style.display='none';list.innerHTML='';
@@ -2028,6 +2029,7 @@ applyDefaultExclusions();addLevelsToSetup();
      b.classList.add('on');const a=b.dataset.k==='found'?found:b.dataset.k==='timeouts'?timeouts:fixes;
      list.innerHTML=a.length?a.map(x=>'<div class="m8item">№'+x.n+' — '+x.name+'<small>'+x.q+'</small></div>').join(''):'Пусто';list.style.display='block';
    };
+   try{const entries=JSON.parse(localStorage.getItem('diadocTrainer.datedHistory.v1')||'[]');let area=document.getElementById('m8DatedHistory');if(!area){area=document.createElement('div');area.id='m8DatedHistory';document.querySelector('#m8Result .m8history')?.append(area)}area.innerHTML='<b>Все результаты по датам</b><div style="max-height:170px;overflow:auto;margin-top:8px">'+entries.slice().reverse().map(x=>'<div style="padding:5px 0;border-bottom:1px solid #444">'+new Date(x.at).toLocaleString('ru-RU')+' · '+fmt(x.duration)+' · '+x.passed+'/'+x.total+'</div>').join('')+'</div>'}catch(e){console.warn(e)}
    result.classList.add('on')
  }
  document.getElementById('m8Reset').onclick=()=>{localStorage.removeItem('diadocTrainer.mockup08History');document.getElementById('m8Best').textContent='—';document.getElementById('m8Prev').textContent='—';document.getElementById('m8Games').textContent='0'};
@@ -3179,9 +3181,9 @@ renderRows();rebuildCollection();fillPoolFilters();renderPool();updateGameSetup(
  <section class="v8Group"><h3>Продажи</h3><span class="v8Decor">Коммерческие предложения</span><span class="v8Decor">Счета покупателям</span><button type="button" class="v8SalesLink" id="v8SalesLink">Реализация (акты, накладные, УПД)</button><button type="button" id="v8SalesFav" class="v8SalesFav" aria-label="Добавить в избранное">☆</button><span class="v8Decor">Возвраты от покупателей</span><span class="v8Decor">Счета-фактуры выданные</span><span class="v8Decor">Безвозмездная передача</span><span class="v8Decor">Электронные перевозочные документы</span></section>
  <section class="v8Group"><h3>Расчеты с контрагентами</h3><span class="v8Decor">Монитор сверки с контрагентами</span><span class="v8Decor">Акты сверки расчетов</span><span class="v8Decor">Акты инвентаризации расчетов</span><span class="v8Decor">Сверка данных учета НДС</span><span class="v8Decor">Реестр счетов-фактур выданных</span><span class="v8Decor">Начисление пеней</span><span class="v8Decor">Досье контрагента</span><span class="v8Decor">Справки 1СПАРК Риски</span><span class="v8Decor">Надежность дебиторов</span></section></div>
  <div><section class="v8Group"><h3>Отчеты</h3><span class="v8Decor">Счета, не оплаченные покупателями</span><span class="v8Decor">Продажи по контрагентам</span><span class="v8Decor">Продажи по контрагентам (по оплате)</span><span class="v8Decor">Продажи по номенклатуре</span><span class="v8Decor">Продажи по номенклатурным группам</span><span class="v8Decor">Анализ продаж</span><span class="v8Decor">Дополнительные отчеты</span><span class="v8Decor">Прайс-лист</span></section><section class="v8Group"><h3>Настройки</h3><span class="v8Decor">Запасы</span><span class="v8Decor">Расчеты</span><span class="v8Decor">Торговля</span><span class="v8Decor">Сроки оплаты покупателями</span></section></div>
- <div><section class="v8Group"><h3>Сервис</h3><span class="v8Decor">Распознавание документов</span><span class="v8Decor">Текущие дела ЭДО</span><span class="v8Decor">Веб-витрина mag1c</span><span class="v8Decor">Загрузка продаж из YCLIENTS</span><span class="v8Decor">⭐ Дополнительные обработки</span></section><section class="v8Group"><h3>Информация</h3><span class="v8Decor">Новости</span></section></div>
+ <div><section class="v8Group"><h3>Сервис</h3><span class="v8Decor">Распознавание документов</span><span class="v8Decor">Текущие дела ЭДО</span><span class="v8Decor">Веб-витрина mag1c</span><span class="v8Decor">Загрузка продаж из YCLIENTS</span><span class="v8Decor">Дополнительные обработки</span></section><section class="v8Group"><h3>Информация</h3><span class="v8Decor">Новости</span></section></div>
  </div></div>
- <div id="v8SalesList"><div class="v8Title target" id="v8RealizationTitle" data-n="112" data-name="Реализация (акты, накладные, УПД)" data-type="Раздел" data-zone="Продажи" data-path="112"><i class="badge">112</i>☆ Реализация (акты, накладные, УПД)</div>
+ <div id="v8SalesList"><div class="v8Title target" id="v8RealizationTitle" data-n="112" data-name="Реализация (акты, накладные, УПД)" data-type="Раздел" data-zone="Продажи" data-path="112"><i class="badge">112</i>Реализация (акты, накладные, УПД)</div>
  <div class="v8Filter"><span>Контрагент:</span><input aria-label="Контрагент"/><span>Организация:</span><input aria-label="Организация"/></div>
  <div class="v8Toolbar"><div class="v8CreateWrap"><button type="button" class="v8CreateBtn" id="v8CreateRealization">🟢 Реализация ▾</button>
  <div class="v8CreateMenu" id="v8CreateMenu"><button type="button">Товары (накладная, УПД)</button><button type="button">Услуги (акт, УПД)</button><button type="button">Товары и услуги</button></div></div>
@@ -3249,30 +3251,28 @@ startSearch=function(target,item){
 })();
 </script>
 <script id="v8-display-renumber-20261017">
-(function(){
-  const excluded=new Set([1,2,3,18,19,21,23,108,109,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73]);
-  const ids=[...new Set([...document.querySelectorAll('.target[data-n]')].map(e=>Number(e.dataset.n)).filter(n=>Number.isInteger(n)&&!excluded.has(n)))].sort((a,b)=>a-b);
-  const display=new Map(ids.map((id,i)=>[id,i+1]));
-  // Internal data-n identifiers are deliberately left intact: routes and game logic depend on them.
-  function refresh(){
-    document.querySelectorAll('.target[data-n] > .badge').forEach(el=>{
-      const n=Number(el.parentElement.dataset.n),number=display.get(n);
-      if(number && el.textContent!==String(number))el.textContent=String(number);
-      if(!number)el.style.display='none';
-    });
-    document.querySelectorAll('#items .item, .found, .searchResult, .v8ResultList > *').forEach(el=>{
-      const label=el.querySelector('.itemNo');
-      if(label){const old=Number(label.dataset.originalNumber||label.textContent.trim());
-        if(!label.dataset.originalNumber)label.dataset.originalNumber=String(old);
-        const num=display.get(old);if(num&&label.textContent!==String(num))label.textContent=String(num);
-      }
-    });
-  }
-  refresh();
-  const collection=document.getElementById('items');
-  if(collection)new MutationObserver(refresh).observe(collection,{childList:true,subtree:true});
-  document.addEventListener('click',()=>queueMicrotask(refresh));
-  document.addEventListener('input',()=>queueMicrotask(refresh));
+(()=>{
+ const exclusions=new Set([1,2,3,18,19,21,23,108,109,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73]);
+ const map=new Map();
+ function renumber(){
+   const all=[...document.querySelectorAll('.target[data-n]')];
+   const ids=[...new Set(all.map(x=>Number(x.dataset.n)).filter(n=>Number.isInteger(n)&&!exclusions.has(n)&&!all.filter(e=>Number(e.dataset.n)===n).every(e=>e.classList.contains('v8Excluded'))))].sort((x,y)=>x-y);
+   map.clear();ids.forEach((n,i)=>map.set(n,i+1));
+   all.forEach(el=>{const n=Number(el.dataset.n),badge=el.querySelector(':scope > .badge');if(!badge)return;const val=map.get(n);if(val){badge.textContent=val;badge.style.removeProperty('display')}else badge.style.display='none'});
+   document.querySelectorAll('#items .item, .miniSearchResult, .searchResult, .poolItem').forEach(el=>{
+     const original=Number(el.dataset.n||el.dataset.originalN||el.getAttribute('data-id'));
+     if(!map.has(original))return;
+     const number=map.get(original);
+     const label=el.querySelector('.itemNo,.itemNum,.badge');
+     if(label)label.textContent=number;
+     else {const first=el.firstChild;if(first?.nodeType===3&&/^\s*№\d+/.test(first.textContent))first.textContent=first.textContent.replace(/№\d+/, '№'+number)}
+   });
+   window.v8NumberMap=map;
+ }
+ renumber();
+ let busy=false;const schedule=()=>{if(busy)return;busy=true;queueMicrotask(()=>{busy=false;renumber()})};
+ for(const id of ['items','collection','poolList']){const el=document.getElementById(id);if(el)new MutationObserver(schedule).observe(el,{childList:true,subtree:true})}
+ document.addEventListener('click',schedule);
 })();
 </script>
 
@@ -3343,6 +3343,207 @@ startSearch=function(target,item){
  if(typeof rebuildCollection==='function')rebuildCollection();
  if(typeof fillPoolFilters==='function')fillPoolFilters();
  if(typeof renderPool==='function')renderPool();
+})();
+</script>
+
+<style id="v8-realization-original-layout">
+#v8DocEditor{inset:0!important;padding:12px 16px!important;overflow:auto!important;color:#202020!important}
+#v8DocEditor .v8RealHead{font:normal 23px Arial,sans-serif;display:flex;align-items:center;gap:12px;margin:0 0 12px;white-space:nowrap}
+#v8DocEditor .v8RealHeadEnd{margin-left:auto;font-size:17px;color:#777}
+#v8DocEditor .v8RealActions,#v8DocEditor .v8RealTableTools{display:flex;gap:9px;align-items:center;white-space:nowrap;min-width:max-content;margin-bottom:12px}
+#v8DocEditor .v8RealActions button,#v8DocEditor .v8RealTableTools button{padding:7px 12px;border:1px solid #aaa;background:linear-gradient(#fff,#e9e9e9);font:15px Arial;border-radius:2px}
+#v8DocEditor .v8RealActions .v8Gold{background:#ffdb05!important;border-color:#ad9000!important;font-weight:bold}
+#v8DocEditor .v8RealFields{display:flex;flex-direction:column;gap:13px;margin-bottom:17px}
+#v8DocEditor .v8RealLine{display:flex;align-items:center;gap:15px;min-width:1100px}
+#v8DocEditor .v8RealLine label{display:flex;align-items:center;gap:10px;min-width:0;flex:1;white-space:nowrap}
+#v8DocEditor .v8RealLine label:first-child{flex:1}
+#v8DocEditor .v8RealLine input{height:31px;min-width:0;flex:1;border:1px solid #bbb;padding:4px 8px;font:15px Arial}
+#v8DocEditor .v8RealLine label:has(#v8DocNumber){flex:.7}
+#v8DocEditor .v8RealLine label:has(#v8DocDate){flex:.9}
+#v8DocEditor .v8RealLine label:has(#v8DocOrg){flex:2.5}
+#v8DocEditor .v8RealLine label:has(#v8DocPartner){flex:2.2}
+#v8DocEditor .v8RealLine label:has(#v8DocStore){flex:2}
+#v8DocEditor .v8Select{display:flex;align-items:center;flex:1;min-width:0;border:1px solid #bbb}
+#v8DocEditor .v8Select input{border:0!important}
+#v8DocEditor .v8Select span{border-left:1px solid #bbb;padding:5px;color:#444}
+#v8DocEditor .v8Muted{color:#999}
+#v8DocEditor .v8FakeLink,#v8DocEditor a{color:#1656b6;text-decoration:underline;cursor:default;white-space:nowrap}
+#v8DocEditor .v8RealTableBox{height:310px;border:1px solid #ccc;overflow:auto}
+#v8DocEditor .v8RealTableBox table{border-collapse:collapse;width:100%;min-width:900px}
+#v8DocEditor .v8RealTableBox th{background:#f1f1f1;text-align:left;font-weight:normal;border:1px solid #d4d4d4;padding:10px}
+#v8DocEditor .v8RealTableBox td{border:1px solid #ddd;padding:3px}
+#v8DocEditor .v8RealTableBox td input{height:28px;width:100%;border:0;min-width:0;font:14px Arial}
+#v8DocEditor .v8RealBottom{display:flex;justify-content:space-between;gap:20px;margin-top:12px}
+#v8DocEditor .v8RealBottom label{display:inline-flex;align-items:center;gap:6px}
+#v8DocEditor .v8RealBottom input[type=checkbox]{width:18px;height:18px}
+#v8DocEditor .v8RealBottom a{margin-right:12px}
+#v8DocEditor .v8RealBottom p{margin:24px 0 12px}
+#v8DocEditor .v8Comment{width:450px;height:30px;border:1px solid #bbb}
+#v8DocEditor .v8RealTotal{align-self:flex-start;background:#e4e4e4;padding:12px 18px;min-width:260px;display:flex;justify-content:space-between;gap:10px}
+#v8DocEditor .v8RealBack{margin-top:18px}
+#v8SalesList .v8Toolbar{gap:5px!important;margin-bottom:8px!important}
+#v8SalesList .v8Toolbar>button,#v8SalesList .v8Toolbar .v8CreateBtn{white-space:nowrap;padding:6px 10px}
+#v8SalesList .v8Toolbar input{height:32px;min-width:165px;width:190px;border:1px solid #aaa;padding:4px 6px}
+#v8SalesList .v8SalesTableScroll{min-height:200px!important}
+#v8SalesList .v8SalesTableScroll table{min-width:2100px}
+</style>
+<script id="v8-realization-original-behavior">
+(()=>{
+ const toolbar=document.querySelector('#v8SalesList .v8Toolbar');
+ if(toolbar){
+  const search=toolbar.querySelector('input[aria-label="Поиск реализаций"]');
+  if(search){const clear=document.createElement('button');clear.type='button';clear.textContent='×';clear.title='Очистить поиск';search.after(clear);clear.onclick=()=>{search.value='';search.focus()}}
+ }
+ const add=document.getElementById('v8AddGoodsRow'),tbody=document.getElementById('v8GoodsRows');
+ const sum=document.getElementById('v8DocSum'),total=document.getElementById('v8TotalText');
+ function update(){let v=0;tbody?.querySelectorAll('tr').forEach(tr=>{const q=Number(tr.querySelector('.v8Qty')?.value)||0,p=Number(tr.querySelector('.v8Price')?.value)||0;const val=q*p;tr.querySelector('.v8LineSum').value=val.toFixed(2);v+=val});if(sum)sum.value=v.toFixed(2);if(total)total.textContent=v.toLocaleString('ru-RU',{minimumFractionDigits:2,maximumFractionDigits:2})}
+ add?.addEventListener('click',()=>{const tr=document.createElement('tr');tr.innerHTML='<td></td><td><input placeholder="Номенклатура"/></td><td><input type="number" class="v8Qty" min="0" value="1"/></td><td><input type="number" class="v8Price" min="0" step="0.01" value="0"/></td><td><input class="v8LineSum" readonly value="0.00"/></td><td><input placeholder="Счет учета"/></td>';tr.cells[0].textContent=String(tbody.children.length+1);tbody.appendChild(tr);tr.addEventListener('input',update);update()});
+ document.getElementById('v8EditorSave')?.addEventListener('click',()=>document.getElementById('v8EditorCreate')?.click());
+})();
+</script>
+
+<style id="v8-lesson-fields-safe">
+/* The original module and its document list are not modified. */
+#v8DocEditor #v8DocPartner,#v8DocEditor #v8DocOrg,#v8DocEditor #v8DocStore{border:2px solid #39a86b!important;box-shadow:0 0 0 1px #d7f2e2!important;background:#f8fffa!important}
+#v8DocEditor #v8DocPartner:focus,#v8DocEditor #v8DocOrg:focus,#v8DocEditor #v8DocStore:focus{outline:2px solid #8bd9a9!important;outline-offset:1px}
+#v8DocEditor #v8DocPartner.v8FieldFilled,#v8DocEditor #v8DocOrg.v8FieldFilled,#v8DocEditor #v8DocStore.v8FieldFilled{border:1px solid #bdbdbd!important;box-shadow:none!important;background:#fff!important}
+#v8DocEditor #v8AddGoodsRow{border:2px solid #39a86b!important;background:#f1fff5!important}
+#v8GoodsHint{font:12px Arial,sans-serif;color:#267744;align-self:center;white-space:normal}
+#v8EditorCommonTab{display:none;position:relative;flex:0 0 auto;padding:6px 30px 6px 10px;border:1px solid #bbb;border-bottom:2px solid #279c5c;background:white;color:#222;font:12px Arial;white-space:nowrap;cursor:pointer}
+#v8EditorCommonTab.open{display:inline-block}
+#v8EditorCommonTab .v8EditorTabClose{position:absolute;right:7px;top:3px;font:17px Arial;color:#444}
+</style>
+<script id="v8-lesson-fields-behavior">
+(()=>{
+ const editor=document.getElementById('v8DocEditor'),add=document.getElementById('v8AddGoodsRow');
+ const tabs=document.getElementById('v8SalesTabs');
+ if(!editor||!add)return;
+ const hint=document.createElement('span');hint.id='v8GoodsHint';hint.textContent='Чтобы указать товары, нажмите «Добавить» и заполните строку номенклатуры.';
+ add.insertAdjacentElement('afterend',hint);
+ add.title='Добавить строку номенклатуры';
+ for(const id of ['v8DocPartner','v8DocOrg','v8DocStore']){
+  const field=document.getElementById(id);
+  if(field){
+   field.title='Заполните это поле для создания реализации';
+   const updateHighlight=()=>field.classList.toggle('v8FieldFilled',field.value.trim().length>0);
+   field.addEventListener('input',updateHighlight);
+   field.addEventListener('change',updateHighlight);
+   updateHighlight();
+  }
+ }
+ if(tabs&&!document.getElementById('v8EditorCommonTab')){
+  const tab=document.createElement('button');tab.id='v8EditorCommonTab';tab.type='button';
+  tab.innerHTML='Реализация товаров: Накладная, УПД (создание) <span class="v8EditorTabClose" aria-label="Закрыть вкладку">×</span>';
+  tabs.appendChild(tab);
+  tab.addEventListener('click',e=>{
+   if(e.target.closest('.v8EditorTabClose')){
+    e.preventDefault();e.stopPropagation();editor.classList.remove('open');tab.classList.remove('open');window.v8SalesShowList?.();return;
+   }
+   document.getElementById('v8SalesPage')?.classList.add('open');editor.classList.add('open');
+  });
+ }
+ // Returning to Administration must always reactivate its root page, including after Sales.
+ const adminNav=document.querySelector('.navItem[data-n="53"]');
+ adminNav?.addEventListener('click',()=>{
+   const pane=document.querySelector('.diadocPane');
+   const preview=document.getElementById('adminPreview');
+   if(!pane||!preview)return;
+   pane.classList.add('adminMode');
+   preview.style.display='';
+   if(preview.dataset.page!=='root'){
+     const back=preview.querySelector('[data-admin-back="root"]');
+     if(back)back.click();
+   }
+ });
+})();
+</script>
+
+<style id="v8-20261018-requested-fixes">
+/* Favorite is an on-hover affordance, not a permanent icon. */
+#v8SalesFav{opacity:0!important;visibility:hidden!important;transition:opacity .1s}
+#v8SalesLink:hover + #v8SalesFav,#v8SalesFav:hover,#v8SalesFav:focus-visible{opacity:1!important;visibility:visible!important}
+/* Sales uses the existing in-app tab strip, including the document editor. */
+#v8SalesPage.open{position:absolute;inset:0;display:flex;flex-direction:column}
+#v8SalesTabs{flex:0 0 31px}
+#v8DocEditor{top:31px!important;inset:31px 0 0!important}
+</style>
+<script id="v8-20261018-requested-fixes-js">
+(()=>{
+ const names=new Set(['Помощь','Написать в поддержку','Заказать обратный звонок','Заказать колбэк','Руководителю','Банк и касса','Склад','Зарплата и кадры','Операции','Отчеты','Получить ссылку','Перейти по ссылке','Календарь','Калькулятор','Показать М','Окна']);
+ const scrub=()=>document.querySelectorAll('.target').forEach(el=>{if(names.has(el.dataset.name)){el.classList.remove('target');el.querySelectorAll(':scope > .badge').forEach(b=>b.style.display='none')}});
+ scrub();
+ const nav=document.querySelector('.nav');if(nav)new MutationObserver(scrub).observe(nav,{childList:true});
+ const help=document.getElementById('helpDrop');if(help)new MutationObserver(scrub).observe(help,{childList:true});
+})();
+</script>
+
+<style id="v8-tasks-history-20261018">
+#v8TaskChooser{position:fixed;inset:0;z-index:14000;background:#0008;display:none;align-items:center;justify-content:center;font:15px Arial}
+#v8TaskChooser.open{display:flex}#v8TaskChooser>div{background:#191b20;color:white;padding:24px;border-radius:12px;min-width:300px;box-shadow:0 12px 45px #0008}
+#v8TaskChooser button{display:block;width:100%;margin-top:12px;padding:12px;text-align:left;background:#30343c;border:1px solid #5b626d;color:white;border-radius:6px;cursor:pointer}
+#v8TaskChooser button:hover{background:#48515e}
+#v8TaskChooser .v8CloseChooser{text-align:right;background:transparent;border:0;padding:4px}
+#v8TaskHistory{max-height:150px;overflow:auto;font-size:12px;margin-top:12px}
+#v8SalesPage{top:0!important;bottom:0!important}
+#v8SalesTabs{position:sticky;top:0;z-index:50;justify-content:flex-start!important;gap:0!important}
+#v8SalesTabs button{margin:0!important}
+#v8ReturnSalesTab{display:none!important}
+</style>
+<div id="v8TaskChooser"><div><b>Задачи</b><button class="v8CloseChooser" type="button">× Закрыть</button><button id="v8TaskOne" type="button">№1 · Где находится конфигурация 1С?</button><button id="v8TaskTwo" type="button">№2 · Как создать реализацию?</button><div id="v8TaskHistory"></div></div></div>
+<script id="v8-tasks-history-script-20261018">
+(()=>{'use strict';
+ const chooser=document.getElementById('v8TaskChooser'), taskButton=document.querySelector('.m8tasks');if(!taskButton)return;
+ const guided=document.getElementById('m8GuidedTask'),heading=guided?.querySelector('.guideTop strong'),question=document.getElementById('m8GuidedQuestion'),instruction=document.getElementById('m8GuidedInstruction'),progress=document.getElementById('m8GuidedProgress'),hint=document.getElementById('m8GuidedHint');
+ const key='diadocTrainer.guidedTaskHistory.v1';let started=0,active=false,stage=0,watch=null;
+ const history=()=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return[]}};
+ const showHistory=()=>{document.getElementById('v8TaskHistory').innerHTML='<b>История заданий</b>'+history().slice().reverse().map(x=>'<div style="padding:4px 0">'+new Date(x.at).toLocaleString('ru-RU')+' · '+x.name+' · '+x.seconds+' сек</div>').join('')};
+ const stop=()=>{active=false;clearInterval(watch);guided?.classList.remove('open')};
+ const finish=()=>{if(!active)return;active=false;clearInterval(watch);const seconds=Math.round((Date.now()-started)/1000);const a=history();a.push({at:new Date().toISOString(),name:'Как создать реализацию',seconds});localStorage.setItem(key,JSON.stringify(a));progress.textContent='✓ Задание выполнено · '+seconds+' сек · '+new Date().toLocaleString('ru-RU');instruction.textContent='Реализация создана. Результат сохранён в истории.';hint.hidden=true};
+ const draw=()=>{if(!active)return;heading.textContent='Задача №2 · Создание реализации';question.textContent='Как создать реализацию?';progress.textContent='Шаг '+stage+' из 3 · '+Math.floor((Date.now()-started)/1000)+' сек';instruction.textContent=['Перейди в раздел «Продажи».','Открой «Реализация (акты, накладные, УПД)».','Создай документ реализации.'][stage];hint.hidden=false};
+ function start2(){chooser.classList.remove('open');window.DiadocConfigTask?.stop();active=true;stage=0;started=Date.now();guided.classList.add('open');document.getElementById('m8Setup')?.classList.remove('on');draw();watch=setInterval(draw,1000)}
+ taskButton.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();chooser.classList.add('open');showHistory()},true);
+ chooser.querySelector('.v8CloseChooser').onclick=()=>chooser.classList.remove('open');
+ document.getElementById('v8TaskOne').onclick=()=>{chooser.classList.remove('open');window.DiadocConfigTask?.start()};
+ document.getElementById('v8TaskTwo').onclick=start2;
+ document.addEventListener('click',e=>{if(!active)return;
+ if(stage===0&&e.target.closest('.navItem[data-n="46"]')){stage=1;setTimeout(draw,100)}
+ else if(stage===1&&e.target.closest('#v8SalesLink')){stage=2;setTimeout(draw,100)}
+ else if(stage===2&&e.target.closest('#v8CreateRealization,.v8CreateMenu button')){ /* Creating a document requires the actual Create action, not opening the menu. */ }
+ if(stage===2&&e.target.closest('button')&&/^(Создать|Провести и закрыть)$/.test(e.target.textContent.trim()))setTimeout(finish,150);
+ },true);
+ document.getElementById('m8GuidedClose')?.addEventListener('click',stop);
+})();
+</script>
+
+<style id="v8-warehouse-scroll-fix">
+/* Localized patch: never alter the Diadoc module or tab navigation. */
+#v8DocEditor .v8RealTableBox{overflow-x:auto!important;overflow-y:auto!important;max-width:100%!important}
+#v8DocEditor .v8RealTableBox table{min-width:1450px!important;width:max-content!important}
+#v8DocEditor .v8RealActions{overflow-x:auto!important;max-width:100%!important}
+#v8DocEditor .v8RealFields{min-width:1060px}
+#v8DocEditor{overflow:auto!important}
+#v8StoreSuggestions{position:fixed;z-index:2147480000;background:#fff;border:1px solid #aaa;box-shadow:0 3px 7px #0003;min-width:280px;max-width:440px;font:16px Arial,sans-serif}
+#v8StoreSuggestions button{display:block;width:100%;text-align:left;padding:10px 16px;background:white;border:0;cursor:pointer;font:inherit;color:#222}
+#v8StoreSuggestions button:hover{background:#fff0b8}
+</style>
+<script id="v8-warehouse-default-option">
+(()=>{
+ const input=document.getElementById('v8DocStore');
+ if(!input)return;
+ const pop=document.createElement('div');pop.id='v8StoreSuggestions';pop.hidden=true;document.body.appendChild(pop);
+ function hide(){pop.hidden=true;pop.replaceChildren()}
+ function choose(){input.value='Основной';input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));hide()}
+ function show(){
+   pop.replaceChildren();
+   const rect=input.getBoundingClientRect();pop.style.left=Math.max(4,Math.min(rect.left,innerWidth-320))+'px';pop.style.top=Math.min(rect.bottom+2,innerHeight-90)+'px';pop.style.width=Math.max(280,rect.width)+'px';
+   const item=document.createElement('button');item.type='button';item.textContent='Основной';item.addEventListener('mousedown',e=>e.preventDefault());item.addEventListener('click',choose);pop.appendChild(item);
+   const all=document.createElement('button');all.type='button';all.textContent='Показать всех';all.style.color='#1367b3';all.style.textDecoration='underline';all.addEventListener('mousedown',e=>e.preventDefault());all.addEventListener('click',()=>{pop.replaceChildren();const only=document.createElement('button');only.type='button';only.textContent='Основной';only.addEventListener('click',choose);pop.appendChild(only)});pop.appendChild(all);pop.hidden=false;
+ }
+ input.addEventListener('focus',show);input.addEventListener('click',show);
+ input.closest('.v8Select')?.querySelector('span')?.addEventListener('click',e=>{e.stopPropagation();show();input.focus()});
+ document.addEventListener('pointerdown',e=>{if(!pop.contains(e.target)&&e.target!==input&&!input.closest('.v8Select')?.contains(e.target))hide()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')hide();if(e.key==='Enter'&&document.activeElement===input&&!pop.hidden){e.preventDefault();choose()}});
+ window.addEventListener('scroll',()=>{if(!pop.hidden)hide()},true);
 })();
 </script>
 </body></html>
@@ -3498,7 +3699,7 @@ startSearch=function(target,item){
   function sectionLastColumn(){
     if(state.section==='outgoing')return {name:'Отправлен',label:'Отправлен'};
     if(state.section==='incoming')return {name:'Получен',label:'Получен'};
-    if(state.section==='send')return {name:'',label:'<span class="devPinkQ" title="Разработчик ещё доделает">?</span>'};
+    if(state.section==='send')return {name:'',label:''};
     return {name:'Отправлен',label:'Отправлен'};
   }
   const render55=render;
@@ -3506,7 +3707,8 @@ startSearch=function(target,item){
     render55();
     const last=sectionLastColumn();
     const th=document.querySelector('th.target[data-n="67"]');
-    if(th){th.dataset.name=last.name||'Не определено';th.innerHTML='<i class="badge">67</i>'+last.label}
+    if(th){th.dataset.name=last.name||'Не определено';th.innerHTML='<i class="badge">67</i>'+last.label;th.style.display=state.section==='send'?'none':'';}
+    document.querySelectorAll('#viewport tbody tr').forEach(tr=>{const td=tr.lastElementChild;if(td)td.style.display=state.section==='send'?'none':''});
     rebuildCollection();
   };
   render();
@@ -4472,20 +4674,23 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
  const first=menu.querySelector('button');if(first){first.dataset.v8Kind='goods';first.textContent='Товары (накладная, УПД)'}
  [...menu.querySelectorAll('button')].slice(1).forEach(b=>{b.disabled=true;b.title='Этот вид документа пока не разрабатываем'});
  const editor=document.createElement('section');editor.id='v8DocEditor';editor.setAttribute('aria-label','Создание реализации: товары, накладная, УПД');
- editor.innerHTML=`<h2>Реализация (создание) — Товары (накладная, УПД)</h2>
- <div class="v8EditorTools"><button type="button" id="v8EditorBack">← К списку</button><button type="button" id="v8EditorCreate" class="v8EditorCreate">Создать</button></div>
- <div class="v8EditorGrid">
- <label>Дата<input id="v8DocDate" type="date" required></label>
- <label>Номер<input id="v8DocNumber" placeholder="Заполняется автоматически"></label>
- <label>Организация<input id="v8DocOrg" placeholder="Организация" required></label>
- <label>Контрагент<input id="v8DocPartner" placeholder="Контрагент" required></label>
- <label>Склад<input id="v8DocStore" value="Основной"></label>
- <label>Сумма, руб.<input id="v8DocSum" type="number" min="0" step="0.01" value="0"></label>
- </div><p class="v8EditorHelp">Учебная реализация. Запись появится в списке после нажатия «Создать». Остальные типы документов пока декоративные.</p>`;
+ editor.innerHTML=`
+ <div class="v8RealHead"><span>☆</span> Реализация товаров: Накладная, УПД (создание) <span class="v8RealHeadEnd">♧ &nbsp; ⋮ &nbsp; ×</span></div>
+ <div class="v8RealActions"><button class="v8Gold" id="v8EditorCreate" type="button">Провести и закрыть</button><button type="button" id="v8EditorSave">Записать</button><button type="button">Провести</button><button type="button">Дт Кт</button><button type="button">▣ Печать ▾</button><button type="button">✉</button><button type="button">Создать на основании ▾</button><button type="button">▤</button><button type="button">▣</button><button type="button">📎</button><button type="button">ЭДО ▾</button><button type="button">Еще ▾</button><button type="button">?</button></div>
+ <div class="v8RealFields">
+  <div class="v8RealLine"><label>Номер: <input id="v8DocNumber" placeholder="" /></label><label>от: <input id="v8DocDate" type="date" /></label><label>Организация: <span class="v8Select"><input id="v8DocOrg" placeholder=""/><span>▾ &nbsp; ▣</span></span></label></div>
+  <div class="v8RealLine"><label>Контрагент: <span class="v8Select"><input id="v8DocPartner" placeholder="Введите ИНН или наименование"/><span>▾ &nbsp; ▣</span></span></label><span class="v8FakeLink">?</span><label>Склад: <span class="v8Select"><input id="v8DocStore" placeholder=""/><span>▾ &nbsp; ▣</span></span></label></div>
+  <div class="v8RealLine"><label class="v8Muted">Договор: <input placeholder="" disabled /></label><label class="v8Muted">Расчеты: <span>62.01, 62.02</span></label></div>
+  <div class="v8RealLine"><label>Счет на оплату: <input placeholder="" /></label><span class="v8FakeLink">Добавить</span><span class="v8FakeLink">Документ без НДС</span></div>
+ </div>
+ <div class="v8RealTableTools"><button type="button" id="v8AddGoodsRow">Добавить</button><button type="button">Заполнить ▾</button><button type="button">Подбор</button><button type="button">Изменить</button><button type="button">⬆</button><button type="button">⬇</button><button type="button">▤</button><button type="button">▣</button><button type="button" style="margin-left:auto">Еще ▾</button></div>
+ <div class="v8RealTableBox"><table><thead><tr><th>N</th><th>Номенклатура</th><th>Количество</th><th>Цена</th><th>Сумма</th><th>Счета учета</th></tr></thead><tbody id="v8GoodsRows"></tbody></table></div>
+ <div class="v8RealBottom"><div><label><input type="checkbox"/> УПД</label> <a>Реквизиты печатных форм и ЭДО</a> <a>Доставка</a> <label><input type="checkbox"/> Документ подписан</label><p><a>Статформа</a> &nbsp; ?</p><label>Комментарий: <input class="v8Comment"/></label></div><div class="v8RealTotal">Всего: <strong id="v8TotalText">0,00</strong> руб.</div></div>
+ <input type="hidden" id="v8DocSum" value="0"/><button type="button" id="v8EditorBack" class="v8RealBack">← К списку реализаций</button>`;
  shell.appendChild(editor);
  const date=$('v8DocDate');date.value=new Date().toLocaleDateString('en-CA');
- function openEditor(){menu.classList.remove('open');shell.classList.add('open');editor.classList.add('open')}
- function closeEditor(){editor.classList.remove('open');window.v8SalesShowList?.()}
+ function openEditor(){menu.classList.remove('open');shell.classList.add('open');editor.classList.add('open');document.getElementById('v8EditorCommonTab')?.classList.add('open')}
+ function closeEditor(){editor.classList.remove('open');document.getElementById('v8EditorCommonTab')?.classList.remove('open');window.v8SalesShowList?.()}
  $('v8EditorBack').addEventListener('click',closeEditor);
  first?.addEventListener('click',e=>{e.stopPropagation();openEditor()});
  $('v8EditorCreate').addEventListener('click',()=>{
@@ -4504,7 +4709,7 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
  const back=$('v8SalesBackTab'),active=$('v8SalesActiveTab'),retained=$('v8ReturnSalesTab');
  if(retained){retained.hidden=true;retained.style.display='none'}
  const persistent=document.createElement('button');persistent.type='button';persistent.id='v8SalesPersistentTab';persistent.textContent='Реализация (акты, накладные, УПД)';
- persistent.style.cssText='display:none;position:absolute;top:0;left:185px;right:auto;z-index:18;padding:5px 12px;border:1px solid #bbb;border-bottom:2px solid #289a58;background:#f4f4f4;cursor:pointer;font:12px Arial';
+ persistent.style.cssText='display:none!important';
  shell.parentElement.appendChild(persistent);
  persistent.addEventListener('click',()=>{window.v8SalesShowList?.();persistent.style.display='none'});
  back?.addEventListener('click',()=>{editor.classList.remove('open');persistent.style.display='block'});
@@ -4562,5 +4767,61 @@ const nav=document.getElementById('nav');if(nav){const observer=new MutationObse
  const mini=document.querySelector('.miniSearchPop');
  if(mini){mini.addEventListener('click',e=>{const result=e.target.closest('.miniSearchResult');if(!result)return;mini.querySelectorAll('.v8Picked').forEach(x=>x.classList.remove('v8Picked'));result.classList.add('v8Picked')},true);
  const pin=mini.querySelector('.miniSearchPin');if(pin){pin.textContent='♧';pin.title='Закрепить поиск';const obs=new MutationObserver(()=>{if(pin.textContent==='📌')pin.textContent='♧'});obs.observe(pin,{childList:true})}}
+})();
+</script>
+
+
+<style id="v8-counterparty-picker-20261018">
+#v8DocEditor .v8Select:has(#v8DocPartner){position:relative}
+#v8PartnerSuggestions{position:absolute;left:0;top:100%;width:min(460px,80vw);z-index:4002;background:white;border:1px solid #aaa;box-shadow:0 5px 14px #0003;display:none;font:14px Arial}
+#v8PartnerSuggestions.open{display:block}
+#v8PartnerSuggestions button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #ddd;background:#fff;padding:10px;cursor:pointer}
+#v8PartnerSuggestions button:hover{background:#fff0a4}
+#v8PartnerSuggestions .v8PartnerAll{color:#0069b5;text-decoration:underline}
+#v8PartnerModal{display:none;position:fixed;inset:0;z-index:9999;background:#0003;align-items:center;justify-content:center;font:14px Arial;color:#333}
+#v8PartnerModal.open{display:flex}
+#v8PartnerWindow{width:min(1280px,92vw);height:min(785px,87vh);background:#fff;border:1px solid #a9a9a9;box-shadow:0 10px 32px #0005;display:flex;flex-direction:column;padding:14px 16px;min-height:0}
+#v8PartnerWindow .v8PartnerHead{font-size:23px;display:flex;gap:12px;align-items:center;margin-bottom:12px}
+#v8PartnerWindow .v8PartnerHead button{margin-left:auto;border:0;background:transparent;font-size:25px;cursor:pointer}
+#v8PartnerWindow .v8PartnerToolbar{display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+#v8PartnerWindow .v8PartnerToolbar button{padding:7px 15px;border:1px solid #aaa;background:linear-gradient(white,#eee);cursor:pointer}
+#v8PartnerWindow .v8PartnerToolbar .v8PartnerChoose{background:#ffe300;font-weight:bold}
+#v8PartnerWindow .v8PartnerToolbar input{margin-left:auto;padding:7px;border:1px solid #bbb;min-width:190px}
+#v8PartnerWindow .v8PartnerGrid{overflow:auto;flex:1;border:1px solid #bbb}
+#v8PartnerWindow table{border-collapse:collapse;width:100%;table-layout:fixed}
+#v8PartnerWindow th,#v8PartnerWindow td{border:1px solid #ddd;text-align:left;padding:9px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:400}
+#v8PartnerWindow th{background:#f0f0f0}
+#v8PartnerWindow tbody tr{cursor:pointer}#v8PartnerWindow tbody tr:nth-child(even){background:#f8f8f8}
+#v8PartnerWindow tbody tr.selected{background:#fff0bd!important}#v8PartnerWindow tbody tr.selected td:first-child{outline:2px solid #e9ba22;outline-offset:-2px}
+#v8PartnerWindow .v8PartnerFoot{padding:10px 0 0;text-align:right;color:#888}
+#v8DocEditor .v8PartnerInputActions{display:inline-flex;align-items:stretch;flex:0 0 auto;height:100%;border-left:1px solid #bbb}
+#v8DocEditor .v8PartnerInputActions button{padding:0 7px;border:0;border-right:1px solid #bbb;background:#f8f8f8;cursor:pointer;font-size:13px}
+</style>
+<script id="v8-counterparty-picker-script-20261018">
+(()=>{
+ 'use strict';
+ const input=document.getElementById('v8DocPartner');if(!input)return;
+ const wrap=input.closest('.v8Select');if(!wrap)return;
+ const profileKey='diadocTrainer.trainingProfile.v1';
+ function partners(){try{const p=JSON.parse(localStorage.getItem(profileKey)||'{}');return [...new Set((Array.isArray(p.partners)?p.partners:[]).filter(x=>typeof x==='string').map(x=>x.trim()).filter(Boolean))]}catch{return []}}
+ const normalize=x=>String(x).toLocaleLowerCase('ru').replace(/[«»"']/g,'').replace(/\s+/g,' ').trim();
+ const oldIcons=wrap.querySelector('span:not(.v8PartnerInputActions)');if(oldIcons)oldIcons.style.display='none';
+ const actions=document.createElement('span');actions.className='v8PartnerInputActions';actions.innerHTML='<button type="button" title="Подсказки">▾</button><button type="button" title="Показать всех">▣</button>';wrap.append(actions);
+ const suggestions=document.createElement('div');suggestions.id='v8PartnerSuggestions';wrap.append(suggestions);
+ const modal=document.createElement('div');modal.id='v8PartnerModal';modal.innerHTML=`<section id="v8PartnerWindow" role="dialog" aria-modal="true" aria-label="Контрагенты"><div class="v8PartnerHead"><span style="color:#aab0b5">☆</span> Контрагенты <button type="button" id="v8PartnerClose" aria-label="Закрыть">×</button></div><div class="v8PartnerToolbar"><button class="v8PartnerChoose" id="v8PartnerChoose" type="button">Выбрать</button><button type="button" disabled title="Учебный справочник заполняется при регистрации">Создать</button><button type="button" disabled>Создать группу</button><button type="button" disabled>Проверка контрагента</button><input id="v8PartnerSearch" placeholder="Поиск (Ctrl+F)" aria-label="Поиск контрагента"></div><div class="v8PartnerGrid"><table><colgroup><col style="width:35%"><col style="width:15%"><col style="width:34%"><col style="width:7%"><col style="width:9%"></colgroup><thead><tr><th>Наименование в программе</th><th>ИНН</th><th>Полное наименование</th><th>ЭДО</th><th>Метки</th></tr></thead><tbody id="v8PartnerRows"></tbody></table></div><div class="v8PartnerFoot">Учебные контрагенты, добавленные при регистрации</div></section>`;document.body.append(modal);
+ let selected='';
+ function choose(name){input.value=name;input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));suggestions.classList.remove('open');modal.classList.remove('open');input.focus()}
+ function close(){modal.classList.remove('open')}
+ function renderRows(){const body=document.getElementById('v8PartnerRows');body.replaceChildren();const q=normalize(document.getElementById('v8PartnerSearch').value);partners().filter(n=>normalize(n).includes(q)).forEach(name=>{const tr=document.createElement('tr');if(name===selected)tr.className='selected';[name,'',name,'',''].forEach(t=>{const td=document.createElement('td');td.textContent=t;tr.append(td)});tr.onclick=()=>{selected=name;renderRows()};tr.ondblclick=()=>choose(name);body.append(tr)})}
+ function showAll(){selected=partners()[0]||'';document.getElementById('v8PartnerSearch').value='';renderRows();suggestions.classList.remove('open');modal.classList.add('open')}
+ function suggest(){suggestions.replaceChildren();const q=normalize(input.value);if(!q){const all=document.createElement('button');all.type='button';all.className='v8PartnerAll';all.textContent='Показать всех';all.onclick=showAll;suggestions.append(all);suggestions.classList.add('open');return}const hits=partners().filter(n=>normalize(n).includes(q));if(!hits.length){suggestions.classList.remove('open');return}hits.forEach(name=>{const b=document.createElement('button');b.type='button';b.textContent=name;b.addEventListener('mousedown',e=>e.preventDefault());b.onclick=()=>choose(name);suggestions.append(b)});const all=document.createElement('button');all.type='button';all.className='v8PartnerAll';all.textContent='Показать всех';all.onclick=showAll;suggestions.append(all);suggestions.classList.add('open')}
+ input.addEventListener('input',suggest);input.addEventListener('focus',suggest);
+ actions.children[0].onclick=e=>{e.preventDefault();if(input.value.trim())suggest();else showAll()};actions.children[1].onclick=showAll;
+ document.getElementById('v8PartnerChoose').onclick=()=>{if(selected)choose(selected)};
+ document.getElementById('v8PartnerClose').onclick=close;
+ document.getElementById('v8PartnerSearch').oninput=renderRows;
+ modal.addEventListener('click',e=>{if(e.target===modal)close()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();suggestions.classList.remove('open')}});
+ document.addEventListener('click',e=>{if(!wrap.contains(e.target))suggestions.classList.remove('open')});
 })();
 </script>
