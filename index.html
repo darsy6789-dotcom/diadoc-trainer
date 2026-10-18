@@ -2292,7 +2292,17 @@ refresh();
 .v8MoreMenu button:hover{background:#ffe077}
 .v8SendExtras{display:flex;align-items:center;gap:5px;flex:0 0 auto}
 .v8SendExtras button{height:31px;white-space:nowrap;border:1px solid #aaa;background:linear-gradient(#fff,#e9e9e9);cursor:pointer;padding:0 9px;font:12px Arial}
-</style>
+  /* Синяя ссылка «Найти нужный документ» */
+.diadocPane .module>.actions .v8SendExtras button:first-child {
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#2167ad!important;
+  text-decoration:underline!important;
+  padding:0 3px!important;
+  cursor:pointer!important;
+} 
+  </style>
 <script id="v8-stage6-toolbar">
 (function(){
  const actions=document.querySelector('.diadocPane .module>.actions');
@@ -4528,7 +4538,7 @@ body:has(.diadocPane:not([hidden]) .sectionBtn.active) #v8HintReopen{display:non
 .stage .diadocPane .module>.filters,
 .stage .diadocPane .module>.actions {
   box-sizing:border-box!important;height:34px!important;min-height:34px!important;
-  margin:0 0 2px!important;padding:0!important;align-items:center!important;gap:4px!important;
+  margin:0 0 2px!important;padding:0!important;align-items:center!important;gap:8px!important;
 }
 .stage .diadocPane .module>.filters .control,
 .stage .diadocPane .module>.actions .control {
