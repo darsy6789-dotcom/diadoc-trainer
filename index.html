@@ -581,6 +581,13 @@
 #stage.numbering #v8SalesPage.open #v8SalesHome:has(~ #v8DocEditor:not([hidden])) .badge {display:none!important;}
 #stage:not(.numbering) .badge {display:none!important;}
 </style>
+<style id="v8-task-settings-hotfix">
+/* Settings expands directly under its parent button, not at the bottom of sidebar. */
+#v8GameSettings{position:static!important;inset:auto!important;left:auto!important;right:auto!important;bottom:auto!important;top:auto!important;width:auto!important;max-width:100%!important;margin:8px 12px 12px!important;box-sizing:border-box!important;box-shadow:none!important;z-index:auto!important}
+.app.trainerMini #v8GameSettings{display:none!important}
+#v8TaskChooser .v8SelectedTask{border-color:#efbd28!important;background:#41454c!important}
+#v8TaskChooser #v8PlayTask{background:#efbd28!important;color:#16191f!important;font-weight:700!important;text-align:center!important;border-color:#efbd28!important}
+</style>
 </head>
 <body>
 <div class="app">
@@ -596,7 +603,7 @@
 <div class="onecMenuItem target" data-n="96" data-name="Перейти по ссылке" data-path="94,96" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">96</i><span>Перейти по ссылке...</span><kbd>Shift+F11</kbd></div><div class="onecSep"></div>
 <div class="onecMenuItem target" data-n="97" data-name="Календарь" data-path="94,97" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">97</i><span>Календарь</span></div>
 <div class="onecMenuItem target" data-n="98" data-name="Калькулятор" data-path="94,98" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">98</i><span>Калькулятор</span><kbd>Ctrl+F2</kbd></div>
-<div class="onecMenuItem target" data-n="99" data-name="Показать M, M+, M-" data-path="94,99" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">99</i><span>Показать M, M+, M-</span></div><div class="onecSep"></div>
+
 <div class="onecMenuItem target" data-n="100" data-name="Файл" data-path="94,100" data-type="Пункт меню" data-zone="Главное меню 1С" id="onecFileMenuItem"><i class="badge">100</i><span>Файл</span><b>▶</b></div>
 <div class="onecMenuItem target" data-n="101" data-name="Окна" data-path="94,101" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">101</i><span>Окна</span><b>▶</b></div>
 <div class="onecMenuItem target" data-n="102" data-name="Настройки" data-path="94,102" data-type="Пункт меню" data-zone="Главное меню 1С"><i class="badge">102</i><span>Настройки</span><b>▶</b></div>
@@ -672,14 +679,14 @@ const navItems=[[43,'Главное','home'],[44,'Руководителю','man
 function navSvg(kind){const m={"home": `<path d="M3 5h12M3 9h12M3 13h12"/>`, "manager": `<path d="M2 13l4-4 3 2 6-7M11 4h4v4"/>`, "bank": `<circle cx="9" cy="9" r="7" fill="currentColor" stroke="none"/><text x="9" y="13" font-size="12" text-anchor="middle" fill="#fff" stroke="none">₽</text>`, "sales": `<path d="M3 6h12v10H3z" fill="currentColor" stroke="none"/><path d="M7 7V5a2 2 0 0 1 4 0v2" fill="none" stroke="#fff" stroke-width="1.5"/>`, "buy": `<path d="M2 3h2l2 9h9l2-7H5" fill="currentColor" stroke="none"/><circle cx="7" cy="15" r="1.5" fill="currentColor"/><circle cx="14" cy="15" r="1.5" fill="currentColor"/>`, "warehouse": `<path d="M2 2h6v6H2zM10 2h6v6h-6zM2 10h6v6H2zM10 10h6v6h-6z" fill="currentColor" stroke="none"/>`, "staff": `<circle cx="9" cy="5" r="3" fill="currentColor" stroke="none"/><path d="M3 16v-2c0-6 12-6 12 0v2z" fill="currentColor" stroke="none"/>`, "ops": `<text x="3" y="8" font-size="7" font-weight="bold" fill="currentColor" stroke="none">Дт</text><text x="7" y="16" font-size="7" font-weight="bold" fill="currentColor" stroke="none">Кт</text>`, "reports": `<path d="M2 16h14M3 9h3v7H3zM8 4h3v12H8zM13 7h3v9h-3z" fill="currentColor" stroke="none"/>`, "refs": `<path d="M3 5h10v11H3zM5 3h10v11M7 1h10v11" fill="currentColor" stroke="none"/>`, "settings": `<path d="M7 1h4l.6 2.2 1.5.7 2-.9 2 3-1.7 1.7v2l1.7 1.6-2 3-2-.9-1.5.7L11 17H7l-.6-2.2-1.5-.7-2 .9-2-3 1.7-1.6v-2L1 6.7l2-3 2 .9 1.5-.7z" fill="currentColor" stroke="none"/><circle cx="9" cy="9" r="2.5" fill="#fff" stroke="none"/>`, "help": `<text x="9" y="15" font-size="16" text-anchor="middle" fill="currentColor" stroke="none">?</text>`, "diadoc": `<rect x="1" y="1" width="16" height="16" rx="3" fill="#00b9a8" stroke="none"/><path d="M5 4h7l2 3v7H5z" fill="#fff" stroke="none"/><path d="M7 8h5M7 10h5M7 12h4" stroke="#00a99a" stroke-width=".8"/>`};return `<svg viewBox="0 0 18 18" aria-hidden="true">${m[kind]||m.home}</svg>`}
 const settings=[[26,'Подписки и оплата'],[27,'Организации'],[28,'Ваши контрагенты'],[29,'Поиск новых контрагентов'],[30,'Доверенности'],[31,'Расширенные настройки']];
 const help=[[32,'Быстрая настройка'],[33,'Руководство пользователя'],[34,'Техническая информация'],[35,'История обновлений'],[36,'Служебные сообщения'],[37,'Нужна помощь'],[38,'Написать в поддержку'],[39,'Провести диагностику'],[40,'Удаленное подключение'],[41,'Телефон поддержки 8-800-500-10-18'],[42,'Заказать обратный звонок']];
-const cols=[[0,'','☐',42],[57,'Документ','Документ',260],[58,'Номер','Номер',100],[59,'Дата документа','Дата документа',110],[60,'Сумма','Сумма',110],[61,'Документ в 1С','Документ в 1С',160],[62,'Статус','Статус',170],[63,'Доп. статус','Доп. статус',150],[64,'Статус МЧД','Статус МЧД',150],[65,'Контрагент','Контрагент',200],[66,'Организация','Организация',190],[67,'Отправлен','Отправлен',110]];
+const cols=[[0,'','☐',42],[57,'Документ','Документ',260],[58,'Номер','Номер',100],[59,'Дата документа','Дата документа',110],[60,'Сумма','Сумма',110],[61,'Документ в 1С','Документ в 1С',160],[62,'Статус','Статус',170],[63,'Доп. статус','Доп. статус',150],[64,'Статус МЧД','Статус МЧД',150],[65,'Контрагент','Контрагент',200],[66,'Организация','Организация',190]];
 const sampleRows=[];
 const meta={1:['Кнопка','Навигация'],2:['Кнопка','Навигация'],3:['Кнопка','Навигация'],8:['Кнопка','Фильтры'],9:['Поле','Фильтры'],10:['Поле','Фильтры'],11:['Поле','Фильтры'],12:['Поле','Фильтры'],13:['Кнопка','Действия'],14:['Кнопка','Действия'],15:['Кнопка','Действия'],16:['Кнопка','Действия'],17:['Кнопка','Действия'],18:['Кнопка','Действия'],19:['Кнопка','Действия'],20:['Кнопка','Действия'],21:['Кнопка','Действия'],22:['Кнопка','Верхняя панель'],23:['Кнопка','Верхняя панель'],24:['Кнопка','Верхняя панель'],25:['Кнопка','Верхняя панель'],56:['Кнопка','Таблица'],57:['Столбец','Таблица'],58:['Столбец','Таблица'],59:['Столбец','Таблица'],60:['Столбец','Таблица'],61:['Столбец','Таблица'],62:['Столбец','Таблица'],63:['Столбец','Таблица'],64:['Столбец','Таблица'],65:['Столбец','Таблица'],66:['Столбец','Таблица'],67:['Столбец','Таблица']};
 function render(){stage.classList.toggle('numbering',state.numbering);toggle.classList.toggle('on',state.numbering);sectionButtons.innerHTML=sections.map(x=>`<button class="sectionBtn target ${state.section===x.id?'active':''}" data-n="${x.n}" data-name="${x.name}" data-type="Вкладка" data-zone="Разделы" data-action="section" data-section="${x.id}"><i class="badge">${x.n}</i>${x.name}</button>`).join('');nav.innerHTML=navItems.map(([n,name,icon])=>`<div class="navItem ${n===54?'decorativeOnly':'target'} ${name==='Контур.Диадок'?'active':''}" ${n===54?'':`data-n="${n}"`} data-name="${name}" data-type="Раздел" data-zone="Левое меню" data-action="nav"><i class="badge">${n}</i><span class="navIcon ${icon==='diadoc'?'diadocIcon':''}">${navSvg(icon)}</span>${name}</div>`).join('');settingsDrop.innerHTML=settings.map(([n,name],i)=>`${n===31?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Настройки" data-path="24,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}${n===31?' ▶':''}</div>`).join('');helpDrop.innerHTML=help.map(([n,name],i)=>`${n===37?'<div class="sep"></div>':''}<div class="mi target" data-n="${n}" data-name="${name}" data-type="Пункт меню" data-zone="Помощь" data-path="25,${n}" data-action="menuItem"><i class="badge">${n}</i>${name}</div>`).join('');thead.innerHTML='<tr>'+cols.map(([n,name,label])=>n?`<th class="target" data-n="${n}" data-name="${name}" data-type="Столбец" data-zone="Таблица" data-action="label"><i class="badge">${n}</i>${label}</th>`:`<th>${label}</th>`).join('')+'</tr>';tbody.innerHTML=(state.section==='send' ? (window.v8StudentDiadocRows?.()||[]) : []).map(r=>'<tr>'+r.map(v=>`<td>${v}</td>`).join('')+'</tr>').join('');rebuildCollection();syncMenus();const sf=document.querySelector('.statusField');if(sf){const send=state.section==='send';sf.dataset.name=send?'Вид пакета':'Статус';const label=sf.querySelector('.fieldMain');if(label)label.textContent=send?'Вид пакета':'Статус';} }
 function syncMenus(){settingsDrop.classList.toggle('open',state.openMenu==='settings');helpDrop.classList.toggle('open',state.openMenu==='help')}
 function allTargets(){return [...document.querySelectorAll('.target')].sort((a,b)=>+a.dataset.n-+b.dataset.n)}
 function targetInfo(el){const n=+el.dataset.n;const m=meta[n]||[];return{n,name:el.dataset.name,type:el.dataset.type||m[0]||(n>=43&&n<=55?'Раздел':n>=26&&n<=42?'Пункт меню':'Кнопка'),zone:el.dataset.zone||m[1]||(n>=43&&n<=55?'Левое меню':n>=26&&n<=31?'Настройки':n>=32&&n<=42?'Помощь':'Стартовая страница'),path:el.dataset.path||'',el}}
-function registry(){const seen=new Map();allTargets().forEach(el=>{const n=+el.dataset.n;if(![1,2,3,18,19,21,23,108,109,29,35,77,76,70,71,114,26,79,36,72,32,74,33,68,78,75,73].includes(n)){const info=targetInfo(el);const excludedNames=new Set(['Помощь','Написать в поддержку','Заказать обратный звонок','Заказать колбэк','Руководителю','Банк и касса','Склад','Зарплата и кадры','Операции','Отчеты','Получить ссылку','Перейти по ссылке','Календарь','Калькулятор','Показать М','Окна']);if(!excludedNames.has(info.name)&&!(n===25&&info.name==='Поддержка'))seen.set(n,info)}});return [...seen.values()].sort((a,b)=>a.n-b.n)}
+function registry(){const seen=new Map();allTargets().forEach(el=>{const n=+el.dataset.n;if(![1,2,3,18,19,21,23,108,109,29,35,77,76,70,71,114,26,79,36,99,72,32,74,33,68,78,75,73].includes(n)){const info=targetInfo(el);const excludedNames=new Set(['Помощь','Написать в поддержку','Заказать обратный звонок','Заказать колбэк','Руководителю','Банк и касса','Склад','Зарплата и кадры','Операции','Отчеты','Получить ссылку','Перейти по ссылке','Календарь','Калькулятор','Показать М','Показать M, M+, M-','Окна']);if(!excludedNames.has(info.name)&&!(n===25&&info.name==='Поддержка'))seen.set(n,info)}});return [...seen.values()].sort((a,b)=>a.n-b.n)}
 function nameFor(n){return registry().find(x=>x.n===+n)?.name||''}
 function contextText(x){return `${x.type} · ${x.zone}`}
 function rebuildCollection(){items.innerHTML='';registry().forEach(x=>{const d=document.createElement('div');d.className='item';d.dataset.q=(x.name+' '+x.n+' '+x.type+' '+x.zone).toLowerCase();d.innerHTML=`<span class="itemNo">${x.n}</span><span>${x.name}<small>${contextText(x)}</small></span>`;d.onclick=()=>startSearch(x.el,d);items.appendChild(d)});}
@@ -706,7 +713,7 @@ function loadTaskEdits(){try{return JSON.parse(localStorage.getItem(TASK_EDIT_KE
 let taskEdits=loadTaskEdits();
 function saveTaskEdits(){localStorage.setItem(TASK_EDIT_KEY,JSON.stringify(taskEdits))}
 function effectiveTask(x){const e=taskEdits[x.n]||{};return {...x,name:e.name||x.name,type:e.type||x.type,zone:e.zone||x.zone,prompt:e.prompt||'',gameEnabled:e.gameEnabled!==false}}
-function gameRegistry(){return registry().map(effectiveTask).filter(x=>x.gameEnabled!==false && ![29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n)))}
+function gameRegistry(){return registry().map(effectiveTask).filter(x=>x.gameEnabled!==false && ![29,35,77,76,70,26,79,36,99,72,32,74,33,68,78,75,73].includes(Number(x.n)))}
 function defaultPrompt(t){if(+t.n===111)return 'Где посмотреть информацию об ошибке в доверенности при подписании документов?';if(t.prompt)return t.prompt;if(t.type==='Поле'&&['Организация','Контрагент','Статус','Вид пакета'].includes(t.name))return `Найди фильтр по ${t.name.toLowerCase()}`;if(t.type==='Столбец')return `Найди столбец «${t.name}»`;if(t.type==='Вкладка')return `Найди вкладку «${t.name}»`;if(t.type==='Пункт меню')return `Найди пункт «${t.name}»`;if(t.type==='Кнопка')return `Найди кнопку «${t.name}»`;return `Найди «${t.name}»`}
 
 function availableRegistry(){return gameRegistry().filter(x=>!disabledTasks.has(x.n))}
@@ -2267,7 +2274,13 @@ refresh();
 .diadocPane .module>.filters>.statusField{flex:1 1 145px!important;width:auto!important;min-width:115px!important}
 .diadocPane .module>.filters .fieldMain{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important}
 .diadocPane .module>.filters .fieldMini{min-width:20px!important;padding:0 3px!important}
-.diadocPane .module>.actions{overflow-x:auto!important;overflow-y:hidden!important;flex-wrap:nowrap!important;gap:5px!important;scrollbar-width:thin}
+.diadocPane .module>.actions{
+  overflow-x:hidden!important;
+  overflow-y:visible!important;
+  flex-wrap:nowrap!important;
+  gap:5px!important;
+  scrollbar-width:none!important;
+}
 .diadocPane .module>.actions>.control{flex-shrink:0!important}
 .diadocPane .module>.actions [data-n="18"],.diadocPane .module>.actions [data-n="19"]{display:none!important}
 .diadocPane .module>.actions>.push{flex:1 0 8px!important}
@@ -3260,7 +3273,7 @@ startSearch=function(target,item){
 </script>
 <script id="v8-display-renumber-20261017">
 (()=>{
- const exclusions=new Set([1,2,3,18,19,21,23,108,109,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73]);
+ const exclusions=new Set([1,2,3,18,19,21,23,108,109,29,35,77,76,70,26,79,36,99,72,32,74,33,68,78,75,73]);
  const map=new Map();
  function renumber(){
    const all=[...document.querySelectorAll('.target[data-n]')];
@@ -3477,7 +3490,7 @@ startSearch=function(target,item){
 </style>
 <script id="v8-20261018-requested-fixes-js">
 (()=>{
- const names=new Set(['Помощь','Написать в поддержку','Заказать обратный звонок','Заказать колбэк','Руководителю','Банк и касса','Склад','Зарплата и кадры','Операции','Отчеты','Получить ссылку','Перейти по ссылке','Календарь','Калькулятор','Показать М','Окна']);
+ const names=new Set(['Помощь','Написать в поддержку','Заказать обратный звонок','Заказать колбэк','Руководителю','Банк и касса','Склад','Зарплата и кадры','Операции','Отчеты','Получить ссылку','Перейти по ссылке','Календарь','Калькулятор','Показать М','Показать M, M+, M-','Окна']);
  const scrub=()=>document.querySelectorAll('.target').forEach(el=>{if(names.has(el.dataset.name)){el.classList.remove('target');el.querySelectorAll(':scope > .badge').forEach(b=>b.style.display='none')}});
  scrub();
  const nav=document.querySelector('.nav');if(nav)new MutationObserver(scrub).observe(nav,{childList:true});
@@ -3497,9 +3510,9 @@ startSearch=function(target,item){
 #v8SalesTabs button{margin:0!important}
 #v8ReturnSalesTab{display:none!important}
 </style>
-<div id="v8TaskChooser"><div><b>Задачи</b><button class="v8CloseChooser" type="button">× Закрыть</button><button id="v8TaskOne" type="button">№1 · Где находится конфигурация 1С?</button><button id="v8TaskTwo" type="button">№2 · Как создать реализацию?</button><div id="v8TaskHistory"></div></div></div>
+<div id="v8TaskChooser"><div><b>Задачи</b><button class="v8CloseChooser" type="button">× Закрыть</button><button id="v8TaskOne" type="button">№1 · Где находится конфигурация 1С?</button><button id="v8TaskTwo" type="button">№2 · Как создать реализацию?</button><button id="v8PlayTask" type="button">▶ Играть</button><div id="v8TaskHistory"></div></div></div>
 <script id="v8-tasks-history-script-20261018">
-(()=>{'use strict';
+document.addEventListener('DOMContentLoaded',()=>{'use strict';
  const chooser=document.getElementById('v8TaskChooser'), taskButton=document.querySelector('.m8tasks');if(!taskButton)return;
  const guided=document.getElementById('m8GuidedTask'),heading=guided?.querySelector('.guideTop strong'),question=document.getElementById('m8GuidedQuestion'),instruction=document.getElementById('m8GuidedInstruction'),progress=document.getElementById('m8GuidedProgress'),hint=document.getElementById('m8GuidedHint');
  const key='diadocTrainer.guidedTaskHistory.v1';let started=0,active=false,stage=0,watch=null;
@@ -3511,8 +3524,9 @@ startSearch=function(target,item){
  function start2(){chooser.classList.remove('open');window.DiadocConfigTask?.stop();active=true;stage=0;started=Date.now();guided.classList.add('open');document.getElementById('m8Setup')?.classList.remove('on');draw();watch=setInterval(draw,1000)}
  taskButton.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();chooser.classList.add('open');showHistory()},true);
  chooser.querySelector('.v8CloseChooser').onclick=()=>chooser.classList.remove('open');
- document.getElementById('v8TaskOne').onclick=()=>{chooser.classList.remove('open');window.DiadocConfigTask?.start()};
- document.getElementById('v8TaskTwo').onclick=start2;
+ document.getElementById('v8TaskOne').onclick=()=>{document.querySelectorAll('#v8TaskOne,#v8TaskTwo').forEach(x=>x.classList.remove('v8SelectedTask'));document.getElementById('v8TaskOne').classList.add('v8SelectedTask')};
+ document.getElementById('v8TaskTwo').onclick=()=>{document.querySelectorAll('#v8TaskOne,#v8TaskTwo').forEach(x=>x.classList.remove('v8SelectedTask'));document.getElementById('v8TaskTwo').classList.add('v8SelectedTask')};
+ document.getElementById('v8PlayTask').onclick=()=>{if(document.getElementById('v8TaskTwo').classList.contains('v8SelectedTask'))start2();else {chooser.classList.remove('open');window.DiadocConfigTask?.start()}};
  document.addEventListener('click',e=>{if(!active)return;
  if(stage===0&&e.target.closest('.navItem[data-n="46"]')){stage=1;setTimeout(draw,100)}
  else if(stage===1&&e.target.closest('#v8SalesLink')){stage=2;setTimeout(draw,100)}
@@ -3520,7 +3534,7 @@ startSearch=function(target,item){
  if(stage===2&&e.target.closest('button')&&/^(Создать|Провести и закрыть)$/.test(e.target.textContent.trim()))setTimeout(finish,150);
  },true);
  document.getElementById('m8GuidedClose')?.addEventListener('click',stop);
-})();
+});
 </script>
 
 <style id="v8-warehouse-scroll-fix">
@@ -3706,6 +3720,119 @@ startSearch=function(target,item){
  window.v8RefreshStudentDocs();
 })();
 </script>
+
+<!-- PATCH: standalone trainer hint, not part of 1C document -->
+<style id="trainer-hint-corner-style">
+#v8StudentHint{position:fixed!important;left:auto!important;top:auto!important;right:22px!important;bottom:20px!important;z-index:100000!important;box-sizing:border-box!important;width:330px!important;max-width:calc(100vw - 32px)!important;background:#191d24!important;color:#f5f5f5!important;border:1px solid #3b4453!important;border-left:3px solid #e7b72b!important;border-radius:12px!important;padding:15px 16px!important;box-shadow:0 12px 36px #0005!important;font:14px/1.5 Arial,sans-serif!important;margin:0!important}
+#v8StudentHint strong{color:#fff!important;font-size:15px!important;margin:0 26px 9px 0!important}
+#v8StudentHint .hintClose{position:absolute;right:10px;top:8px;background:transparent;color:#cbd0d9;border:0;font-size:22px;cursor:pointer}
+#v8StudentHint .hintOk{display:block;margin:12px 0 0 auto;padding:7px 15px;border:1px solid #586171;border-radius:6px;background:#2b313c;color:white;cursor:pointer}
+#v8HintReopen{position:fixed;right:20px;bottom:20px;z-index:99999;background:#191d24;color:white;border:1px solid #586171;border-radius:8px;padding:10px 13px;cursor:pointer;box-shadow:0 5px 18px #0003}
+</style>
+
+<style id="student-game-fix-css">
+#v8StudentHint{position:fixed!important;right:24px!important;bottom:24px!important;left:auto!important;top:auto!important;z-index:2147483000!important;width:330px!important;max-width:calc(100vw - 48px)!important;background:#191d24!important;color:#f5f5f5!important;border:1px solid #424956!important;border-left:3px solid #e7b72b!important;border-radius:12px!important;padding:16px!important;box-shadow:0 12px 36px #0005!important;box-sizing:border-box!important;font:14px/1.5 Arial,sans-serif!important}
+#v8StudentHint .hintClose{position:absolute;right:10px;top:8px;color:#fff;background:none;border:0;font-size:22px;cursor:pointer}
+#v8StudentHint .hintOk{display:block;margin:12px 0 0 auto;padding:7px 15px;background:#303641;color:white;border:1px solid #606977;border-radius:6px;cursor:pointer}
+#v8HintReopen{position:fixed!important;right:24px!important;bottom:24px!important;z-index:2147483000!important;background:#191d24!important;color:white!important;border:1px solid #606977!important;border-radius:8px!important;padding:10px 13px!important;cursor:pointer}
+#v8GameSettings{position:absolute;left:12px;right:12px;bottom:14px;z-index:100;padding:16px;color:#f4f5f8;background:#22262e;border:1px solid #454b57;border-radius:9px;margin:0;display:none;box-sizing:border-box;box-shadow:0 10px 28px #0005} .app.trainerMini #v8GameSettings{display:none!important}
+#v8GameSettings button{display:block;width:100%;box-sizing:border-box;background:#303641;color:#f4f5f8;border:1px solid #586171;border-radius:7px;padding:11px 9px;font-weight:600;cursor:pointer;white-space:normal;overflow-wrap:anywhere}#v8GameSettings button:hover{background:#3a4350}
+#v8ResetConfirm{display:none;position:fixed;inset:0;background:#0009;z-index:2147483646;align-items:center;justify-content:center;font:14px Arial,sans-serif}
+.v8ConfirmBox{background:#1b2029;color:white;border:1px solid #535d6b;border-radius:12px;box-shadow:0 20px 60px #0008;padding:24px;width:min(420px,calc(100vw - 36px));box-sizing:border-box}
+.v8ConfirmBox h3{margin:0 0 12px;font-size:20px}.v8ConfirmBox p{line-height:1.55;color:#d3d9e2}.v8ConfirmActions{display:flex;gap:10px;justify-content:flex-end;margin-top:22px}.v8ConfirmActions button{padding:10px 13px;border-radius:7px;cursor:pointer;border:1px solid #667080;background:#303744;color:white}.v8ConfirmActions #v8ConfirmReset{background:#efbd28;color:#191d24;border:0;font-weight:bold}
+</style>
+<script id="student-game-fix-js">
+(function(){
+ function init(){
+  const dev=document.getElementById('devBtn');
+  if(dev){dev.querySelector('span:last-child').textContent='Настройки';dev.addEventListener('click',function(e){e.stopImmediatePropagation();e.preventDefault();const panel=document.getElementById('v8GameSettings');panel.style.display=panel.style.display==='block'?'none':'block';},true)}
+  const trainer=document.querySelector('.trainer');
+  if(trainer&&!document.getElementById('v8GameSettings')){
+   const panel=document.createElement('div');panel.id='v8GameSettings';panel.innerHTML='<b>Настройки игры</b><div style="display:flex;flex-direction:column;gap:10px;margin-top:12px"><button id="v8DeveloperSettings" type="button">Настройки разработчика</button><button id="v8ResetGame" type="button">Обновить игру</button></div>';
+   panel.querySelector('#v8DeveloperSettings').onclick=()=>{document.getElementById('devModal')?.classList.add('open');const original=document.getElementById('devBtn');if(original&&typeof original.onclick==='function')original.onclick();};
+   dev.insertAdjacentElement('afterend',panel);
+   const app=document.querySelector('.app');
+   const collapse=document.querySelector('.trainerCollapse');
+   collapse?.addEventListener('click',()=>{panel.style.display='none';});
+   document.querySelectorAll('.miniBtn.dev').forEach(btn=>btn.addEventListener('click',()=>{if(app?.classList.contains('trainerMini')){collapse?.click();setTimeout(()=>{panel.style.display='block'},0)}},true));
+   panel.querySelector('#v8ResetGame').onclick=()=>{
+    document.getElementById('v8ResetConfirm').style.display='flex';
+   };
+   document.getElementById('v8ResetConfirm')?.remove();
+   const overlay=document.createElement('div');overlay.id='v8ResetConfirm';overlay.innerHTML='<div class="v8ConfirmBox"><h3>Сбросить игру?</h3><p>Все созданные организации, товары, документы и прогресс обучения будут безвозвратно удалены из данных тренажёра в этом браузере.</p><div class="v8ConfirmActions"><button id="v8CancelReset">Отмена</button><button id="v8ConfirmReset">Да, сбросить игру</button></div></div>';document.body.appendChild(overlay);
+   overlay.querySelector('#v8CancelReset').onclick=()=>overlay.style.display='none';
+   overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.style.display='none'});
+   overlay.querySelector('#v8ConfirmReset').onclick=async()=>{
+    localStorage.clear();sessionStorage.clear();
+    try{if(indexedDB.databases){const dbs=await indexedDB.databases();await Promise.all(dbs.filter(x=>x.name).map(x=>new Promise(resolve=>{const r=indexedDB.deleteDatabase(x.name);r.onsuccess=r.onerror=r.onblocked=resolve})))}}catch(e){}
+    location.reload();
+   };
+  }
+  const hint=document.createElement('div');hint.id='v8StudentHint';document.body.appendChild(hint);
+  hint.innerHTML='<button class="hintClose" aria-label="Закрыть подсказку">×</button><strong>💡 Подсказка новичку</strong><div style="margin-top:9px">Документы «Реализация» (РТУ) из 1С отображаются в модуле в разделе «Для отправки».</div><button class="hintOk">Понятно</button>';
+  const reopen=document.createElement('button');reopen.id='v8HintReopen';reopen.textContent='💡 Показать подсказку';document.body.appendChild(reopen);
+  let dismissed=false;
+  function update(){
+   // Sales view may not have a .visible class; rely on computed visibility instead.
+   const sales=document.getElementById('v8SalesList');
+   const salesVisible=!!(sales&&sales.getClientRects().length&&getComputedStyle(sales).display!=='none');
+   const send=!!document.querySelector('.sectionBtn.active[data-section="send"],.sectionBtn.active[data-section="outbox"]');
+   const relevant=salesVisible && !!document.querySelector('#adminPreview:not([hidden])') && getComputedStyle(document.getElementById('adminPreview')).display!=='none';
+   hint.style.setProperty('display',relevant&&!dismissed?'block':'none','important');
+   reopen.style.display=relevant&&dismissed?'block':'none';
+  }
+  hint.querySelectorAll('.hintClose,.hintOk').forEach(b=>b.onclick=()=>{dismissed=true;update()});
+  reopen.onclick=()=>{dismissed=false;update()};
+  // Original implementation recreates inline hint; remove it without touching document table.
+  document.querySelectorAll('#v8SalesList #v8StudentHint,.v8StudentHint').forEach(el=>{if(el!==hint)el.remove()});
+  const oldText='В 1С документы для отправки находятся в разделе';
+  document.querySelectorAll('#v8SalesList div').forEach(el=>{if(el.textContent.includes(oldText)&&el.textContent.length<300)el.remove()});
+  setInterval(update,350);update();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+<style id="diadoc-send-structural-fix">
+/* The original 1C navigation remains in the DOM for training routes but is not drawn. */
+.diadocPane .module>.title>.navBtn{display:none!important}
+/* No fake icon/toggle in the period field. */
+.diadocPane .filters .period>.fieldIcon{display:none!important}
+.diadocPane .filters .period>.fieldMain{padding-left:10px!important}
+/* Only the send page has the original compact toolbar arrangement. */
+.diadocPane .module.dd-send-active>.actions{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;gap:5px!important;min-width:0!important}
+.dd-send-active>.actions .v8SendExtras{display:flex;align-items:center;gap:5px;min-width:0}
+.dd-send-active>.actions .v8SendExtras button{font-size:12px}
+.dd-send-active>.actions [data-n="20"]{margin-left:auto!important}
+.dd-send-active>.actions [data-n="15"],.dd-send-active>.actions [data-n="17"],.dd-send-active>.actions [data-n="18"],.dd-send-active>.actions [data-n="19"],.dd-send-active>.actions .v8MoreWrap{display:none!important}
+.dd-send-active>.actions .push{display:none!important}
+/* No hint can appear on the Diadoc screen, even while another 1C tab is retained. */
+body:has(.diadocPane:not([hidden]) .sectionBtn.active) #v8StudentHint,
+body:has(.diadocPane:not([hidden]) .sectionBtn.active) #v8HintReopen{display:none!important}
+</style>
+<script id="diadoc-send-structural-fix-script">
+(()=>{
+ const module=document.querySelector('.diadocPane .module');
+ const sections=document.getElementById('sectionButtons');
+ const actions=module?.querySelector(':scope>.actions');
+ if(!module||!sections||!actions)return;
+ function sync(){
+   const send=sections.querySelector('.sectionBtn.active')?.dataset.section==='send';
+   module.classList.toggle('dd-send-active',send);
+   const add=actions.querySelector('[data-n="16"]');
+   if(add&&send){add.textContent='Добавить файлы ▾';add.setAttribute('aria-label','Добавить файлы')}
+   const refresh=actions.querySelector('[data-n="20"]');
+   if(refresh){refresh.title='Обновить список документов';refresh.setAttribute('aria-label','Обновить список документов')}
+   const extras=actions.querySelectorAll('.v8SendExtras');
+   extras.forEach((el,i)=>{if(i)el.remove()});
+   if(send){
+     const more=actions.querySelector('.v8MoreWrap');if(more)more.style.display='none';
+   }
+ }
+ new MutationObserver(sync).observe(sections,{childList:true});
+ sync();
+})();
+</script>
 </body></html>
 <!-- MASTER54: nested-button search route repair -->
 <script id="master54-nested-search-fix">
@@ -3868,7 +3995,7 @@ startSearch=function(target,item){
     const last=sectionLastColumn();
     const th=document.querySelector('th.target[data-n="67"]');
     if(th){th.dataset.name=last.name||'Не определено';th.innerHTML='<i class="badge">67</i>'+last.label;th.style.display=state.section==='send'?'none':'';}
-    document.querySelectorAll('#viewport tbody tr').forEach(tr=>{const td=tr.lastElementChild;if(td)td.style.display=state.section==='send'?'none':''});
+    
     rebuildCollection();
   };
   render();
@@ -4498,13 +4625,13 @@ startSearch=function(target,item){
   if(!live){live=document.createElement('div');Object.assign(live.dataset,{n:String(x.n),name:x.name||'',path:x.path||'',zone:x.zone||'',type:x.type||'Пункт меню'});}
   if(typeof window.startSearch==='function')window.startSearch(live,null);
  }
- function draw(){const q=query.value.trim().toLocaleLowerCase('ru'),lvl=filter.value;const list=allEntries().filter(x=>![1,2,108,109,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n))).filter(x=>(lvl==='all'||String(level(x))===lvl)&&(!q||(x.name+' '+x.n+' '+x.zone).toLocaleLowerCase('ru').includes(q))).sort((a,b)=>Number(a.n)-Number(b.n));
+ function draw(){const q=query.value.trim().toLocaleLowerCase('ru'),lvl=filter.value;const list=allEntries().filter(x=>![1,2,108,109,29,35,77,76,70,26,79,36,99,72,32,74,33,68,78,75,73].includes(Number(x.n))).filter(x=>(lvl==='all'||String(level(x))===lvl)&&(!q||(x.name+' '+x.n+' '+x.zone).toLocaleLowerCase('ru').includes(q))).sort((a,b)=>Number(a.n)-Number(b.n));
   results.replaceChildren();for(const x of list){const b=document.createElement('button');b.type='button';const strong=document.createElement('span');strong.textContent='№'+x.n+' — '+x.name;const small=document.createElement('small');small.textContent='Уровень '+level(x)+' · '+x.zone;b.append(strong,small);b.addEventListener('click',()=>navigate(x));results.appendChild(b)}if(!list.length)results.textContent='Кнопок не найдено';}
  filter.addEventListener('change',draw);query.addEventListener('input',draw);updateVisible();draw();
  // Page changes are performed only by the learner, never by the search widget.
  // Keep the ordinary quick-search and collection in sync with pages that are not currently rendered.
  const previousRegistry=registry;
- registry=function(){const base=previousRegistry(),seen=new Map(base.map(x=>[x.n,x]));for(const x of allEntries()){if(![29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73].includes(Number(x.n))&&!seen.has(x.n))seen.set(x.n,x)}return [...seen.values()].sort((a,b)=>a.n-b.n)};
+ registry=function(){const base=previousRegistry(),seen=new Map(base.map(x=>[x.n,x]));for(const x of allEntries()){if(![29,35,77,76,70,26,79,36,99,72,32,74,33,68,78,75,73].includes(Number(x.n))&&!seen.has(x.n))seen.set(x.n,x)}return [...seen.values()].sort((a,b)=>a.n-b.n)};
  if(typeof rebuildCollection==='function')rebuildCollection();
 })();
 </script>
@@ -5059,7 +5186,7 @@ body .target:not([data-n])>.badge{display:none!important}
  const excluded=new Set([17,37,39,40,41,43,47,52,55,80,83,84,91,92,93,100,103,106,107]);
  // 17 was subsequently explicitly restored to training by the user.
  excluded.delete(17);
- const oldIds=new Set([18,19,21,23,29,35,77,76,70,26,79,36,72,32,74,33,68,78,75,73]);
+ const oldIds=new Set([18,19,21,23,29,35,77,76,70,26,79,36,99,72,32,74,33,68,78,75,73]);
  function updateNumbers(){
    const targets=[...document.querySelectorAll('.target[data-n]')];
    const valid=[...new Set(targets.map(el=>Number(el.dataset.n)).filter(n=>Number.isFinite(n)&&!excluded.has(n)&&!oldIds.has(n)))].sort((a,b)=>a-b);
