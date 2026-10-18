@@ -4479,7 +4479,52 @@ body:has(.diadocPane:not([hidden]) .sectionBtn.active) #v8HintReopen{display:non
  document.querySelector('.userName')?.addEventListener('click',e=>{e.preventDefault();e.stopImmediatePropagation();openAuth()},true);
  // Учебный фильтр организаций; не изменяем нумерацию и data-n исходного элемента №10.
  const filter=document.querySelector('.control.org'),picker=$('trainingOrgPicker');
- if(filter){filter.addEventListener('click',e=>{if(!profile.name)return;const mini=e.target.closest('[data-subaction]');if(mini?.dataset.subaction==='clear'){filter.querySelector('.fieldMain').textContent='Организация';picker.hidden=true;return}e.stopPropagation();const rect=filter.getBoundingClientRect();picker.style.left=Math.max(8,Math.min(rect.left,innerWidth-300))+'px';picker.style.top=Math.min(rect.bottom+3,innerHeight-220)+'px';picker.replaceChildren();const all=document.createElement('button');all.textContent='Все организации';all.onclick=()=>{filter.querySelector('.fieldMain').textContent='Организация';picker.hidden=true};picker.append(all);profile.orgs.forEach(o=>{const b=document.createElement('button');b.textContent=o.name;b.onclick=()=>{filter.querySelector('.fieldMain').textContent=o.name;picker.hidden=true};picker.append(b)});picker.hidden=false},true)}
+ if(filter){
+  const field=filter.querySelector('.fieldMain');
+
+  function setOrganization(name){
+    field.textContent=name || 'Организация';
+    field.classList.toggle('placeholderText', !name);
+  }
+
+  filter.addEventListener('click',e=>{
+    if(!profile.name)return;
+
+    const mini=e.target.closest('[data-subaction]');
+
+    if(mini?.dataset.subaction==='clear'){
+      setOrganization('');
+      picker.hidden=true;
+      return;
+    }
+
+    e.stopPropagation();
+    const rect=filter.getBoundingClientRect();
+    picker.style.left=Math.max(8,Math.min(rect.left,innerWidth-300))+'px';
+    picker.style.top=Math.min(rect.bottom+3,innerHeight-220)+'px';
+    picker.replaceChildren();
+
+    const all=document.createElement('button');
+    all.textContent='Все организации';
+    all.onclick=()=>{
+      setOrganization('');
+      picker.hidden=true;
+    };
+    picker.append(all);
+
+    profile.orgs.forEach(o=>{
+      const b=document.createElement('button');
+      b.textContent=o.name;
+      b.onclick=()=>{
+        setOrganization(o.name);
+        picker.hidden=true;
+      };
+      picker.append(b);
+    });
+
+    picker.hidden=false;
+  },true);
+}
  document.addEventListener('click',e=>{if(!e.target.closest('#trainingOrgPicker,.control.org'))picker.hidden=true});
  // Учебные контрагенты в существующем фильтре №11.
  const partnerFilter=document.querySelector('.control.partner');
